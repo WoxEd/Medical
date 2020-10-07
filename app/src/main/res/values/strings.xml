@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">T2201 Medical Tracker</string>
+    <string name="Speaking">Speaking</string>
+    <string name="Walking">Walking</string>
+    <string name="Hearing">Hearing</string>
+    <string name="Vision">Vision</string>
+    <string name="Eliminating">Eliminating</string>
+    <string name="Feeding">Feeding</string>
+    <string name="Dressing">Dressing</string>
+    <string name="Mental">Mental</string>
+    <string name="firstLine">Please select from the</string>
 </resources>
