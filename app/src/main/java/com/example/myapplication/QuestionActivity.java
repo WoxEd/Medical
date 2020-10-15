@@ -26,9 +26,6 @@ public class QuestionActivity extends AppCompatActivity {
 
         //Loads the type of disability passed from the previous page
         loadIntent();
-        loadImage();
-        //Loads the questions based on the disability
-        loadQuestions();
 
         //Temporary radioGroup which holds a default question that will appear on every disability
         RadioGroup radioGroup = findViewById(R.id.defaultRadio);
@@ -46,20 +43,16 @@ public class QuestionActivity extends AppCompatActivity {
 
     /**
      * Loads the intent from the main page and sets the global variable disabilityType to that intent
+     * Using a decision structure it chooses the appropriate image and the questions based on the disabilityType
      */
     private void loadIntent() {
         Intent fromMain = getIntent();
-        disabilityType = fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
-    }
-
-    /**
-     * Loads the Icon at the top of the page based on the selected disability
-     */
-    private void loadImage() {
-        //This is the icon we will change depending on the disability type loaded...
         ImageView image = findViewById(R.id.selectedIcon);
+        disabilityType = fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
+        LinearLayout questions = findViewById(R.id.questions);
+        View questionView;
 
-        switch(disabilityType) {
+        switch (disabilityType) {
             case MainActivity.SPEAKING:
                 image.setImageResource(R.drawable.speaking);
                 break;
@@ -83,40 +76,13 @@ public class QuestionActivity extends AppCompatActivity {
                 break;
             default: //default case will act like Vision
                 image.setImageResource(R.drawable.vision);
-                break;
-            //TODO: Create cases for every disability, changing the icon of ImageView accordingly.
-        }
-    }
-
-    /**
-     * Loads the questions based on the disability selected
-     */
-    private void loadQuestions() {
-        //The parent view questions will be populated by the child view based on disabilityType
-        LinearLayout questions = findViewById(R.id.questions);
-        View questionView;
-
-        switch(disabilityType) {
-            case MainActivity.SPEAKING:
-                break;
-            case MainActivity.HEARING:
-                break;
-            case MainActivity.WALKING:
-                break;
-            case MainActivity.ELIMINATING:
-                break;
-            case MainActivity.FEEDING:
-                break;
-            case MainActivity.DRESSING:
-                break;
-            case MainActivity.MENTAL:
-                break;
-            default: //default case will act like Vision
                 questionView = getLayoutInflater().inflate(R.layout.questions_vision, null);
                 questions.addView(questionView);
                 break;
         }
     }
+
+
 
 
     /**
@@ -146,7 +112,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                String display = String.valueOf(progress/=10);
+                String display = String.valueOf(progress/10);
                 data.setText(String.valueOf(display));
 
             }});
