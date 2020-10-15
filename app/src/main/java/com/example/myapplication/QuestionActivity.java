@@ -48,7 +48,10 @@ public class QuestionActivity extends AppCompatActivity {
     private void loadIntent() {
         Intent fromMain = getIntent();
         ImageView image = findViewById(R.id.selectedIcon);
-        disabilityType = fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
+        if(fromMain.getStringExtra(MainActivity.DISABILITY_TYPE) == null)
+            disabilityType = MainActivity.VISION;
+        else
+            disabilityType = fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
         LinearLayout questions = findViewById(R.id.questions);
         View questionView;
 
@@ -113,7 +116,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 String display = String.valueOf(progress/10);
-                data.setText(String.valueOf(display));
+                data.setText(display);
 
             }});
     }
