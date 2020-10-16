@@ -8,5 +8,6 @@
     <string name="Feeding">Feeding</string>
     <string name="Dressing">Dressing</string>
     <string name="Mental">Mental</string>
-    <string name="firstLine">Please select from the</string>
+    <string name="firstLine">Please select from the following icons</string>
+    
 </resources>

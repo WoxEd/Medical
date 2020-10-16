@@ -2,9 +2,13 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,11 +25,18 @@ public class MainActivity extends AppCompatActivity {
     public static final String DRESSING = "dressing";
     public static final String MENTAL = "mental";
 
+    private TextView dateText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dateText = findViewById(R.id.dateText);
+
+        //Adds the click functions for the Calendar button
+        ImageButton calendar = findViewById(R.id.imagecalendar);
+        calendar.setOnClickListener( e -> showCalendar());
 
         //Adds the click functions for the Vision button
         ImageButton vision = findViewById(R.id.imagevision);
@@ -94,5 +105,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         startActivity(goToQuestions);
+    }
+
+    public void showCalendar() {
+        DatePickerDialog picker;
+        final Calendar cldr = Calendar.getInstance();
+
+        // Get the current day, month, year
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+
+        // Create a calendar dialog for user to select the date, today's date is the default
+        picker = new DatePickerDialog(MainActivity.this, (datePicker, calYear, calMonth, calDate) -> {
+            // Set the date to the user's selection
+            dateText.setText("Selected date: " + calDate + "/" + (calMonth + 1) + "/" + calYear);
+        }, year, month, day);
+        picker.show();
     }
 }
