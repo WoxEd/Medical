@@ -32,12 +32,12 @@ public class DataActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean isInserted  = myDataBase.insertData(firstName.getText().toString(),
+                        boolean isInserted  = myDataBase.insertPatient(firstName.getText().toString(),
                                 lastName.getText().toString(),
                                 phoneNumber.getText().toString());
 
 
-                        if(isInserted==true)
+                        if(isInserted)
                             Toast.makeText(DataActivity.this,"New Patient inserted",Toast.LENGTH_LONG).show();
                         else
                             Toast.makeText(DataActivity.this,"Data failed",Toast.LENGTH_LONG).show();
