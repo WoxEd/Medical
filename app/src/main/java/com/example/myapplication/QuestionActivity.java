@@ -15,8 +15,6 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.Queue;
-
 public class QuestionActivity extends AppCompatActivity {
 
     private String disabilityType;
@@ -35,18 +33,14 @@ public class QuestionActivity extends AppCompatActivity {
         //Submit button which will process the answers
         Button button = findViewById(R.id.button);
         button.setOnClickListener(e -> {
-//           submitData();
-            addClickFunction();
+           submitData();
         });
 
         //Seekbar for selecting severity 1-10
         SeekBar bar = findViewById(R.id.seekBar);
         setSeekBarActions(bar);
     }
-    public void addClickFunction() {
-        Intent goToQuestions = new Intent(QuestionActivity.this, SummaryActivity.class);
-        startActivity(goToQuestions);
-    }
+
     /**
      * Loads the intent from the main page and sets the global variable disabilityType to that intent
      * Using a decision structure it chooses the appropriate image and the questions based on the disabilityType

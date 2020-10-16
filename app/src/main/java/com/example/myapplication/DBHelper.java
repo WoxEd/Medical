@@ -4,9 +4,12 @@ package com.example.myapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -56,7 +59,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //Define Query to create Questions  table
     private static final String createQuestionTable = "create table " + QUESTIONS_TABLE_NAME + " ( "
-            + QUESTION_ID + " integer primary key autoincrement, " + QUESTION_CONTENT + " text not null, " +
+            + QUESTION_ID + " integer primary key autoincrement, " +
+            QUESTION_CONTENT + " TEXT not null, " +
             DISABILITY_ID_FK + " integer not null );";
 
     //Define Query to create History  table
@@ -131,6 +135,9 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
 
     }
+
+
+
 
 }
 
