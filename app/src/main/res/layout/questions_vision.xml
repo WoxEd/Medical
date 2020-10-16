@@ -13,11 +13,11 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/blindQ1"
-            android:layout_width="341dp"
+            android:id="@+id/visionQ1"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Question 1 about blindness" />
+            android:text="Which eye is your vison impacted in?" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -26,49 +26,24 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/button1"
+                android:id="@+id/right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option 1" />
+                android:text="Right" />
 
             <RadioButton
-                android:id="@+id/button2"
+                android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="option2" />
+                android:text="Left" />
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Both" />
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/blindQ2"
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Question 2 about blindness" />
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="option 1" />
-
-            <RadioButton
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="option2" />
-        </RadioGroup>
-
-    </LinearLayout>
 </LinearLayout>
