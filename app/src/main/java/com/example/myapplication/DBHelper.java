@@ -118,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertData(String fname, String lname, String phonNum) {
+    public boolean insertPatient(String fname, String lname, String phonNum) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentvalues = new ContentValues();
         contentvalues.put(FIRST_NAME, fname);
