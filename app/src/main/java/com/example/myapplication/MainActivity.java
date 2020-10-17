@@ -81,27 +81,35 @@ public class MainActivity extends AppCompatActivity {
         switch(type) {
             case SPEAKING:
                 goToQuestions.putExtra(DISABILITY_TYPE,SPEAKING);
+                goToQuestions.putExtra("id",2);
                 break;
             case HEARING:
                 goToQuestions.putExtra(DISABILITY_TYPE,HEARING);
+                goToQuestions.putExtra("id",3);
                 break;
             case WALKING:
                 goToQuestions.putExtra(DISABILITY_TYPE,WALKING);
+                goToQuestions.putExtra("id",4);
                 break;
             case ELIMINATING:
                 goToQuestions.putExtra(DISABILITY_TYPE,ELIMINATING);
+                goToQuestions.putExtra("id",5);
                 break;
             case FEEDING:
                 goToQuestions.putExtra(DISABILITY_TYPE,FEEDING);
+                goToQuestions.putExtra("id",6);
                 break;
             case DRESSING:
                 goToQuestions.putExtra(DISABILITY_TYPE,DRESSING);
+                goToQuestions.putExtra("id",7);
                 break;
             case MENTAL:
                 goToQuestions.putExtra(DISABILITY_TYPE,MENTAL);
+                goToQuestions.putExtra("id",8);
                 break;
             default: //Vision will act as default
                 goToQuestions.putExtra(DISABILITY_TYPE,VISION);
+                goToQuestions.putExtra("id",1);
                 break;
         }
         startActivity(goToQuestions);

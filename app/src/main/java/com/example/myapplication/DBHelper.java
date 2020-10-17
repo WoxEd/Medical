@@ -37,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Questions table columns names
     public static final String QUESTION_ID = "Q_ID";
     public static final String QUESTION_CONTENT = "Q_CONTENT";
+    public static final String QUESTION_DATE = "Q_DATE";
     public static final String DISABILITY_ID_FK = "Q_ID_D";
 
     //History table columns names
@@ -61,6 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String createQuestionTable = "create table " + QUESTIONS_TABLE_NAME + " ( "
             + QUESTION_ID + " integer primary key autoincrement, " +
             QUESTION_CONTENT + " TEXT not null, " +
+            QUESTION_DATE + " text not null, " +
             DISABILITY_ID_FK + " integer not null );";
 
     //Define Query to create History  table
@@ -129,6 +131,19 @@ public class DBHelper extends SQLiteOpenHelper {
         contentvalues.put(LAST_NAME, lname);
         contentvalues.put(PHONE_NUMBER, phonNum);
         long result = db.insert(PATIENT_TABLE_NAME, null, contentvalues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+
+    }
+    public boolean addQuestionData(String data, int id,String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentvalues = new ContentValues();
+        contentvalues.put(QUESTION_CONTENT, data);
+        contentvalues.put(DISABILITY_ID_FK, id);
+        contentvalues.put(QUESTION_DATE, date);
+        long result = db.insert(QUESTIONS_TABLE_NAME, null, contentvalues);
         if (result == -1)
             return false;
         else
