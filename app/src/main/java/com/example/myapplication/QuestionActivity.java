@@ -46,43 +46,53 @@ public class QuestionActivity extends AppCompatActivity {
      * Using a decision structure it chooses the appropriate image and the questions based on the disabilityType
      */
     private void loadIntent() {
+        //Fetches the intent from MainActivity
         Intent fromMain = getIntent();
+        //ImageView is the icon on the top of the page
         ImageView image = findViewById(R.id.selectedIcon);
-        if(fromMain.getStringExtra(MainActivity.DISABILITY_TYPE) == null)
-            disabilityType = MainActivity.VISION;
-        else
-            disabilityType = fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
+        //disabilityType is set to Vision by default if the intent is null
+        disabilityType = (MainActivity.DISABILITY_TYPE == null) ? MainActivity.VISION : fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
+        //This layout is empty, it will hold the question once it finds the right one.
         LinearLayout questions = findViewById(R.id.questions);
+        //By default we have the question to be loaded set to vision
+        int questionLayout = R.layout.questions_vision;
         View questionView;
 
         switch (disabilityType) {
             case MainActivity.SPEAKING:
                 image.setImageResource(R.drawable.speaking);
+                questionLayout = R.layout.questions_speaking;
                 break;
             case MainActivity.HEARING:
                 image.setImageResource(R.drawable.hearing);
+                questionLayout = R.layout.questions_hearing;
                 break;
             case MainActivity.WALKING:
                 image.setImageResource(R.drawable.walking);
+                questionLayout = R.layout.questions_walking;
                 break;
             case MainActivity.ELIMINATING:
                 image.setImageResource(R.drawable.eliminating);
+                questionLayout = R.layout.questions_eliminating;
                 break;
             case MainActivity.FEEDING:
                 image.setImageResource(R.drawable.feeding);
+                questionLayout = R.layout.questions_feeding;
                 break;
             case MainActivity.DRESSING:
                 image.setImageResource(R.drawable.dressing);
+                questionLayout = R.layout.questions_dressing;
                 break;
             case MainActivity.MENTAL:
                 image.setImageResource(R.drawable.mental);
+                questionLayout = R.layout.questions_mental;
                 break;
             default: //default case will act like Vision
                 image.setImageResource(R.drawable.vision);
-                questionView = getLayoutInflater().inflate(R.layout.questions_vision, null);
-                questions.addView(questionView);
                 break;
         }
+        questionView = getLayoutInflater().inflate(questionLayout, null);
+        questions.addView(questionView);
     }
 
 
