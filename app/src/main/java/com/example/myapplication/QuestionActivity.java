@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.Queue;
+
 public class QuestionActivity extends AppCompatActivity {
 
     private String disabilityType;
@@ -33,14 +35,18 @@ public class QuestionActivity extends AppCompatActivity {
         //Submit button which will process the answers
         Button button = findViewById(R.id.button);
         button.setOnClickListener(e -> {
-           submitData();
+//           submitData();
+            addClickFunction();
         });
 
         //Seekbar for selecting severity 1-10
         SeekBar bar = findViewById(R.id.seekBar);
         setSeekBarActions(bar);
     }
-
+    public void addClickFunction() {
+        Intent goToQuestions = new Intent(QuestionActivity.this, SummaryActivity.class);
+        startActivity(goToQuestions);
+    }
     /**
      * Loads the intent from the main page and sets the global variable disabilityType to that intent
      * Using a decision structure it chooses the appropriate image and the questions based on the disabilityType
@@ -91,7 +97,6 @@ public class QuestionActivity extends AppCompatActivity {
                 break;
             default: //default case will act like Vision
                 image.setImageResource(R.drawable.vision);
-                defaultQuestion = R.layout.questions_vision;
                 break;
         }
         View questionView = getLayoutInflater().inflate(defaultQuestion, null);
@@ -128,6 +133,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 String display = String.valueOf(progress/10);
                 data.setText(display);
+
             }});
     }
 }
