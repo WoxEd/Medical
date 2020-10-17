@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/blindnessQuestions"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/walkingQuestions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,38 +13,267 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/hearing_q1_text"
-            android:layout_width="match_parent"
+            android:id="@+id/hearingQ1"
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/question_marked" />
+            android:text="Right Ear ache" />
 
         <RadioGroup
-            android:id="@+id/hearing_q1"
+            android:id="@+id/hearing1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/hearing_q1_yes"
+                android:id="@+id/hbutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/yes" />
+                android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/hearing_q1_no"
+                android:id="@+id/hbutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no" />
-
-            <RadioButton
-                android:id="@+id/hearing_q1_neutral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/neutral" />
+                android:text="No" />
         </RadioGroup>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ2"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Left Ear ache " />
+
+        <RadioGroup
+            android:id="@+id/hearing2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ3"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Right Pus" />
+
+        <RadioGroup
+            android:id="@+id/hearing3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ4"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Left Pus" />
+
+        <RadioGroup
+            android:id="@+id/hearing4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ5"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Right Muffled feeling" />
+
+        <RadioGroup
+            android:id="@+id/hearing5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ6"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Left Muffled Feeling" />
+
+        <RadioGroup
+            android:id="@+id/hearing6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ7"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Right Hearing roaring or hissing" />
+
+        <RadioGroup
+            android:id="@+id/hearing7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hearingQ8"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Left Hearing roaring or hissing" />
+
+        <RadioGroup
+            android:id="@+id/hearing8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/hbutton15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/hbutton16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+
+
 
 </LinearLayout>

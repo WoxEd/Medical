@@ -13,27 +13,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/feedingQ1"
+            android:id="@+id/dressingQ1"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Nausea" />
+            android:text="Unable to dress" />
 
         <RadioGroup
-            android:id="@+id/feeding1"
+            android:id="@+id/dressing1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/fbutton1"
+                android:id="@+id/dbutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/fbutton2"
+                android:id="@+id/dbutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No" />
@@ -46,27 +46,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/feedingQ2"
+            android:id="@+id/dressingQ2"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Vomiting " />
+            android:text="inordinate amount of time to dress themselves" />
 
         <RadioGroup
-            android:id="@+id/feeding2"
+            android:id="@+id/dressing2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/fbutton3"
+                android:id="@+id/dbutton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/fbutton4"
+                android:id="@+id/dbutton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No" />
@@ -79,27 +79,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/feedingQ3"
+            android:id="@+id/dressingQ3"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hand tremor" />
+            android:text="Dryness in throat" />
 
         <RadioGroup
-            android:id="@+id/feeding3"
+            android:id="@+id/dressing3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/fbutton5"
+                android:id="@+id/dbutton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/fbutton6"
+                android:id="@+id/dbutton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No" />
@@ -112,27 +112,27 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/feedingQ4"
+            android:id="@+id/dressingQ4"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Painful swallowing" />
+            android:text="Tongue Pain" />
 
         <RadioGroup
-            android:id="@+id/feeding4"
+            android:id="@+id/dressing4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/fbutton7"
+                android:id="@+id/dbutton7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/fbutton8"
+                android:id="@+id/dbutton8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No" />

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/blindnessQuestions"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/walkingQuestions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,38 +13,432 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/eliminating_q1_text"
-            android:layout_width="match_parent"
+            android:id="@+id/eliminatingQ1"
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/question_marked" />
+            android:text="Bloated belly" />
 
         <RadioGroup
-            android:id="@+id/eliminating_q1"
+            android:id="@+id/eliminating1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/eliminating_q1_yes"
+                android:id="@+id/ebutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/yes" />
+                android:text="Yes" />
 
             <RadioButton
-                android:id="@+id/eliminating_q1_no"
+                android:id="@+id/ebutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no" />
-
-            <RadioButton
-                android:id="@+id/eliminating_q1_neutral"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/neutral" />
+                android:text="No" />
         </RadioGroup>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ2"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Burping " />
+
+        <RadioGroup
+            android:id="@+id/eliminating2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ3"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Diarrhea" />
+
+        <RadioGroup
+            android:id="@+id/eliminating3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ4"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Abdominal tenderness" />
+
+        <RadioGroup
+            android:id="@+id/eliminating4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ5"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Indigestion" />
+
+        <RadioGroup
+            android:id="@+id/eliminating5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ6"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nausea" />
+
+        <RadioGroup
+            android:id="@+id/eliminating6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ7"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pain around belly button" />
+
+        <RadioGroup
+            android:id="@+id/eliminating7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ8"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pain in middle of belly" />
+
+        <RadioGroup
+            android:id="@+id/eliminating8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ9"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reflux" />
+
+        <RadioGroup
+            android:id="@+id/eliminating9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ10"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Stomach cramps" />
+
+        <RadioGroup
+            android:id="@+id/eliminating10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ11"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bladder Pain" />
+
+        <RadioGroup
+            android:id="@+id/eliminating11"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ12"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bloody Urine" />
+
+        <RadioGroup
+            android:id="@+id/eliminating12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eliminatingQ13"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Extreme Pee" />
+
+        <RadioGroup
+            android:id="@+id/eliminating13"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/ebutton25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <RadioButton
+                android:id="@+id/ebutton26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
+        </RadioGroup>
+
+    </LinearLayout>
+    
+
+
+
 
 </LinearLayout>
