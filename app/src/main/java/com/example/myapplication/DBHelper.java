@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String HISTORY_TABLE_NAME = "HISTORY_TABLE";
 
     // Version
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 
     // Patient table columns names
     public static final String PATIENT_ID = "P_ID";
