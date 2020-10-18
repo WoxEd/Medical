@@ -36,6 +36,12 @@ public class QuestionActivity extends AppCompatActivity {
            submitData();
         });
 
+        Button chartBtn = findViewById(R.id.chartBtn);
+        chartBtn.setOnClickListener(e -> {
+            Intent goToSummary = new Intent(QuestionActivity.this,SummaryActivity.class);
+            startActivity(goToSummary);
+        });
+
         //Seekbar for selecting severity 1-10
         SeekBar bar = findViewById(R.id.seekBar);
         setSeekBarActions(bar);
