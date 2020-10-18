@@ -177,39 +177,8 @@ public class SummaryActivity extends AppCompatActivity {
      * Temporary method used to insert data to test the entries
      */
     private void testAdd() {
-        ContentValues entry = new ContentValues();
-        entry.put(PrototypeOneDBOpener.COL_DISABILITY, MainActivity.VISION);
-        entry.put(PrototypeOneDBOpener.COL_RATING, 10);
-        entry.put(PrototypeOneDBOpener.COL_DATE, "14/10/2020");
-        db.insert(PrototypeOneDBOpener.TABLE_NAME,null, entry);
-
-
-        entry = new ContentValues();
-        entry.put(PrototypeOneDBOpener.COL_DISABILITY, MainActivity.VISION);
-        entry.put(PrototypeOneDBOpener.COL_RATING, 9);
-        entry.put(PrototypeOneDBOpener.COL_DATE, "15/10/2020");
-        db.insert(PrototypeOneDBOpener.TABLE_NAME,null, entry);
-
-
-        entry = new ContentValues();
-        entry.put(PrototypeOneDBOpener.COL_DISABILITY, MainActivity.VISION);
-        entry.put(PrototypeOneDBOpener.COL_RATING, 8);
-        entry.put(PrototypeOneDBOpener.COL_DATE, "16/10/2020");
-        db.insert(PrototypeOneDBOpener.TABLE_NAME,null, entry);
-
-
-        entry = new ContentValues();
-        entry.put(PrototypeOneDBOpener.COL_DISABILITY, MainActivity.VISION);
-        entry.put(PrototypeOneDBOpener.COL_RATING, 5);
-        entry.put(PrototypeOneDBOpener.COL_DATE, "17/10/2020");
-        db.insert(PrototypeOneDBOpener.TABLE_NAME,null, entry);
-
-
-        entry = new ContentValues();
-        entry.put(PrototypeOneDBOpener.COL_DISABILITY, MainActivity.VISION);
-        entry.put(PrototypeOneDBOpener.COL_RATING, 1);
-        entry.put(PrototypeOneDBOpener.COL_DATE, "18/10/2020");
-        db.insert(PrototypeOneDBOpener.TABLE_NAME,null, entry);
+        //inserts entry with values (vision, 5, 10/18/2020)
+        opener.insert(db, MainActivity.VISION,1, "10/18/2020");
     }
 
 }

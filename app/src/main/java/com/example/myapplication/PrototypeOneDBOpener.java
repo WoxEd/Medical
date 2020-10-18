@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * This is a database opener. Created to fulfill the needs of Prototype 1.
@@ -53,6 +54,7 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
             " ("+COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COL_DISABILITY + " text," + COL_RATING + " INTEGER, " + COL_DATE + " text)";
 
+    private static final String INSERT_STATEMENT = "INSERT INTO " + TABLE_NAME + " (" + COL_DISABILITY + "," + COL_RATING +"," + COL_DATE+ ")" + " VALUES (\'%s\',\'%d\',\'%s\')";
     /**
      * Constructor required to create database
      */
@@ -69,5 +71,11 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    }
+
+    public void insert(SQLiteDatabase sqLiteDatabase, String disabilityType, int severity, String date) {
+        String insert = String.format(INSERT_STATEMENT,disabilityType,severity,date);
+        Log.d("Insert()",insert);
+        sqLiteDatabase.execSQL(insert);
     }
 }
