@@ -64,6 +64,8 @@ public class SummaryActivity extends AppCompatActivity {
         //Opener and db created
         opener = new PrototypeOneDBOpener(this);
         db = opener.getWritableDatabase();
+        //Method that adds entries to database
+        testAdd();
         //Entries from db loaded and saved to ArrayList
         loadEntries();
         //Labels created which is the past 7 days
@@ -105,7 +107,7 @@ public class SummaryActivity extends AppCompatActivity {
             String disability = results.getString(disabilityIndex);
             int rating = results.getInt(ratingIndex);
             String date = results.getString(dateIndex);
-
+            Log.d("LOAD", "LOADED " + disability + " " + rating + " " + date);
             list.add(new SummaryObject(disability, rating, date));
         }
     }
@@ -179,6 +181,14 @@ public class SummaryActivity extends AppCompatActivity {
     private void testAdd() {
         //inserts entry with values (vision, 5, 10/18/2020)
         opener.insert(db, MainActivity.VISION,1, "10/18/2020");
+        opener.insert(db, MainActivity.VISION,7, "10/17/2020");
+        opener.insert(db, MainActivity.VISION,6, "10/16/2020");
+        opener.insert(db, MainActivity.VISION,5, "10/15/2020");
+        opener.insert(db, MainActivity.VISION,4, "10/14/2020");
+        opener.insert(db, MainActivity.VISION,2, "10/13/2020");
+        opener.insert(db, MainActivity.VISION,10, "10/12/2020");
+        opener.insert(db, MainActivity.VISION,8, "10/11/2020");
+        opener.insert(db, MainActivity.VISION,7, "10/10/2020");
     }
 
 }

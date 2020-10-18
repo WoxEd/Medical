@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dateText = findViewById(R.id.dateText);
+
+        Button summary = findViewById(R.id.summaryButton);
+        summary.setOnClickListener( e-> {
+            Intent goToSummary = new Intent(MainActivity.this, SummaryActivity.class);
+            startActivity(goToSummary);
+        });
+
+        Button listButton = findViewById(R.id.listViewButton);
+        listButton.setOnClickListener( e-> {
+            Intent goToSummary = new Intent(MainActivity.this, ListActivity.class);
+            startActivity(goToSummary);
+        });
 
         //Adds the click functions for the Calendar button
         ImageButton calendar = findViewById(R.id.imagecalendar);
