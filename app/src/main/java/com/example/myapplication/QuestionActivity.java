@@ -48,7 +48,7 @@ public class QuestionActivity extends AppCompatActivity {
         loadIntent();
 
         //Temporary radioGroup which holds a default question that will appear on every disability
-         radioGroup = findViewById(R.id.defaultRadio);
+        radioGroup = findViewById(R.id.defaultRadio);
         radioGroup1 = findViewById(R.id.Vision1);
         radioGroup2 = findViewById(R.id.Vision2);
         radioBtn1 = findViewById(R.id.questionOneA);
@@ -63,11 +63,12 @@ public class QuestionActivity extends AppCompatActivity {
         setSeekBarActions(bar);
 
         //Submit button which will process the answers
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(e -> {
+        Button submit = findViewById(R.id.button);
+        submit.setOnClickListener(e -> {
             submitData();
             //addClickFunction();
         });
+
 
     }
     public static String getCurrentDate() {
@@ -101,7 +102,6 @@ public class QuestionActivity extends AppCompatActivity {
         //Fetches the string from the Intent. If it's null it will be vision by default
         disabilityType = (MainActivity.DISABILITY_TYPE == null) ? MainActivity.VISION : fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
 
-        //LinearLayout questions will hold the questions from specific disability layout files
 
         if(fromMain.getStringExtra(MainActivity.DISABILITY_TYPE) == null) {
             disabilityType = MainActivity.VISION;
@@ -112,6 +112,7 @@ public class QuestionActivity extends AppCompatActivity {
             id = fromMain.getIntExtra("id", 0);
         }
 
+        //LinearLayout questions will hold the questions from specific disability layout files
         LinearLayout questions = findViewById(R.id.questions);
 
         //initialize default layout file to be vision
@@ -154,9 +155,9 @@ public class QuestionActivity extends AppCompatActivity {
         questions.addView(questionView);
     }
 
-    
+
     /**
-     * TODO: Implement a submit button on the questions
+     * submitData written by Sirmanjit
      */
     private void submitData() {
         if (id == 1) {
