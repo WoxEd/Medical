@@ -147,7 +147,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();
         //initializes the first day of the calendar to be 6 days before the current day
-        cal.add(Calendar.DAY_OF_YEAR, -6);
+        cal.add(Calendar.DAY_OF_YEAR, -7);
 
         for(int i = 0; i<7; i++) {
             //adds a day to each calendar, for a total of 6 days
@@ -248,21 +248,18 @@ public class SummaryActivity extends AppCompatActivity {
      */
     private void testAdd() {
         //inserts entry with values (vision, 5, 10/18/2020)
-        opener.insert(db, MainActivity.SPEAKING,1, "18/10/2020");
-        opener.insert(db, MainActivity.VISION,6, "18/10/2020");
-        opener.insert(db, MainActivity.ELIMINATING,1, "18/10/2020");
-        opener.insert(db, MainActivity.ELIMINATING,2, "18/10/2020");
-        opener.insert(db, MainActivity.SPEAKING,3, "18/10/2020");
-        opener.insert(db, MainActivity.DRESSING,4, "18/10/2020");
-        opener.insert(db, MainActivity.FEEDING,7, "17/10/2020");
-        opener.insert(db, MainActivity.VISION,4, "16/10/2020");
-        opener.insert(db, MainActivity.VISION,2, "15/10/2020");
-        opener.insert(db, MainActivity.VISION,10, "14/10/2020");
-        opener.insert(db, MainActivity.SPEAKING,3, "13/10/2020");
-        opener.insert(db, MainActivity.VISION,4, "12/10/2020");
-        opener.insert(db, MainActivity.VISION,2, "11/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,1, "09/10/2020");
         opener.insert(db, MainActivity.VISION,6, "10/10/2020");
-        opener.insert(db, MainActivity.SPEAKING,10, "09/10/2020");
+        opener.insert(db, MainActivity.FEEDING,7, "11/10/2020");
+        opener.insert(db, MainActivity.VISION,4, "12/10/2020");
+        opener.insert(db, MainActivity.VISION,2, "13/10/2020");
+        opener.insert(db, MainActivity.VISION,10, "14/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,3, "14/10/2020");
+        opener.insert(db, MainActivity.VISION,4, "15/10/2020");
+        opener.insert(db, MainActivity.VISION,2, "16/10/2020");
+        opener.insert(db, MainActivity.VISION,6, "17/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,10, "18/10/2020");
+        opener.insert(db, MainActivity.VISION,10, "18/10/2020");
     }
 
 }
