@@ -2,10 +2,9 @@ package com.example.myapplication;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-//import android.support.v7.app.AppCompatActivity;
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,12 +14,10 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class SummaryActivity extends AppCompatActivity {
 
@@ -54,8 +51,29 @@ public class SummaryActivity extends AppCompatActivity {
     private ArrayList<String> labels;
 
     /**
-     * Fields used for debugging purposes
+     * Fields used for storing index of the subsets of data
      */
+    private static final int VISION_INDEX = 0;
+    private static final int SPEAKING_INDEX = 1;
+    private static final int HEARING_INDEX = 2;
+    private static final int WALKING_INDEX = 3;
+    private static final int ELIMINATING_INDEX = 4;
+    private static final int FEEDING_INDEX = 5;
+    private static final int DRESSING_INDEX = 6;
+    private static final int MENTAL_INDEX = 7;
+
+    /**
+     * Fields used for storing the colour of data subsets
+     */
+    private static final int VISION_COLOUR = Color.RED;
+    private static final int SPEAKING_COLOUR = Color.YELLOW;
+    private static final int HEARING_COLOUR = Color.MAGENTA;
+    private static final int WALKING_COLOUR = Color.BLACK;
+    private static final int ELIMINATING_COLOUR = Color.LTGRAY;
+    private static final int FEEDING_COLOUR = Color.BLUE;
+    private static final int DRESSING_COLOUR = Color.GREEN;
+    private static final int MENTAL_COLOUR = Color.CYAN;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,31 +82,32 @@ public class SummaryActivity extends AppCompatActivity {
         //Opener and db created
         opener = new PrototypeOneDBOpener(this);
         db = opener.getWritableDatabase();
-        //Method that adds entries to database
+
+        //For demonstration purposes
         opener.reset(db);
         testAdd();
+
         //Entries from db loaded and saved to ArrayList
         loadEntries();
+
         //Labels created which is the past 7 days
         labels = createLabels();
 
         BarChart barChart = (BarChart) findViewById(R.id.bar_chart);
-        ArrayList<BarEntry> entries = createBarEntries();
-        BarDataSet bardataset = new BarDataSet(entries, "Symptoms Scale");
 
-        BarDataSet b2 = new BarDataSet(createBarEntries(), "New Label");
 
-        ArrayList<String> labels = createLabels();
-
-        BarData data = new BarData(labels, bardataset);
-
-        data.addDataSet(b2);
         // set the data and list of labels into chart
+        BarData data = new BarData(labels);
+        ArrayList<BarDataSet> barDataSets = getDataSets();
+        for(BarDataSet dataSet : barDataSets) {
+            if(dataSet.getEntryCount() > 0) //we only add data that's not empty to avoid white space
+            data.addDataSet(dataSet);
+        }
+
         barChart.setData(data);
         // set the description
-        barChart.setDescription("This chart tracks illness symptoms");
-//        bardataset.setColors(ColorTemplate.JOYFUL_COLORS);
-        barChart.animateY(5000);
+        barChart.setDescription("Summary of the past 7 days");
+        barChart.animateY(1000);
     }
 
 
@@ -139,29 +158,73 @@ public class SummaryActivity extends AppCompatActivity {
         return labels;
     }
 
-    private ArrayList<BarEntry> createBarEntries() {
+    /**
+     * Loops through the list of entries creating a BarDataSet for each disability type
+     */
+    private ArrayList<BarDataSet> getDataSets() {
+        ArrayList<BarDataSet> data = new ArrayList<>();
+        //Inserts a new BarDataSet for each disability type
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.VISION));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.SPEAKING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.HEARING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.WALKING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.ELIMINATING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.FEEDING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.DRESSING));
+        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.MENTAL));
 
-        ArrayList<BarEntry> entry = new ArrayList<>();
+        //Sets the colours of each disability type
+        data.get(VISION_INDEX).setColor(VISION_COLOUR);
+        data.get(SPEAKING_INDEX).setColor(SPEAKING_COLOUR);
+        data.get(HEARING_INDEX).setColor(HEARING_COLOUR);
+        data.get(WALKING_INDEX).setColor(WALKING_COLOUR);
+        data.get(ELIMINATING_INDEX).setColor(ELIMINATING_COLOUR);
+        data.get(FEEDING_INDEX).setColor(FEEDING_COLOUR);
+        data.get(DRESSING_INDEX).setColor(DRESSING_COLOUR);
+        data.get(MENTAL_INDEX).setColor(MENTAL_COLOUR);
 
-        for( SummaryObject obj : list ) {
-            String disability = obj.getDisabilityType();
-            int severity = obj.getRating();
+        for(SummaryObject obj : list) {
+
+            String disabilityType = obj.getDisabilityType();
+            int rating = obj.getRating();
             String date = obj.getDate();
 
-            Log.d("createBarEntries()", ("Entry date = " + date));
-            //This line of code should only run if the date is within the last 7 days
-            if(labels.contains(date)) {
-                entry.add(createEntry(disability, severity, date));
+            switch(disabilityType) {
+                case MainActivity.VISION:
+                    data.get(VISION_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.SPEAKING:
+                    data.get(SPEAKING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.HEARING:
+                    data.get(HEARING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.WALKING:
+                    data.get(WALKING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.ELIMINATING:
+                    data.get(ELIMINATING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.FEEDING:
+                    data.get(FEEDING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.DRESSING:
+                    data.get(DRESSING_INDEX).addEntry(createEntry(rating,date));
+                    break;
+                case MainActivity.MENTAL:
+                    data.get(MENTAL_INDEX).addEntry(createEntry(rating,date));
+                    break;
             }
         }
-        return entry;
+
+        return data;
     }
 
     /**
      * Creates a bar entry
      * BarEntry( values example 10f will have 10 height, index example index 0 will be the first bar in our example index [0,6] is acceptable
      */
-    private BarEntry createEntry(String disability, int severity, String date) {
+    private BarEntry createEntry( int severity, String date) {
         int index = getIndex(date);
         BarEntry entry = new BarEntry(severity, index);
         return entry;
@@ -185,25 +248,21 @@ public class SummaryActivity extends AppCompatActivity {
      */
     private void testAdd() {
         //inserts entry with values (vision, 5, 10/18/2020)
-        opener.insert(db, MainActivity.VISION,1, "18/10/2020");
-        opener.insert(db, MainActivity.VISION,7, "17/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,1, "18/10/2020");
+        opener.insert(db, MainActivity.VISION,6, "18/10/2020");
+        opener.insert(db, MainActivity.ELIMINATING,1, "18/10/2020");
+        opener.insert(db, MainActivity.ELIMINATING,2, "18/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,3, "18/10/2020");
+        opener.insert(db, MainActivity.DRESSING,4, "18/10/2020");
+        opener.insert(db, MainActivity.FEEDING,7, "17/10/2020");
         opener.insert(db, MainActivity.VISION,4, "16/10/2020");
         opener.insert(db, MainActivity.VISION,2, "15/10/2020");
         opener.insert(db, MainActivity.VISION,10, "14/10/2020");
-        opener.insert(db, MainActivity.VISION,3, "13/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,3, "13/10/2020");
         opener.insert(db, MainActivity.VISION,4, "12/10/2020");
         opener.insert(db, MainActivity.VISION,2, "11/10/2020");
-        opener.insert(db, MainActivity.VISION,3, "10/10/2020");
-        opener.insert(db, MainActivity.VISION,1, "09/10/2020");
-
-        opener.insert(db, MainActivity.SPEAKING,3, "18/10/2020");
-        opener.insert(db, MainActivity.HEARING,2, "17/10/2020");
-        opener.insert(db, MainActivity.ELIMINATING,6, "16/10/2020");
-        opener.insert(db, MainActivity.MENTAL,8, "15/10/2020");
-        opener.insert(db, MainActivity.MENTAL,9, "14/10/2020");
-        opener.insert(db, MainActivity.WALKING,4, "13/10/2020");
-        opener.insert(db, MainActivity.FEEDING,3, "12/10/2020");
-        opener.insert(db, MainActivity.FEEDING,5, "11/10/2020");
+        opener.insert(db, MainActivity.VISION,6, "10/10/2020");
+        opener.insert(db, MainActivity.SPEAKING,10, "09/10/2020");
     }
 
 }
