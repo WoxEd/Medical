@@ -3,11 +3,13 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import java.util.Calendar;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String MENTAL = "mental";
 
     private TextView dateText;
+    private String default_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dateText = findViewById(R.id.dateText);
+        setDefaultDate();
 
         Button summary = findViewById(R.id.summaryButton);
         summary.setOnClickListener( e-> {
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button listButton = findViewById(R.id.listViewButton);
         listButton.setOnClickListener( e-> {
-            Intent goToSummary = new Intent(MainActivity.this, ListActivity.class);
+            Intent goToSummary = new Intent(MainActivity.this, ListViewActivity.class);
             startActivity(goToSummary);
         });
 
@@ -125,8 +129,25 @@ public class MainActivity extends AppCompatActivity {
                 goToQuestions.putExtra("id",1);
                 break;
         }
+        goToQuestions.putExtra("DATE", default_date);
         startActivity(goToQuestions);
     }
+
+    /**
+     * Sets the default date of the calendar
+     */
+    public void setDefaultDate() {
+
+        final Calendar cldr = Calendar.getInstance();
+
+        // Get the current day, month, year
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        default_date = day+"/"+month+"/"+year;
+        dateText.setText(default_date);
+    }
+
 
     public void showCalendar() {
         DatePickerDialog picker;
@@ -140,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
         // Create a calendar dialog for user to select the date, today's date is the default
         picker = new DatePickerDialog(MainActivity.this, (datePicker, calYear, calMonth, calDate) -> {
             // Set the date to the user's selection
-            dateText.setText("Selected date: " + calDate + "/" + (calMonth + 1) + "/" + calYear);
+            default_date = calDate + "/" + (calMonth + 1) + "/" + calYear;
+            dateText.setText(default_date);
         }, year, month, day);
         picker.show();
     }

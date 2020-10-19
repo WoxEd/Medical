@@ -65,7 +65,7 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_STATEMENT);
-        System.out.println("Creating table " + CREATE_STATEMENT);
+        Log.d("onCreate() TABLE", CREATE_STATEMENT);
     }
 
     @Override
@@ -77,5 +77,10 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
         String insert = String.format(INSERT_STATEMENT,disabilityType,severity,date);
         Log.d("Insert()",insert);
         sqLiteDatabase.execSQL(insert);
+    }
+
+    public void reset(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL(CREATE_STATEMENT);
     }
 }

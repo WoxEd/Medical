@@ -65,6 +65,7 @@ public class SummaryActivity extends AppCompatActivity {
         opener = new PrototypeOneDBOpener(this);
         db = opener.getWritableDatabase();
         //Method that adds entries to database
+        opener.reset(db);
         testAdd();
         //Entries from db loaded and saved to ArrayList
         loadEntries();
@@ -75,9 +76,13 @@ public class SummaryActivity extends AppCompatActivity {
         ArrayList<BarEntry> entries = createBarEntries();
         BarDataSet bardataset = new BarDataSet(entries, "Symptoms Scale");
 
+        BarDataSet b2 = new BarDataSet(createBarEntries(), "New Label");
+
         ArrayList<String> labels = createLabels();
 
         BarData data = new BarData(labels, bardataset);
+
+        data.addDataSet(b2);
         // set the data and list of labels into chart
         barChart.setData(data);
         // set the description
@@ -180,15 +185,25 @@ public class SummaryActivity extends AppCompatActivity {
      */
     private void testAdd() {
         //inserts entry with values (vision, 5, 10/18/2020)
-        opener.insert(db, MainActivity.VISION,1, "10/18/2020");
-        opener.insert(db, MainActivity.VISION,7, "10/17/2020");
-        opener.insert(db, MainActivity.VISION,6, "10/16/2020");
-        opener.insert(db, MainActivity.VISION,5, "10/15/2020");
-        opener.insert(db, MainActivity.VISION,4, "10/14/2020");
-        opener.insert(db, MainActivity.VISION,2, "10/13/2020");
-        opener.insert(db, MainActivity.VISION,10, "10/12/2020");
-        opener.insert(db, MainActivity.VISION,8, "10/11/2020");
-        opener.insert(db, MainActivity.VISION,7, "10/10/2020");
+        opener.insert(db, MainActivity.VISION,1, "18/10/2020");
+        opener.insert(db, MainActivity.VISION,7, "17/10/2020");
+        opener.insert(db, MainActivity.VISION,4, "16/10/2020");
+        opener.insert(db, MainActivity.VISION,2, "15/10/2020");
+        opener.insert(db, MainActivity.VISION,10, "14/10/2020");
+        opener.insert(db, MainActivity.VISION,3, "13/10/2020");
+        opener.insert(db, MainActivity.VISION,4, "12/10/2020");
+        opener.insert(db, MainActivity.VISION,2, "11/10/2020");
+        opener.insert(db, MainActivity.VISION,3, "10/10/2020");
+        opener.insert(db, MainActivity.VISION,1, "09/10/2020");
+
+        opener.insert(db, MainActivity.SPEAKING,3, "18/10/2020");
+        opener.insert(db, MainActivity.HEARING,2, "17/10/2020");
+        opener.insert(db, MainActivity.ELIMINATING,6, "16/10/2020");
+        opener.insert(db, MainActivity.MENTAL,8, "15/10/2020");
+        opener.insert(db, MainActivity.MENTAL,9, "14/10/2020");
+        opener.insert(db, MainActivity.WALKING,4, "13/10/2020");
+        opener.insert(db, MainActivity.FEEDING,3, "12/10/2020");
+        opener.insert(db, MainActivity.FEEDING,5, "11/10/2020");
     }
 
 }

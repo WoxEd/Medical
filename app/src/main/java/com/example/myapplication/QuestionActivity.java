@@ -37,6 +37,7 @@ public class QuestionActivity extends AppCompatActivity {
     private int id;
     public static final String DATE_FORMAT = "dd MMMM yyyy";
     public static final String TIME_FORMAT = "hh:mm a";
+    private String default_date;
 
 
     @Override
@@ -47,7 +48,6 @@ public class QuestionActivity extends AppCompatActivity {
         //Loads the type of disability passed from the previous page
         loadIntent();
 
-        //Temporary radioGroup which holds a default question that will appear on every disability
         radioGroup = findViewById(R.id.defaultRadio);
         radioGroup1 = findViewById(R.id.Vision1);
         radioGroup2 = findViewById(R.id.Vision2);
@@ -61,11 +61,14 @@ public class QuestionActivity extends AppCompatActivity {
         //Seekbar for selecting severity 1-10
         bar = findViewById(R.id.seekBar);
         setSeekBarActions(bar);
+        TextView bar = findViewById(R.id.seekBarData);
+        bar.setText("0");
 
         //Submit button which will process the answers
         Button submit = findViewById(R.id.button);
         submit.setOnClickListener(e -> {
-            submitData();
+            submitPrototype();
+            //submitData();
             //addClickFunction();
         });
 
@@ -100,8 +103,9 @@ public class QuestionActivity extends AppCompatActivity {
 
 
         //Fetches the string from the Intent. If it's null it will be vision by default
-        disabilityType = (MainActivity.DISABILITY_TYPE == null) ? MainActivity.VISION : fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
-
+        disabilityType = (fromMain.getStringExtra(MainActivity.DISABILITY_TYPE) == null) ? MainActivity.VISION : fromMain.getStringExtra(MainActivity.DISABILITY_TYPE);
+        //Fetches the default date
+        default_date = (fromMain.getStringExtra("DATE") == null) ? "10/10/2020" : fromMain.getStringExtra("DATE");
 
         if(fromMain.getStringExtra(MainActivity.DISABILITY_TYPE) == null) {
             disabilityType = MainActivity.VISION;
@@ -153,6 +157,26 @@ public class QuestionActivity extends AppCompatActivity {
         }
         View questionView = getLayoutInflater().inflate(defaultQuestion, null);
         questions.addView(questionView);
+    }
+
+    /**
+     * Temporary submit function created to suit the purposes of Prototype 1
+     * Saves the disabilityType, severity, and date
+     */
+    private void submitPrototype() {
+
+        TextView bar = findViewById(R.id.seekBarData);
+        if(disabilityType != null && bar.getText() != null && default_date != null) {
+            PrototypeOneDBOpener opener = new PrototypeOneDBOpener(this);
+            SQLiteDatabase db = opener.getWritableDatabase();
+            int severity = Integer.parseInt(bar.getText().toString());
+            opener.insert(db, disabilityType, severity, default_date);
+            startActivity(new Intent(QuestionActivity.this, MainActivity.class));
+            Toast.makeText(this, "Entry Saved", Toast.LENGTH_LONG).show();
+        } else {
+            //Some sort of error checking for values
+        }
+
     }
 
 
@@ -208,6 +232,8 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
     }
+
+
 
     /**
      * Implements OnSeekBarChangedListener methods to track seekbar data
