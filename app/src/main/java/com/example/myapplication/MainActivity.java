@@ -6,12 +6,17 @@ import android.app.DatePickerDialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import java.util.Calendar;
+import android.widget.AdapterView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,11 +44,34 @@ public class MainActivity extends AppCompatActivity {
         dateText = findViewById(R.id.dateText);
         setDefaultDate();
 
-        Button summary = findViewById(R.id.summaryButton);
-        summary.setOnClickListener( e-> {
-            Intent goToSummary = new Intent(MainActivity.this, SummaryActivity.class);
-            startActivity(goToSummary);
-        });
+//        Button summary = findViewById(R.id.summaryButton);
+//        summary.setOnClickListener( e-> {
+//            Intent goToSummary = new Intent(MainActivity.this, SummaryActivity.class);
+//            startActivity(goToSummary);
+//        });
+
+        //Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.summaryButton_spinner);
+
+        //Spinner click listener
+       // spinner.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+
+        //Spinner Drop down elements
+        List<String> options = new ArrayList<String>();
+        options.add("Bi-Weekly Summary");
+        options.add("Monthly Summary");
+        options.add("Yearly Summary");
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
+
+        //Set Drop down view resource
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //Apply the adapter to the spinner
+        spinner.setAdapter(dataAdapter);
+
+
 
         Button listButton = findViewById(R.id.listViewButton);
         listButton.setOnClickListener( e-> {

@@ -23,17 +23,18 @@
             android:includeFontPadding="true"
             android:textSize="40dp" />
 
-        <Button
-            android:id="@+id/summaryButton"
+        <Spinner
+            android:id="@+id/summaryButton_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Summary" />
+            android:layout_height="wrap_content" />
+
 
         <Button
             android:id="@+id/listViewButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="View Individual Records" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
