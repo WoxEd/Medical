@@ -171,7 +171,7 @@ public class QuestionActivity extends AppCompatActivity {
             SQLiteDatabase db = opener.getWritableDatabase();
             int severity = Integer.parseInt(bar.getText().toString());
             opener.insert(db, disabilityType, severity, default_date);
-            startActivity(new Intent(QuestionActivity.this, MainActivity.class));
+            startActivity(new Intent(QuestionActivity.this, SummaryActivity.class));
             Toast.makeText(this, "Entry Saved", Toast.LENGTH_LONG).show();
         } else {
             //Some sort of error checking for values
