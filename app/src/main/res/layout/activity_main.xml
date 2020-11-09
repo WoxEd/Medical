@@ -12,22 +12,11 @@
         tools:context=".MainActivity"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textViewTitle"
+        <Button
+            android:id="@+id/entryButton"
             android:layout_width="match_parent"
-            android:layout_height="145dp"
-            android:background="#1976D2"
-            android:gravity="bottom"
-            android:text="@string/firstLine"
-            android:textColor="#BBDEFB"
-            android:includeFontPadding="true"
-            android:textSize="40dp" />
-
-        <Spinner
-            android:id="@+id/summaryButton_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:text="Make an entry" />
 
         <Button
             android:id="@+id/listViewButton"
@@ -35,248 +24,43 @@
             android:layout_height="wrap_content"
             android:text="View Individual Records" />
 
-
-        <RelativeLayout
+        <Button
+            android:id="@+id/summaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#B2EBF2">
+            android:text="View Summary" />
 
-            <ImageButton
-                android:id="@+id/imagecalendar"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/calendar55"/>
-
-            <TextView
-                android:id="@+id/dateText"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:textColor = "#000000"
-                android:hint="Pick a date to enter data" />
-        </RelativeLayout>>
-
-        <LinearLayout
+        <Spinner
+            android:id="@+id/summaryButton_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#303F9F"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Vision"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text = "@string/Speaking"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imagevision"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/vision" />
-
-            <ImageButton
-                android:id="@+id/imagespeaking"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/speaking" />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#303F9F"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Hearing"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#303F9F"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text = "@string/Walking"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imagehearing"
-                android:layout_height="150dp"
-                android:layout_width="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/hearing" />
-
-            <ImageButton
-                android:id="@+id/imagewalking"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/walking" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#303F9F"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Eliminating"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text = "@string/Feeding"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imageeliminating"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/eliminating" />
-
-            <ImageButton
-                android:id="@+id/imagefeeding"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/feeding" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#303F9F"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Dressing"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text = "@string/Mental"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/imagedressing"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/dressing" />
-
-            <ImageButton
-                android:id="@+id/imagemental"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="#B2EBF2"
-                android:src="@drawable/mental" />
-        </LinearLayout>
-
-        <TextView
+        <Button
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:background="#B2EBF2"
-            android:textSize="40dp"/>
+            android:text="Switch User" /><![CDATA[
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wild 4 - CST8334"
-            android:background="#1976D2"
-            android:textColor="#BBDEFB"
-            android:textSize="20dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Algonquin College 2020"
-            android:background="#1976D2"
-            android:textColor="#BBDEFB"
-            android:textSize="20dp"/>
+
+        >
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
     </LinearLayout>
 
 
