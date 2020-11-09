@@ -9,6 +9,7 @@
     android:paddingBottom="16dp"
     tools:context="SummaryActivity">
 
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bar_chart"
         android:layout_width="416dp"
