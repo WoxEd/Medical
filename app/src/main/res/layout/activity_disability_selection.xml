@@ -245,20 +245,7 @@
             android:background="#B2EBF2"
             android:textSize="40dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Wild 4 - CST8334"
-            android:background="#1976D2"
-            android:textColor="#BBDEFB"
-            android:textSize="20dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Algonquin College 2020"
-            android:background="#1976D2"
-            android:textColor="#BBDEFB"
-            android:textSize="20dp"/>
+
 
 
 
