@@ -79,24 +79,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToActivity);
         });
 
-        //Spinner element
-       Spinner spinner = (Spinner) findViewById(R.id.summaryButton_spinner);
-
-        //Spinner click listener
-        //Spinner Drop down elements
-        List<String> options = new ArrayList<String>();
-        options.add("Bi-Weekly Summary");
-        options.add("Monthly Summary");
-        options.add("Yearly Summary");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
-
-        //Set Drop down view resource
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //Apply the adapter to the spinner
-        spinner.setAdapter(dataAdapter);
 
     }
 
