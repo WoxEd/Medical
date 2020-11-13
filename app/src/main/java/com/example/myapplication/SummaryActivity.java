@@ -33,9 +33,8 @@ public class SummaryActivity extends AppCompatActivity {
     /**
      * ArrayList of disabilities
      */
-    private static final ArrayList DISABILITY_LIST  = new ArrayList(Arrays.asList(new String[]{
-            MainActivity.VISION, MainActivity.SPEAKING, MainActivity.HEARING, MainActivity.WALKING,
-            MainActivity.ELIMINATING, MainActivity.FEEDING, MainActivity.DRESSING, MainActivity.MENTAL}));
+    private static final ArrayList<String> DISABILITY_LIST  = new ArrayList<>(Arrays.asList(MainActivity.VISION, MainActivity.SPEAKING, MainActivity.HEARING, MainActivity.WALKING,
+            MainActivity.ELIMINATING, MainActivity.FEEDING, MainActivity.DRESSING, MainActivity.MENTAL));
 
     /**
      * Predefined index for vision used for accessing severity and frequency
@@ -103,11 +102,6 @@ public class SummaryActivity extends AppCompatActivity {
     private BarChart chart;
 
     /**
-     * BarData to be displayed on the chart
-     */
-    private BarData data;
-
-    /**
      * String of a filter to display both frequency and severity
      */
     private static final String FILTER_BOTH = "BOTH";
@@ -143,11 +137,6 @@ public class SummaryActivity extends AppCompatActivity {
     private BarDataSet severityDataSet;
 
     /**
-     * Radio group to determine the filter on graph
-     */
-    private RadioGroup radioFilters;
-
-    /**
      * Animation time for bar
      */
     private static final int X_ANIMATE_TIME = 1000;
@@ -176,7 +165,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         //1) Initialize values
         chart = findViewById(R.id.bar_chart);
-        radioFilters = findViewById(R.id.graph_filter);
+        RadioGroup radioFilters = findViewById(R.id.graph_filter);
 
         //2) Sets default filter
         filter = DEFAULT_FILTER;
@@ -266,7 +255,7 @@ public class SummaryActivity extends AppCompatActivity {
      * Performs basic chart functions such as setting axis and animation time.
      */
     public void makeBarChart() {
-        data = new BarData(DISABILITY_LIST, getData());
+        BarData data = new BarData(DISABILITY_LIST, getData());
         chart.animateXY(X_ANIMATE_TIME,Y_ANIMATE_TIME);
         chart.getXAxis().setLabelRotationAngle(X_AXIS_ANGLE);
         chart.setData(data);
@@ -327,41 +316,5 @@ public class SummaryActivity extends AppCompatActivity {
         BarDataSet severityDataSet = new BarDataSet(severityBars, getString(R.string.chart_label_average_severity));
         severityDataSet.setColor(SEVERITY_COLOUR);
         return severityDataSet;
-    }
-
-    /**
-     * Method below is just a test method, they have no impact on the code
-     */
-    private BarDataSet makeTestFrequencyDataSet() {
-        ArrayList<BarEntry> frequency = new ArrayList<>();
-        frequency.add(new BarEntry(50,0));
-        frequency.add(new BarEntry(41,1));
-        frequency.add(new BarEntry(12,2));
-        frequency.add(new BarEntry(15,3));
-        frequency.add(new BarEntry(12,4));
-        frequency.add(new BarEntry(52,5));
-        frequency.add(new BarEntry(1,6));
-        frequency.add(new BarEntry(0,7));
-        BarDataSet frequencyDataSet = new BarDataSet(frequency, "Frequency");
-        frequencyDataSet.setColor(FREQUENCY_COLOUR);
-        return frequencyDataSet;
-    }
-
-    /**
-     * Method below is just a test method, they have no impact on the code
-     */
-    private BarDataSet makeTestSeverityDataSet() {
-        ArrayList<BarEntry> average = new ArrayList<>();
-        average.add(new BarEntry(10,0));
-        average.add(new BarEntry(9,1));
-        average.add(new BarEntry(8,2));
-        average.add(new BarEntry(7,3));
-        average.add(new BarEntry(6,4));
-        average.add(new BarEntry(5,5));
-        average.add(new BarEntry(4,6));
-        average.add(new BarEntry(2,7));
-        BarDataSet averageDataSet = new BarDataSet(average, "Average Severity");
-        averageDataSet.setColor(SEVERITY_COLOUR);
-        return averageDataSet;
     }
 }

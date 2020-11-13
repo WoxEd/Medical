@@ -25,44 +25,32 @@
             android:id="@+id/entryButton"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:textSize="20dp"
-            android:textColor="#FAFAFA"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
             android:background="@drawable/button_shape"
-            android:text="Make an entry" />
+            android:fontFamily="sans-serif-light"
+            android:text="@string/button_create"
+            android:textColor="#FAFAFA"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
-
-
 
 
         <Button
             android:id="@+id/listViewButton"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:textSize="20dp"
-            android:textColor="#F3E5F5"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
             android:background="@drawable/button_shape"
-            android:text="View Individual Records" />
+            android:fontFamily="sans-serif-light"
+            android:text="@string/button_display"
+            android:textColor="#F3E5F5"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
 
 
-        <Button
-            android:id="@+id/summaryButton"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:textSize="20dp"
-            android:textColor="#6A1B9A"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
-            android:background="@drawable/button_shape"
-            android:text="View Summary" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
@@ -78,12 +66,12 @@
             android:id="@+id/logout"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:textSize="20dp"
-            android:textColor="#4A148C"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-light"
             android:background="@drawable/button_shape"
-            android:text="Switch User" />
+            android:fontFamily="sans-serif-light"
+            android:text="@string/button_back_to_home"
+            android:textColor="#4A148C"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView
@@ -93,17 +81,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wild 4 - CST8334"
+            android:text="@string/team_name"
             android:background="@drawable/button_shape"
             android:textColor="#6A1B9A"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Algonquin College 2020"
+            android:text="@string/college_date_title"
             android:background="@drawable/button_shape"
             android:textColor="#6A1B9A"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
 
     </LinearLayout>

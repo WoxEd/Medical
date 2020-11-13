@@ -27,8 +27,6 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
     public static final String MENTAL = "mental";
     public static final String DATE = "date";
 
-    public static final String DATE_FORMAT = "YYYY-MM-DD";
-
     /**
      * The TextView that holds the selected date of entry
      */
@@ -45,23 +43,6 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
     private Intent goToQuestions;
 
     /**
-     * ImageButton for Calendar Icon
-     */
-    private ImageButton calendar;
-
-    /**
-     * ImageButtons for each disability icon
-     */
-    private ImageButton vision;
-    private ImageButton speaking;
-    private ImageButton hearing;
-    private ImageButton walking;
-    private ImageButton eliminating;
-    private ImageButton feeding;
-    private ImageButton dressing;
-    private ImageButton mental;
-
-    /**
      * On creation the selection activity will
      * 1) Initialize calendar
      * 2) Initialize calendar TextView to display current date
@@ -76,34 +57,34 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disability_selection);
 
         //1) initialize calendar
-        calendar = findViewById(R.id.imagecalendar);
+        ImageButton calendar = findViewById(R.id.imagecalendar);
 
         //2 initialize calendar date to display current date
         dateText = findViewById(R.id.dateText);
         setDefaultDate();
 
         //3 add calendar functions
-        calendar.setOnClickListener( e -> showCalendar());
+        calendar.setOnClickListener(e -> showCalendar());
 
         //4 Initialize disability icons
-        vision = findViewById(R.id.imagevision);
-        speaking = findViewById(R.id.imagespeaking);
-        hearing = findViewById(R.id.imagehearing);
-        walking = findViewById(R.id.imagewalking);
-        eliminating = findViewById(R.id.imageeliminating);
-        feeding = findViewById(R.id.imagefeeding);
-        dressing = findViewById(R.id.imagedressing);
-        mental = findViewById(R.id.imagemental);
+        ImageButton vision = findViewById(R.id.imagevision);
+        ImageButton speaking = findViewById(R.id.imagespeaking);
+        ImageButton hearing = findViewById(R.id.imagehearing);
+        ImageButton walking = findViewById(R.id.imagewalking);
+        ImageButton eliminating = findViewById(R.id.imageeliminating);
+        ImageButton feeding = findViewById(R.id.imagefeeding);
+        ImageButton dressing = findViewById(R.id.imagedressing);
+        ImageButton mental = findViewById(R.id.imagemental);
 
         //5 Add click listeners to each disability icon
-        vision.setOnClickListener( e -> goToQuestions(VISION));
-        speaking.setOnClickListener( e -> goToQuestions(SPEAKING));
-        hearing.setOnClickListener( e -> goToQuestions(HEARING));
-        walking.setOnClickListener( e -> goToQuestions(WALKING));
-        eliminating.setOnClickListener( e -> goToQuestions(ELIMINATING));
-        feeding.setOnClickListener( e -> goToQuestions(FEEDING));
-        dressing.setOnClickListener( e -> goToQuestions(DRESSING));
-        mental.setOnClickListener( e -> goToQuestions(MENTAL));
+        vision.setOnClickListener(e -> goToQuestions(VISION));
+        speaking.setOnClickListener(e -> goToQuestions(SPEAKING));
+        hearing.setOnClickListener(e -> goToQuestions(HEARING));
+        walking.setOnClickListener(e -> goToQuestions(WALKING));
+        eliminating.setOnClickListener(e -> goToQuestions(ELIMINATING));
+        feeding.setOnClickListener(e -> goToQuestions(FEEDING));
+        dressing.setOnClickListener(e -> goToQuestions(DRESSING));
+        mental.setOnClickListener(e -> goToQuestions(MENTAL));
 
         //6 Initialize Intent
         goToQuestions = new Intent(DisabilitySelectionActivity.this, QuestionActivity.class);

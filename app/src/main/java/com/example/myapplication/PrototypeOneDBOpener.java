@@ -6,9 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 /**
  * This is a database opener. Created to fulfill the needs of Prototype 1.
@@ -65,7 +63,15 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     /**
      * Insert statement
      */
-    private static final String INSERT_STATEMENT = "INSERT INTO " + TABLE_NAME + " (" + COL_DISABILITY + "," + COL_RATING +"," + COL_DATE+ ")" + " VALUES (\'%s\',\'%d\',\'%s\')";
+    private static final String INSERT_STATEMENT = "INSERT INTO " + TABLE_NAME + " (" + COL_DISABILITY + "," + COL_RATING +"," + COL_DATE+ ")" + " VALUES ('%s','%d','%s')";
+
+    private static final String SELECT_ALL_STATEMENT = "SELECT * FROM " + TABLE_NAME;
+
+    private static final String SELECT_BETWEEN_DATES_STATEMENT = "SELECT * FROM " + TABLE_NAME +" WHERE " + COL_DATE + " BETWEEN " + "'" + "%s" + "'" + " AND " + "'" + "%s" + "'";
+
+    private static final String DROP_TABLE_STATEMENT = "DROP TABLE IF EXISTS " + TABLE_NAME;
+
+    private static final String USER_SELECT_PORTION = " WHERE USER = " + "'%s'";
 
     /**
      * Constructor required to create database
@@ -82,18 +88,18 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        reset(sqLiteDatabase);
     }
 
     public void insert(SQLiteDatabase sqLiteDatabase, String disabilityType, int severity, String date) {
-        String insert = String.format(INSERT_STATEMENT,disabilityType,severity,date);
+        String insert = String.format(Locale.CANADA, INSERT_STATEMENT,disabilityType,severity,date);
         Log.d("DB Helper",insert);
         sqLiteDatabase.execSQL(insert);
     }
 
     public void reset(SQLiteDatabase sqLiteDatabase) {
         Log.d("DB Helper", "Dropping and recreating tables");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL(DROP_TABLE_STATEMENT);
         sqLiteDatabase.execSQL(CREATE_STATEMENT);
     }
 
@@ -103,23 +109,24 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
      * @return Cursor object which can be used to increment over the selected elements
      */
     public Cursor selectAll(SQLiteDatabase sqLiteDatabase, String user) {
-        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME,null);
-    }
+        String query = SELECT_ALL_STATEMENT;
+        if(user != null)
+            query += USER_SELECT_PORTION;
 
-    /**
-     * Performs a select all statement for a user, filtered by date
-     * @param user The name of the profile we wish to preform a select all in
-     * @param date The date we want to perform the select on
-     * @return Cursor object which can be used to increment over the selected elements
-     */
-    public Cursor selectByDate(SQLiteDatabase sqLiteDatabase, String user, String date) {
-        String query = "SELECT * FROM " + TABLE_NAME +" WHERE " + COL_DATE + " LIKE " + "\'" +date + "\'";
-        Log.d("DB Helper", query);
         return sqLiteDatabase.rawQuery(query,null);
     }
 
+    /**
+     * Performs a select between dates statement
+     * @param user The name of the profile we wish to perform the select on
+     * @param startDate The start date
+     * @param endDate the end date
+     * @return Cursor object which can be used to increment over selected elements
+     */
     public Cursor selectBetween(SQLiteDatabase sqLiteDatabase, String user, String startDate, String endDate) {
-        String query = "SELECT * FROM " + TABLE_NAME +" WHERE " + COL_DATE + " BETWEEN " + "\'" + startDate + "\'" + " AND " + "\'" + endDate + "\'";
+        String query = String.format(SELECT_BETWEEN_DATES_STATEMENT, startDate, endDate);
+        if(user != null)
+            query += USER_SELECT_PORTION;
         Log.d("DB Helper", query);
         return sqLiteDatabase.rawQuery(query,null);
     }

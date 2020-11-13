@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,7 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
@@ -24,11 +23,6 @@ public class QuestionActivity extends AppCompatActivity {
     private String disabilityType;
 
     /**
-     * SeekBar which allows user to drag
-     */
-    private SeekBar bar;
-
-    /**
      * The TextView stores the value of the SeekBars current location (1-10 in string format)
      */
     private TextView seekBarData;
@@ -37,11 +31,6 @@ public class QuestionActivity extends AppCompatActivity {
      * The ImageView at the top of the activity which should display the disability icon
      */
     private ImageView displayIcon;
-
-    /**
-     * The button that will do submit functions when clicked
-     */
-    private Button submit;
 
     /**
      * The date passed over from the selection page which is fetched by intent
@@ -92,13 +81,13 @@ public class QuestionActivity extends AppCompatActivity {
         db = opener.getWritableDatabase();
 
         //2) Declare a SeekBar and implement actions. Set SeekBar value to 0 by default
-        bar = findViewById(R.id.seekBar);
+        SeekBar bar = findViewById(R.id.seekBar);
         setSeekBarActions(bar);
         seekBarData = findViewById(R.id.seekBarData);
         seekBarData.setText(DEFAULT_SEEK_VALUE);
 
         //3) Adds an OnClickListener to the submit button
-        submit = findViewById(R.id.button);
+        Button submit = findViewById(R.id.submit_button);
         submit.setOnClickListener(e -> submitPrototype());
 
         //4) Loads intent
@@ -170,10 +159,10 @@ public class QuestionActivity extends AppCompatActivity {
         if(disabilityType != null && bar.getText() != null && entryDate != null) {
             int severity = Integer.parseInt(bar.getText().toString());
             opener.insert(db, disabilityType, severity, entryDate);
-            startActivity(new Intent(QuestionActivity.this, SummaryActivity.class));
-            Toast.makeText(this, "Entry Saved", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
         } else {
             //Some sort of error checking for values
+            Log.d("Questions", "Error Checking");
         }
 
     }

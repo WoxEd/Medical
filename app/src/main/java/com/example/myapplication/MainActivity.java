@@ -4,12 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,26 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String DRESSING = "Dressing";
     public static final String MENTAL = "Mental";
     public static final String DATE = "Date";
-    public static final String USER = "User ";
-    public static final String WEEK = "Week";
-    public static final String MONTH = "Month";
-    public static final String YEAR = "Year";
     public static final String LIST = "List";
-
-    /**
-     * Button which goes to disability selection page
-     */
-    private Button createEntry;
-
-    /**
-     * Button which goes to list containing individual entries
-     */
-    private Button viewIndividual;
-
-    /**
-     * Button which goes to page with summary of entries
-     */
-    private Button viewSummary;
 
     /**
      * Intent for going to next page
@@ -60,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createEntry = findViewById(R.id.entryButton);
-        viewIndividual = findViewById(R.id.listViewButton);
-        viewSummary = findViewById(R.id.summaryButton);
+        Button createEntry = findViewById(R.id.entryButton);
+        Button viewIndividual = findViewById(R.id.listViewButton);
 
         createEntry.setOnClickListener(e -> {
             goToActivity = new Intent(MainActivity.this, DisabilitySelectionActivity.class);
@@ -73,14 +48,5 @@ public class MainActivity extends AppCompatActivity {
             goToActivity = new Intent(MainActivity.this,ListViewActivity.class);
             startActivity(goToActivity);
         });
-
-        viewSummary.setOnClickListener(e -> {
-            goToActivity = new Intent(MainActivity.this, SummaryActivity.class);
-            startActivity(goToActivity);
-        });
-
-
     }
-
-
 }

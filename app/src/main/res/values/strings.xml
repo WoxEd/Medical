@@ -15,7 +15,7 @@
     <string name="question_blind">Are you considered legally blind?</string>
     <string name="question_marked">Do symptoms persist even with appropriate therapy or medication?</string>
     <string name="editPhone">Name</string>
-    <string name="submit_option">Ok</string>
+    <string name="submit_option">Done</string>
     <string name="cancel_option">Cancel</string>
     <string name="select_month">Select a month</string>
     <string name="select_year">Select a year</string>
@@ -27,4 +27,12 @@
     <string name="chart_description_severity">Data for Severity</string>
     <string name="chart_label_frequency">Frequency</string>
     <string name="chart_label_average_severity">Average Severity</string>
+    <string name="button_create">Create an Entry</string>
+    <string name="button_display">Display Entries</string>
+    <string name="button_back_to_home">Back to Home Page</string>
+    <string name="question_severity">How severe are the symptoms on a scale of 1(-,&#8211;)10?</string>
+    <string name="button_submit">Submit Answers</string>
+    <string name="question_icon_description">Icon representing disability</string>
+    <string name="team_name">Wild 4 - CST8334</string>
+    <string name="college_date_title">Algonquin College 2020</string>
 </resources>

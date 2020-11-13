@@ -15,42 +15,8 @@
             android:id="@+id/selectedIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/question_icon_description"
             app:srcCompat="@drawable/dressing" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/questionOne"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Are you experiencing symptoms at the current time?" />
-
-            <RadioGroup
-                android:id="@+id/defaultRadio"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/questionOneA"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Yes"/>
-
-                <RadioButton
-                    android:id="@+id/questionOneB"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="No" />
-            </RadioGroup>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,11 +27,11 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="How severe are the symptoms on a scale of 1-10?" />
+                android:text="@string/question_severity" />
 
             <TextView
                 android:id="@+id/seekBarData"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
@@ -82,13 +48,13 @@
             android:id="@+id/questions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical" />
 
         <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save" />
+            android:id="@+id/submit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_submit" />
 
     </LinearLayout>
 </ScrollView>

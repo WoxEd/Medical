@@ -135,9 +135,7 @@ public class ListViewActivity extends AppCompatActivity {
         builder.setView(filterButtons);
 
         AlertDialog dialog = builder.create();
-        filter.setOnClickListener( e-> {
-            dialog.show();
-        });
+        filter.setOnClickListener( e-> dialog.show());
 
         /*DEBUG BUTTONS*/
         Button clear = filterButtons.findViewById(R.id.emptyDatabase);
@@ -166,8 +164,8 @@ public class ListViewActivity extends AppCompatActivity {
 
 
         addSelectDateListeners(selectDates);
-        selectMonth.setOnClickListener(e -> {selectYearWithMonth(true);});
-        selectYear.setOnClickListener(e -> {selectYearWithMonth(false);});
+        selectMonth.setOnClickListener(e -> selectYearWithMonth(true));
+        selectYear.setOnClickListener(e -> selectYearWithMonth(false));
 
         selectAll.setOnClickListener(e -> {
             updateList(true);
@@ -203,8 +201,8 @@ public class ListViewActivity extends AppCompatActivity {
         TextView startDateText = selectDates.findViewById(R.id.textStartDate);
         TextView endDateText = selectDates.findViewById(R.id.textEndDate);
 
-        startDateButton.setOnClickListener( e-> {setDateFromCalendar(true, startDateText);});
-        endDateButton.setOnClickListener( e-> {setDateFromCalendar(false, endDateText);});
+        startDateButton.setOnClickListener( e-> setDateFromCalendar(true, startDateText));
+        endDateButton.setOnClickListener( e-> setDateFromCalendar(false, endDateText));
     }
 
 
@@ -264,7 +262,7 @@ public class ListViewActivity extends AppCompatActivity {
         yearPicker.setValue(year);
 
 
-        String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         monthPicker.setDisplayedValues(months);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -302,7 +300,7 @@ public class ListViewActivity extends AppCompatActivity {
      * @return An array of integers containing 3 elements in order of, year, month, day
      */
     public static int[] getDates(String date) {
-        int dates[] = new int[3];
+        int[] dates = new int[3];
 
         //2020-10-10 - format
         //0123456789 - index
@@ -419,7 +417,7 @@ public class ListViewActivity extends AppCompatActivity {
             title.setText(startDate + " to " + endDate);
             updateList(false);
         } else if(month) {
-            int dates[] = getDates(startDate);
+            int[] dates = getDates(startDate);
             title.setText("Month  " + dates[1] + " of year " + dates[0]);
             updateList(false);
         } else if(year) {
@@ -470,14 +468,14 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void inflateList() {
         savedList = findViewById(R.id.savedList);
-        MyListAdapter adapter = new MyListAdapter(this,list);
+        MyListAdapter adapter = new MyListAdapter(this, list);
         savedList.setAdapter(adapter);
     }
 
     /**
      * MyListAdapter is an inner class created to help display ListView
      */
-    public class MyListAdapter extends BaseAdapter {
+    public static class MyListAdapter extends BaseAdapter {
 
         /**
          * Context for which the list is on
@@ -517,9 +515,7 @@ public class ListViewActivity extends AppCompatActivity {
         }
 
         /**
-         *
-         * @param position
-         * @return item id
+         *  Override currently does nothing
          */
         @Override
         public long getItemId(int position) {
