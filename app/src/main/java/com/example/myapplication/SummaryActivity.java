@@ -2,264 +2,365 @@ package com.example.myapplication;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
-
+import android.widget.RadioGroup;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SummaryActivity extends AppCompatActivity {
 
-    /**
-     * TextViews to show the selected data
-     */
-    TextView selectedDisability, selectedSymptom, savedDate;
-    /**
-     * Buttons to go back to the main page
-     */
-    Button goToMainBtn;
 
     /**
      * ArrayList that holds the object which contains all the data
      */
-    ArrayList<SummaryObject> list = new ArrayList<>();
+    private ArrayList<SummaryObject> list = new ArrayList<>();
 
     /**
-     * Database opener created for the purposes of prototype 1.
+     * Colour value for frequency
      */
-    private PrototypeOneDBOpener opener;
+    private static final int FREQUENCY_COLOUR = Color.RED;
 
     /**
-     * DB which holds our entries
+     * Colour value for severity
      */
-    private SQLiteDatabase db;
+    private static final int SEVERITY_COLOUR = Color.BLUE;
 
     /**
-     * The arraylist holds labels which are the dates of the data range
+     * ArrayList of disabilities
      */
-    private ArrayList<String> labels;
+    private static final ArrayList DISABILITY_LIST  = new ArrayList(Arrays.asList(new String[]{
+            MainActivity.VISION, MainActivity.SPEAKING, MainActivity.HEARING, MainActivity.WALKING,
+            MainActivity.ELIMINATING, MainActivity.FEEDING, MainActivity.DRESSING, MainActivity.MENTAL}));
 
     /**
-     * Fields used for storing index of the subsets of data
+     * Predefined index for vision used for accessing severity and frequency
      */
     private static final int VISION_INDEX = 0;
+
+    /**
+     * Predefined index for speaking used for accessing severity and frequency
+     */
     private static final int SPEAKING_INDEX = 1;
+
+    /**
+     * Predefined index for hearing used for accessing severity and frequency
+     */
     private static final int HEARING_INDEX = 2;
+
+    /**
+     * Predefined index for walking used for accessing severity and frequency
+     */
     private static final int WALKING_INDEX = 3;
+
+    /**
+     * Predefined index for eliminating used for accessing severity and frequency
+     */
     private static final int ELIMINATING_INDEX = 4;
+
+    /**
+     * Predefined index for feeding used for accessing severity and frequency
+     */
     private static final int FEEDING_INDEX = 5;
+
+    /**
+     * Predefined index for dressing used for accessing severity and frequency
+     */
     private static final int DRESSING_INDEX = 6;
+
+    /**
+     * Predefined index for mental used for accessing severity and frequency
+     */
     private static final int MENTAL_INDEX = 7;
 
     /**
-     * Fields used for storing the colour of data subsets
+     * Start of x axis
      */
-    private static final int VISION_COLOUR = Color.RED;
-    private static final int SPEAKING_COLOUR = Color.YELLOW;
-    private static final int HEARING_COLOUR = Color.MAGENTA;
-    private static final int WALKING_COLOUR = Color.BLACK;
-    private static final int ELIMINATING_COLOUR = Color.LTGRAY;
-    private static final int FEEDING_COLOUR = Color.BLUE;
-    private static final int DRESSING_COLOUR = Color.GREEN;
-    private static final int MENTAL_COLOUR = Color.CYAN;
+    private static final int X_AXIS_START = VISION_INDEX;
 
+    /**
+     * End of x axis
+     */
+    private static final int X_AXIS_END = MENTAL_INDEX;
 
+    /**
+     * Predefined array used to store values for average severity. Accessible by predefined indexes
+     */
+    private int[] averageSeverity = {0, 0, 0, 0, 0, 0, 0, 0};
+
+    /**
+     * Predefined array used to store values for total frequency. Accessible by predefined indexes
+     */
+    private int[] totalFrequency = {0, 0, 0, 0, 0, 0, 0, 0};
+
+    /**
+     * BarChart view which is found in activity_summary.xml
+     */
+    private BarChart chart;
+
+    /**
+     * BarData to be displayed on the chart
+     */
+    private BarData data;
+
+    /**
+     * String of a filter to display both frequency and severity
+     */
+    private static final String FILTER_BOTH = "BOTH";
+
+    /**
+     * String of a filer to display only frequency
+     */
+    private static final String FILTER_FREQUENCY = "FREQUENCY";
+
+    /**
+     * String of a filter to display Severity
+     */
+    private static final String FILTER_SEVERITY = "SEVERITY";
+
+    /**
+     * Default filter set to FILTER_BOTH
+     */
+    private static final String DEFAULT_FILTER = FILTER_BOTH;
+
+    /**
+     * String for getting current filter
+     */
+    private String filter;
+
+    /**
+     * BarDataSet used to store frequency data
+     */
+    private BarDataSet frequencyDataSet;
+
+    /**
+     * BarDataSet used to store severityDataSet
+     */
+    private BarDataSet severityDataSet;
+
+    /**
+     * Radio group to determine the filter on graph
+     */
+    private RadioGroup radioFilters;
+
+    /**
+     * Animation time for bar
+     */
+    private static final int X_ANIMATE_TIME = 1000;
+
+    /**
+     * Animation time for bar
+     */
+    private static final int Y_ANIMATE_TIME = 1000;
+
+    /**
+     * Angle for labels
+     */
+    private static final int X_AXIS_ANGLE = 90;
+
+    /**
+     * On Create does the following
+     * 1) Creates references to chart, and radio group in the layout
+     * 2) Initializes s the filter to the default value
+     * 3) Fetches an ArrayList passed from ListView activity
+     * 4) If the list is not null it will create BarGraph and add click listeners to radio filters
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-        //Opener and db created
-        opener = new PrototypeOneDBOpener(this);
-        db = opener.getWritableDatabase();
 
-        //For demonstration purposes
-        opener.reset(db);
-        testAdd();
+        //1) Initialize values
+        chart = findViewById(R.id.bar_chart);
+        radioFilters = findViewById(R.id.graph_filter);
 
-        //Entries from db loaded and saved to ArrayList
-        loadEntries();
+        //2) Sets default filter
+        filter = DEFAULT_FILTER;
 
-        //Labels created which is the past 7 days
-        labels = createLabels();
+        //3) Fetches intent
+        list = (ArrayList<SummaryObject>) getIntent().getSerializableExtra(MainActivity.LIST);
 
-        BarChart barChart = (BarChart) findViewById(R.id.bar_chart);
-
-
-        // set the data and list of labels into chart
-        BarData data = new BarData(labels);
-        ArrayList<BarDataSet> barDataSets = getDataSets();
-        for(BarDataSet dataSet : barDataSets) {
-            if(dataSet.getEntryCount() > 0) //we only add data that's not empty to avoid white space
-            data.addDataSet(dataSet);
-        }
-
-        barChart.setData(data);
-        // set the description
-        barChart.setDescription("Summary of the past 7 days");
-        barChart.animateY(1000);
-    }
-
-
-    /**
-     * This will load entries for the summary page.
-     */
-    private void loadEntries() {
-        String[] columns = {PrototypeOneDBOpener.COL_ID, PrototypeOneDBOpener.COL_DISABILITY,
-                PrototypeOneDBOpener.COL_RATING, PrototypeOneDBOpener.COL_DATE};
-
-        Cursor results = db.query(false, PrototypeOneDBOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-
-
-        int idIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_ID);
-        int disabilityIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DISABILITY);
-        int ratingIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_RATING);
-        int dateIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DATE);
-
-        while (results.moveToNext()) {
-            long id = results.getLong(idIndex);
-            String disability = results.getString(disabilityIndex);
-            int rating = results.getInt(ratingIndex);
-            String date = results.getString(dateIndex);
-            Log.d("LOAD", "LOADED " + disability + " " + rating + " " + date);
-            list.add(new SummaryObject(disability, rating, date));
+        //4) Processes list and chart if list is not null
+        if(list != null) {
+            processList();
+            makeBarChart();
+            addRadioListeners(radioFilters);
         }
     }
 
     /**
-     * Labels are generated from the current date to the past 7 days
-     * TODO: Modify this method to generate summary over a 7 day timespan rather than just the last 7 days
+     * Reads the ArrayList of data to display
+     * Using the disability type, rating, frequency it sets values for two predefined arrays
+     * averageSeverity and totalFrequency which are used to create BarDataSets
      */
-    private ArrayList<String> createLabels() {
-
-        ArrayList<String> labels = new ArrayList<>();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
-        Calendar cal = Calendar.getInstance();
-        //initializes the first day of the calendar to be 6 days before the current day
-        cal.add(Calendar.DAY_OF_YEAR, -7);
-
-        for(int i = 0; i<7; i++) {
-            //adds a day to each calendar, for a total of 6 days
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-            Log.d("createLabels()", formatter.format(cal.getTime()));
-            labels.add(formatter.format(cal.getTime()));
-        }
-        return labels;
-    }
-
-    /**
-     * Loops through the list of entries creating a BarDataSet for each disability type
-     */
-    private ArrayList<BarDataSet> getDataSets() {
-        ArrayList<BarDataSet> data = new ArrayList<>();
-        //Inserts a new BarDataSet for each disability type
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.VISION));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.SPEAKING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.HEARING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.WALKING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.ELIMINATING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.FEEDING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.DRESSING));
-        data.add(new BarDataSet(new ArrayList<BarEntry>(),MainActivity.MENTAL));
-
-        //Sets the colours of each disability type
-        data.get(VISION_INDEX).setColor(VISION_COLOUR);
-        data.get(SPEAKING_INDEX).setColor(SPEAKING_COLOUR);
-        data.get(HEARING_INDEX).setColor(HEARING_COLOUR);
-        data.get(WALKING_INDEX).setColor(WALKING_COLOUR);
-        data.get(ELIMINATING_INDEX).setColor(ELIMINATING_COLOUR);
-        data.get(FEEDING_INDEX).setColor(FEEDING_COLOUR);
-        data.get(DRESSING_INDEX).setColor(DRESSING_COLOUR);
-        data.get(MENTAL_INDEX).setColor(MENTAL_COLOUR);
-
+    private void processList() {
         for(SummaryObject obj : list) {
+            int index = fetchIndex(obj.getDisabilityType());
+            averageSeverity[index] += obj.getRating();
+            totalFrequency[index]++;
+            }
 
-            String disabilityType = obj.getDisabilityType();
-            int rating = obj.getRating();
-            String date = obj.getDate();
+        for(int i=X_AXIS_START; i<=X_AXIS_END; i++) {
+            averageSeverity[i] /= totalFrequency[i];
+        }
+    }
 
-            switch(disabilityType) {
-                case MainActivity.VISION:
-                    data.get(VISION_INDEX).addEntry(createEntry(rating,date));
+    /**
+     * Method returns a predefined index based on a String disability type
+     * @param disabilityType String for disability
+     * @return integer based on disability type
+     */
+    private int fetchIndex(String disabilityType) {
+        switch (disabilityType) {
+            case MainActivity.SPEAKING:
+                return SPEAKING_INDEX;
+            case MainActivity.HEARING:
+                return HEARING_INDEX;
+            case MainActivity.WALKING:
+                return WALKING_INDEX;
+            case MainActivity.ELIMINATING:
+                return ELIMINATING_INDEX;
+            case MainActivity.FEEDING:
+                return FEEDING_INDEX;
+            case MainActivity.DRESSING:
+                return DRESSING_INDEX;
+            case MainActivity.MENTAL:
+                return MENTAL_INDEX;
+            default: //default case will act like Vision
+                return VISION_INDEX;
+        }
+    }
+
+    /**
+     * Sets click functions for radio group. By default it will assume BOTH has been clicked.
+     * When an option is clicked it changes the String filter to the radio group filter type
+     * Then calls on makeBarChart to remake the chart based on the filter
+     * @param radioGroup The radio group click functions will be added to
+     */
+    private void addRadioListeners(RadioGroup radioGroup) {
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch(checkedId) {
+                case(R.id.filter_frequency):
+                    filter = FILTER_FREQUENCY;
+                    makeBarChart();
                     break;
-                case MainActivity.SPEAKING:
-                    data.get(SPEAKING_INDEX).addEntry(createEntry(rating,date));
+                case(R.id.filter_severity):
+                    filter = FILTER_SEVERITY;
+                    makeBarChart();
                     break;
-                case MainActivity.HEARING:
-                    data.get(HEARING_INDEX).addEntry(createEntry(rating,date));
-                    break;
-                case MainActivity.WALKING:
-                    data.get(WALKING_INDEX).addEntry(createEntry(rating,date));
-                    break;
-                case MainActivity.ELIMINATING:
-                    data.get(ELIMINATING_INDEX).addEntry(createEntry(rating,date));
-                    break;
-                case MainActivity.FEEDING:
-                    data.get(FEEDING_INDEX).addEntry(createEntry(rating,date));
-                    break;
-                case MainActivity.DRESSING:
-                    data.get(DRESSING_INDEX).addEntry(createEntry(rating,date));
-                    break;
-                case MainActivity.MENTAL:
-                    data.get(MENTAL_INDEX).addEntry(createEntry(rating,date));
+                default:
+                    filter = FILTER_BOTH;
+                    makeBarChart();
                     break;
             }
+        });
+    }
+
+    /**
+     * Sets the chart data to data created by the getData() method
+     * Performs basic chart functions such as setting axis and animation time.
+     */
+    public void makeBarChart() {
+        data = new BarData(DISABILITY_LIST, getData());
+        chart.animateXY(X_ANIMATE_TIME,Y_ANIMATE_TIME);
+        chart.getXAxis().setLabelRotationAngle(X_AXIS_ANGLE);
+        chart.setData(data);
+    }
+
+    /**
+     * Returns a BarDataSet containing either frequency, severity, or both data sets
+     * What is returned depends on the current filter which is set when the radio button is clicked.
+     * @return ArrayList of BarDataSets containing either frequency, severity, or both data sets
+     */
+    public ArrayList getData() {
+        ArrayList<BarDataSet> barDataSets = new ArrayList<>();
+        if(frequencyDataSet == null)
+            frequencyDataSet = makeFrequencyDataSet();
+        if(severityDataSet == null)
+            severityDataSet = makeSeverityDataSet();
+
+        switch(filter) {
+            case(FILTER_FREQUENCY):
+                barDataSets.add(frequencyDataSet);
+                chart.setDescription(getString(R.string.chart_description_frequency));
+                break;
+            case(FILTER_SEVERITY):
+                barDataSets.add(severityDataSet);
+                chart.setDescription(getString(R.string.chart_description_severity));
+                break;
+            default:
+                barDataSets.add(frequencyDataSet);
+                barDataSets.add(severityDataSet);
+                chart.setDescription(getString(R.string.chart_description_both));
         }
-
-        return data;
+        return barDataSets;
     }
 
     /**
-     * Creates a bar entry
-     * BarEntry( values example 10f will have 10 height, index example index 0 will be the first bar in our example index [0,6] is acceptable
+     * Creates BarDataSet for frequency of each disability
+     * @return BarDataSet
      */
-    private BarEntry createEntry( int severity, String date) {
-        int index = getIndex(date);
-        BarEntry entry = new BarEntry(severity, index);
-        return entry;
-    }
-
-    /**
-     * Converts the date of an entry to an entry on the bar graph.
-     */
-    private int getIndex(String date) {
-        for(int i=0; i<labels.size(); i++) {
-            Log.d("getIndex()", "Comparing dates " + date + " and " + labels.get(i));
-            if(date.equals(labels.get(i))) {
-                return i;
-            }
+    private BarDataSet makeFrequencyDataSet() {
+        ArrayList<BarEntry> frequencyBars = new ArrayList<>();
+        for(int i = X_AXIS_START; i <= X_AXIS_END; i++) {
+            frequencyBars.add(new BarEntry(totalFrequency[i], i));
         }
-        return 0;
+        BarDataSet frequencyDataSet = new BarDataSet(frequencyBars, getString(R.string.chart_label_frequency));
+        frequencyDataSet.setColor(FREQUENCY_COLOUR);
+        return frequencyDataSet;
     }
 
     /**
-     * Temporary method used to insert data to test the entries
+     * Creates BarDataSet for average severity of each disability
+     * @return BarDataSet
      */
-    private void testAdd() {
-        //inserts entry with values (vision, 5, 10/18/2020)
-        opener.insert(db, MainActivity.SPEAKING,1, "09/10/2020");
-        opener.insert(db, MainActivity.VISION,6, "10/10/2020");
-        opener.insert(db, MainActivity.FEEDING,7, "11/10/2020");
-        opener.insert(db, MainActivity.VISION,4, "12/10/2020");
-        opener.insert(db, MainActivity.VISION,2, "13/10/2020");
-        opener.insert(db, MainActivity.VISION,10, "14/10/2020");
-        opener.insert(db, MainActivity.SPEAKING,3, "14/10/2020");
-        opener.insert(db, MainActivity.VISION,4, "15/10/2020");
-        opener.insert(db, MainActivity.VISION,2, "16/10/2020");
-        opener.insert(db, MainActivity.VISION,6, "17/10/2020");
-        opener.insert(db, MainActivity.SPEAKING,10, "18/10/2020");
-        opener.insert(db, MainActivity.VISION,10, "18/10/2020");
+    private BarDataSet makeSeverityDataSet() {
+        ArrayList<BarEntry> severityBars = new ArrayList<>();
+        for(int i=X_AXIS_START; i<=X_AXIS_END; i++) {
+            severityBars.add(new BarEntry(averageSeverity[i], i));
+        }
+        BarDataSet severityDataSet = new BarDataSet(severityBars, getString(R.string.chart_label_average_severity));
+        severityDataSet.setColor(SEVERITY_COLOUR);
+        return severityDataSet;
     }
 
+    /**
+     * Method below is just a test method, they have no impact on the code
+     */
+    private BarDataSet makeTestFrequencyDataSet() {
+        ArrayList<BarEntry> frequency = new ArrayList<>();
+        frequency.add(new BarEntry(50,0));
+        frequency.add(new BarEntry(41,1));
+        frequency.add(new BarEntry(12,2));
+        frequency.add(new BarEntry(15,3));
+        frequency.add(new BarEntry(12,4));
+        frequency.add(new BarEntry(52,5));
+        frequency.add(new BarEntry(1,6));
+        frequency.add(new BarEntry(0,7));
+        BarDataSet frequencyDataSet = new BarDataSet(frequency, "Frequency");
+        frequencyDataSet.setColor(FREQUENCY_COLOUR);
+        return frequencyDataSet;
+    }
+
+    /**
+     * Method below is just a test method, they have no impact on the code
+     */
+    private BarDataSet makeTestSeverityDataSet() {
+        ArrayList<BarEntry> average = new ArrayList<>();
+        average.add(new BarEntry(10,0));
+        average.add(new BarEntry(9,1));
+        average.add(new BarEntry(8,2));
+        average.add(new BarEntry(7,3));
+        average.add(new BarEntry(6,4));
+        average.add(new BarEntry(5,5));
+        average.add(new BarEntry(4,6));
+        average.add(new BarEntry(2,7));
+        BarDataSet averageDataSet = new BarDataSet(average, "Average Severity");
+        averageDataSet.setColor(SEVERITY_COLOUR);
+        return averageDataSet;
+    }
 }
