@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.summaryButton_spinner);
+       Spinner spinner = (Spinner) findViewById(R.id.summaryButton_spinner);
 
         //Spinner click listener
         //Spinner Drop down elements
