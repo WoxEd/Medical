@@ -116,8 +116,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         //The only reason the values should be null is during testing, however null cases set today, and vision to default
         if(disabilityType == null) disabilityType = MainActivity.VISION;
-        if(entryDate == null) entryDate =
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH)+1) + "/" + Calendar.getInstance().get(Calendar.YEAR);
+        if(entryDate == null) entryDate = ListViewActivity.createDateString(Calendar.getInstance().get(Calendar.YEAR), (Calendar.getInstance().get(Calendar.MONTH)+1), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
         Log.d("loadIntent date",entryDate );
         Log.d("loadIntent disability", disabilityType);

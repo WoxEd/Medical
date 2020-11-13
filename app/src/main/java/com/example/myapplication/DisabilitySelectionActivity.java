@@ -27,7 +27,7 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
     public static final String MENTAL = "mental";
     public static final String DATE = "date";
 
-    public static final String DATE_FORMAT = "DD/MM/YYYY";
+    public static final String DATE_FORMAT = "YYYY-MM-DD";
 
     /**
      * The TextView that holds the selected date of entry
@@ -134,7 +134,7 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-        selectedDate = day+"/"+(month+1)+"/"+year;
+        selectedDate = ListViewActivity.createDateString(year,month,day);
         dateText.setText(selectedDate);
     }
 
