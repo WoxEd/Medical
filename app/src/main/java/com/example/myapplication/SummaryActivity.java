@@ -205,7 +205,8 @@ public class SummaryActivity extends AppCompatActivity {
             }
 
         for(int i=X_AXIS_START; i<=X_AXIS_END; i++) {
-            averageSeverity[i] /= totalFrequency[i];
+            if(totalFrequency[i] > 0)
+                averageSeverity[i] /= totalFrequency[i];
         }
     }
 

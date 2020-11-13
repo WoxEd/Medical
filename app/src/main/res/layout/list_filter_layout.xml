@@ -28,23 +28,23 @@
         android:id="@+id/weekSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Week  summary" />
+        android:text="Date Filter" />
 
     <Button
         android:id="@+id/monthSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Month Summary" />
+        android:text="Month Filter" />
 
     <Button
         android:id="@+id/yearSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Year Summary" />
+        android:text="Year Filter" />
 
     <Button
         android:id="@+id/allSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="All Time Summary" />
+        android:text="Display All" />
 </LinearLayout>

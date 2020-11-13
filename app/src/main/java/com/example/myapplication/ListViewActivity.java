@@ -19,10 +19,6 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -52,6 +48,7 @@ public class ListViewActivity extends AppCompatActivity {
     private TextView date;
     private TextView disability;
     private TextView severity;
+    private TextView title;
 
     /**
      * Used for reversing sort order
@@ -60,28 +57,54 @@ public class ListViewActivity extends AppCompatActivity {
     boolean reverseDisability = false;
     boolean reverseSeverity = false;
 
+    /**
+     * Filter button on ListView Page
+     */
     private Button filter;
+
+    /**
+     * Show summary Button on ListView Page
+     */
     private Button showSummary;
 
+    /**
+     * View which is displayed on an AlertDialog when filter button is pressed
+     */
     private View filterButtons;
 
+    /**
+     * The cursor for fetching results either all or results between dates
+     */
+    private Cursor results;
+
+    /**
+     * Start date of the results
+     */
+    private String startDate;
+
+    /**
+     * End date of the results
+     */
+    private String endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
+
+        opener = new PrototypeOneDBOpener(this);
+        db = opener.getWritableDatabase();
+
+        title = findViewById(R.id.listTitle);
+        setDefaultValues();
+        updateList(false);
+
         filter = findViewById(R.id.listFilterButton);
         showSummary = findViewById(R.id.viewSummaryButton);
 
-        loadEntries();
-        sortDate(true);
-        inflateList();
         addSortOnClickListeners();
 
-
         createFilterMenu();
-        createFilterMenuActions();
-
 
         showSummary.setOnClickListener(e -> {
             Intent goToSummary = new Intent(ListViewActivity.this, SummaryActivity.class);
@@ -90,23 +113,36 @@ public class ListViewActivity extends AppCompatActivity {
         });
     }
 
-    private void createFilterMenu() {
-        filterButtons = getLayoutInflater().inflate(R.layout.list_filter_layout,null);
+    /**
+     * Creates a default start and end date, updates title, creates cursor
+     */
+    private void setDefaultValues() {
+        Calendar cal = Calendar.getInstance();
+        endDate = createDateString(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DAY_OF_MONTH));
+        cal.add(Calendar.DAY_OF_YEAR, -6);
+        startDate = createDateString(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DAY_OF_MONTH));
+        updateTitle(true, false, false, false, false);
+        updateList(false);
+    }
 
-        AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+    /**
+     * Creates a menu when filter is selected on the ListView
+     * This adds functionality to select date, month, year, all buttons.
+     */
+    private void createFilterMenu() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        filterButtons = getLayoutInflater().inflate(R.layout.list_filter_layout,null);
         builder.setView(filterButtons);
 
         AlertDialog dialog = builder.create();
         filter.setOnClickListener( e-> {
             dialog.show();
         });
-    }
 
-    private void createFilterMenuActions() {
+        /*DEBUG BUTTONS*/
         Button clear = filterButtons.findViewById(R.id.emptyDatabase);
         Button add = filterButtons.findViewById(R.id.addDatabase);
         Button reset = filterButtons.findViewById(R.id.resetDatabase);
-
         clear.setOnClickListener( e -> {
             opener.reset(db);
             loadEntries();
@@ -121,25 +157,63 @@ public class ListViewActivity extends AppCompatActivity {
             loadEntries();
             inflateList();
             inflateList();});
+        /*DEBUG BUTTONS*/
+
+        Button selectDates = filterButtons.findViewById(R.id.weekSummary);
+        Button selectMonth = filterButtons.findViewById(R.id.monthSummary);
+        Button selectYear  = filterButtons.findViewById(R.id.yearSummary);
+        Button selectAll = filterButtons.findViewById(R.id.allSummary);
 
 
-        Button seven = filterButtons.findViewById(R.id.weekSummary);
-        Button month = filterButtons.findViewById(R.id.monthSummary);
-        Button year = filterButtons.findViewById(R.id.yearSummary);
-        Button all = filterButtons.findViewById(R.id.allSummary);
+        addSelectDateListeners(selectDates);
+        selectMonth.setOnClickListener(e -> {selectYearWithMonth(true);});
+        selectYear.setOnClickListener(e -> {selectYearWithMonth(false);});
 
-
-        seven.setOnClickListener(e -> {selectWeek();});
-        month.setOnClickListener(e -> {selectYearWithMonth(true);});
-        year.setOnClickListener(e -> {selectYearWithMonth(false);});
-
-        all.setOnClickListener(e -> {
-            //goToAll
+        selectAll.setOnClickListener(e -> {
+            updateList(true);
+            updateTitle(false,false,false,true, false);
         });
     }
 
+    /**
+     * Adds function to the select dates button. Updates the list when dates are successfully selected
+     * @param button Button adding listener to
+     */
+    public void addSelectDateListeners(Button button) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View selectDates = getLayoutInflater().inflate(R.layout.select_two_dates,null);
+        builder.setView(selectDates);
+        builder.setPositiveButton(R.string.submit_option, (d,id)->{
+            if(startDate == null || endDate == null) {
+                Toast.makeText(this, "Both start and end dates must be selected", Toast.LENGTH_SHORT).show();
+            } else if(startDate.compareTo(endDate) > 0) {
+                Toast.makeText(this, "Start date must be before end date", Toast.LENGTH_SHORT).show();
+            } else if(startDate.equals(endDate)) {
+                updateTitle(false, false, false, false, true);
+            } else {
+                updateTitle(true, false, false, false, false);
+            }
+        });
 
-    public void selectWeek() {
+        AlertDialog dialog = builder.create();
+        button.setOnClickListener(e->dialog.show());
+
+        Button startDateButton = selectDates.findViewById(R.id.selectStartDate);
+        Button endDateButton = selectDates.findViewById(R.id.selectEndDate);
+        TextView startDateText = selectDates.findViewById(R.id.textStartDate);
+        TextView endDateText = selectDates.findViewById(R.id.textEndDate);
+
+        startDateButton.setOnClickListener( e-> {setDateFromCalendar(true, startDateText);});
+        endDateButton.setOnClickListener( e-> {setDateFromCalendar(false, endDateText);});
+    }
+
+
+    /**
+     * Selects either a start date or end date from a calendar dialog. Prompted by the select dates button.
+     * @param start true if setting a start date. false for end date
+     * @param text the TextView to be updated for the date
+     */
+    private void setDateFromCalendar(boolean start, TextView text) {
         DatePickerDialog picker;
         Calendar calendar = Calendar.getInstance();
         // Get the current day, month, year
@@ -149,13 +223,25 @@ public class ListViewActivity extends AppCompatActivity {
 
         // Create a calendar dialog for user to select the date, today's date is the default
         picker = new DatePickerDialog(ListViewActivity.this, (datePicker, calYear, calMonth, calDate) -> {
-            String formattedDate = createDateString(calYear,calMonth+1,calDate);//String.format(DATE_FORMAT, calYear, calMonth, calDate);
-            Log.d("Week summary start date", formattedDate );
+            String date = createDateString(calYear, calMonth+1, calDate);
+
+            if(start)
+                startDate = date;
+            else
+                endDate = date;
+
+            text.setText(date);
+
+
         }, year, month, day);
         picker.setMessage("Select the ending day of week");
         picker.show();
     }
 
+    /**
+     * Selects a month/year from the number picker. This is prompted when year or month button is pressed
+     * @param selectMonth true if month is to be selected. When it's false the month box is disabled
+     */
     public void selectYearWithMonth(boolean selectMonth) {
         View numberPicker = getLayoutInflater().inflate(R.layout.number_picker,null);
         NumberPicker monthPicker = numberPicker.findViewById(R.id.monthPicker);
@@ -167,6 +253,7 @@ public class ListViewActivity extends AppCompatActivity {
         monthPicker.setMinValue(1);
         monthPicker.setMaxValue(12);
         monthPicker.setValue(month+1);
+
         if(!selectMonth)
             monthPicker.setEnabled(false);
 
@@ -180,11 +267,26 @@ public class ListViewActivity extends AppCompatActivity {
         String months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         monthPicker.setDisplayedValues(months);
 
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setPositiveButton(R.string.submit_option, (dialog,id)->{
-            Log.d("Number Picker Value: ", yearPicker.getValue()+ " " + monthPicker.getValue());
+            int selectedMonth = monthPicker.getValue();
+            int selectedYear = yearPicker.getValue();
+            Log.d("Number Picker Value: ", selectedMonth+ " " + selectedYear);
+            if(selectMonth) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.MONTH, selectedMonth-1);
+                cal.set(Calendar.YEAR, selectedYear);
+                startDate = createDateString(selectedYear, selectedMonth, 1);
+                endDate = createDateString(selectedYear, selectedMonth, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+                updateTitle(false, true, false, false, false);
+                updateList(false);
+            } else {
+                startDate = createDateString(selectedYear, 1, 1);
+                endDate = createDateString(selectedYear, 12, 31);
+                updateTitle(false,false,true,false,false);
+                updateList(false);
+            }
+
         });
         builder.setNegativeButton(R.string.cancel_option, (dialog,id)->{});
 
@@ -241,6 +343,9 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Click listeners for the columns of the list. These allow the list to be sorted on click
+     */
     private void addSortOnClickListeners() {
         date = findViewById(R.id.entryDate);
         date.setOnClickListener(e -> {
@@ -265,17 +370,27 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     /**
+     * Updates the cursor to select between or select all
+     * Then loads new select entries and updates the list
+     * @param all true if select all
+     */
+    private void updateList(boolean all) {
+        if(all)
+            results = opener.selectAll(db, null);
+        else
+            results =  opener.selectBetween(db, null, startDate, endDate);
+        loadEntries();
+        inflateList();
+    }
+
+
+    /**
      * Loads entries from DB into ArrayList
      */
     private void loadEntries() {
         list = new ArrayList<>();
-        opener = new PrototypeOneDBOpener(this);
-        db = opener.getWritableDatabase();
         String[] columns = {PrototypeOneDBOpener.COL_ID, PrototypeOneDBOpener.COL_DISABILITY,
                 PrototypeOneDBOpener.COL_RATING, PrototypeOneDBOpener.COL_DATE};
-        Cursor results = opener.selectAll(db,null);
-        //Cursor results = opener.selectByDate(db,null,"2020-11-05");
-        //Cursor results = opener.selectBetween(db,null, "2020-10-26", "2020-11-05");
         int idIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_ID);
         int disabilityIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DISABILITY);
         int ratingIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_RATING);
@@ -290,6 +405,35 @@ public class ListViewActivity extends AppCompatActivity {
             list.add(new SummaryObject(disability, rating, date));
         }
     }
+
+    /**
+     * Updates the title of the ListView to show the current date
+     * @param date true if list is between two dates
+     * @param month true if list is showing a selected month
+     * @param year true if list is showing a selected year
+     * @param all true if showing all
+     * @param sameDay true if showing entries from the same day
+     */
+    private void updateTitle(boolean date, boolean month, boolean year, boolean all, boolean sameDay){
+        if(date) {
+            title.setText(startDate + " to " + endDate);
+            updateList(false);
+        } else if(month) {
+            int dates[] = getDates(startDate);
+            title.setText("Month  " + dates[1] + " of year " + dates[0]);
+            updateList(false);
+        } else if(year) {
+            title.setText("Year of " + getDates(startDate)[0]);
+            updateList(false);
+        } else if(all) {
+            title.setText("Showing all entries");
+            updateList(true);
+        } else if(sameDay) {
+            title.setText(startDate);
+            updateList(false);
+        }
+    }
+
 
     /**
      * Uses a comparator to sort the ArrayList by date.
