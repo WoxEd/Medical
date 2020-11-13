@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/emptyDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug: Clear Database"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/addDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug: Add Custom Entries"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/resetDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Debug: Reset (Clear and add)"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/weekSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date Filter" />
+
+    <Button
+        android:id="@+id/monthSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Month Filter" />
+
+    <Button
+        android:id="@+id/yearSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Year Filter" />
+
+    <Button
+        android:id="@+id/allSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Display All" />
+</LinearLayout>

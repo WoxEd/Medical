@@ -10,7 +10,7 @@
     tools:context="SummaryActivity">
 
     <RadioGroup
-        android:id="@+id/radio_group"
+        android:id="@+id/graph_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -18,42 +18,38 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/weeekly"
+            android:id="@+id/filter_both"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Weekly"/>
-
-        <RadioButton
-            android:id="@+id/biweekly"
-            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Bi-Weekly"/>
-
-        <RadioButton
-            android:id="@+id/monthly"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Monthly"/>
+            android:text="@string/filter_both" />
 
         <RadioButton
-            android:id="@+id/Yearly"
+            android:id="@+id/filter_frequency"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Yearly"/>
+            android:layout_weight="1"
+            android:text="@string/filter_frequency" />
+
+        <RadioButton
+            android:id="@+id/filter_severity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/filter_severity" />
 
 
     </RadioGroup>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/bar_chart"
-        android:layout_width="416dp"
-        android:layout_height="781dp"
-        android:layout_below="@+id/radio_group"
-        android:layout_marginTop="11dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/graph_filter"
+        android:layout_marginStart="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
-public class SummaryObject {
+import java.io.Serializable;
 
+public class SummaryObject implements Serializable {
+
+    private long id;
     private String disabilityType;
     private int rating;
     private String date;
@@ -11,6 +14,10 @@ public class SummaryObject {
         this.rating = rating;
         this.date = date;
     }
+
+    public void setId(long id) { this.id = id; }
+
+    public long getId() { return this.id; }
 
     public void setDisabilityType(String disabilityType) {
         this.disabilityType = disabilityType;

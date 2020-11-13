@@ -16,17 +16,21 @@ public class MainActivity extends AppCompatActivity {
     /**
      * public Strings to make it easier to fetch intents from Questions page
      */
-    public static final String DISABILITY_TYPE = "disabilityType";
-    public static final String VISION = "vision";
-    public static final String SPEAKING = "speaking";
-    public static final String HEARING = "hearing";
-    public static final String WALKING  = "walking";
-    public static final String ELIMINATING = "eliminating";
-    public static final String FEEDING = "feeding";
-    public static final String DRESSING = "dressing";
-    public static final String MENTAL = "mental";
-    public static final String DATE = "date";
-    public static final String USER = "user";
+    public static final String DISABILITY_TYPE = "DISABILITY";
+    public static final String VISION = "Vision";
+    public static final String SPEAKING = "Speaking";
+    public static final String HEARING = "Hearing";
+    public static final String WALKING  = "Walking";
+    public static final String ELIMINATING = "Eliminating";
+    public static final String FEEDING = "Feeding";
+    public static final String DRESSING = "Dressing";
+    public static final String MENTAL = "Mental";
+    public static final String DATE = "Date";
+    public static final String USER = "User ";
+    public static final String WEEK = "Week";
+    public static final String MONTH = "Month";
+    public static final String YEAR = "Year";
+    public static final String LIST = "List";
 
     /**
      * Button which goes to disability selection page
@@ -93,5 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Apply the adapter to the spinner
         spinner.setAdapter(dataAdapter);
+
     }
+
+
 }
