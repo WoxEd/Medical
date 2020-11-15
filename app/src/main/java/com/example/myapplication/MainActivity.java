@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button createEntry = findViewById(R.id.entryButton);
         Button viewIndividual = findViewById(R.id.listViewButton);
+        Button backHome = findViewById(R.id.logout);
 
         createEntry.setOnClickListener(e -> {
             goToActivity = new Intent(MainActivity.this, DisabilitySelectionActivity.class);
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         viewIndividual.setOnClickListener(e -> {
             goToActivity = new Intent(MainActivity.this,ListViewActivity.class);
+            startActivity(goToActivity);
+        });
+
+        backHome.setOnClickListener(e -> {
+            goToActivity = new Intent(MainActivity.this,HomeActivity.class);
             startActivity(goToActivity);
         });
     }
