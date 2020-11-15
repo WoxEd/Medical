@@ -35,4 +35,6 @@
     <string name="question_icon_description">Icon representing disability</string>
     <string name="team_name">Wild 4 - CST8334</string>
     <string name="college_date_title">Algonquin College 2020</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
