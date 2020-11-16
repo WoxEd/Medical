@@ -37,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Questions table columns names
     public static final String QUESTION_ID = "Q_ID";
     public static final String QUESTION_CONTENT = "Q_CONTENT";
+    public static final String QUESTION_ANSWER = "Q_ANSWER";
     public static final String QUESTION_DATE = "Q_DATE";
     public static final String DISABILITY_ID_FK = "Q_ID_D";
 
@@ -61,6 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //Define Query to create Questions  table
     private static final String createQuestionTable = "create table " + QUESTIONS_TABLE_NAME + " ( "
             + QUESTION_ID + " integer primary key autoincrement, " +
+            QUESTION_CONTENT + " TEXT not null, " +
             QUESTION_CONTENT + " TEXT not null, " +
             QUESTION_DATE + " text not null, " +
             DISABILITY_ID_FK + " integer not null );";
@@ -137,10 +139,11 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
 
     }
-    public boolean addQuestionData(String data, int id,String date) {
+    public boolean addQuestionData(String data, String answer, int id,String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentvalues = new ContentValues();
         contentvalues.put(QUESTION_CONTENT, data);
+        contentvalues.put(QUESTION_ANSWER, answer);
         contentvalues.put(DISABILITY_ID_FK, id);
         contentvalues.put(QUESTION_DATE, date);
         long result = db.insert(QUESTIONS_TABLE_NAME, null, contentvalues);
