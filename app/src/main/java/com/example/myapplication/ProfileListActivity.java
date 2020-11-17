@@ -29,10 +29,10 @@ public class ProfileListActivity extends AppCompatActivity {
             /**
              * ProfileList required using database
              */
-//            ProfileList profileList = (ProfileList) listView.getAdapter().getItem(position);
-//            dataToPass.putString(SELECTED_FIRST, pList.getFirst());
-//            dataToPass.putString(SELECTED_LAST, pList.getLast());
-//            ...
+            ProfileList profileList = (ProfileList) listView.getAdapter().getItem(position);
+            dataToPass.putString(SELECTED_FIRST, profileList.getFirst());
+            dataToPass.putString(SELECTED_LAST, profileList.getLast());
+
 
             Intent nextActivity = new Intent(ProfileListActivity.this, MainActivity.class);
             nextActivity.putExtras(dataToPass);
