@@ -90,7 +90,7 @@ public class ListViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
+        setContentView(R.layout.activity_entries_list_view);
 
         opener = new PrototypeOneDBOpener(this);
         db = opener.getWritableDatabase();
@@ -350,8 +350,8 @@ public class ListViewActivity extends AppCompatActivity {
             Toast.makeText(this, "Sort by date", Toast.LENGTH_SHORT).show();
             sortDate(reverseDate);
             reverseDate = !reverseDate;
-
         });
+
         disability = findViewById(R.id.entryType);
         disability.setOnClickListener(e -> {
             Toast.makeText(this, "Sort by disability", Toast.LENGTH_SHORT).show();
@@ -374,9 +374,9 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void updateList(boolean all) {
         if(all)
-            results = opener.selectAll(db, null);
+            results = opener.selectAll(db, HomeActivity.currentProfileId);
         else
-            results =  opener.selectBetween(db, null, startDate, endDate);
+            results =  opener.selectBetween(db, HomeActivity.currentProfileId, startDate, endDate);
         loadEntries();
         inflateList();
     }
@@ -387,8 +387,6 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void loadEntries() {
         list = new ArrayList<>();
-        String[] columns = {PrototypeOneDBOpener.COL_ID, PrototypeOneDBOpener.COL_DISABILITY,
-                PrototypeOneDBOpener.COL_RATING, PrototypeOneDBOpener.COL_DATE};
         int idIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_ID);
         int disabilityIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DISABILITY);
         int ratingIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_RATING);
@@ -528,7 +526,7 @@ public class ListViewActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.list_view,parent,false);
+            convertView = inflater.inflate(R.layout.entry_list_design,parent,false);
 
             TextView disabilityType = convertView.findViewById(R.id.entryType);
             TextView severity = convertView.findViewById(R.id.entryRating);

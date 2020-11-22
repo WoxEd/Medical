@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String MENTAL = "Mental";
     public static final String DATE = "Date";
     public static final String LIST = "List";
+    public static final String PROFILE = "Profile";
+
 
     /**
      * Intent for going to next page
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Button viewIndividual = findViewById(R.id.listViewButton);
         Button backHome = findViewById(R.id.logout);
 
+
         createEntry.setOnClickListener(e -> {
             goToActivity = new Intent(MainActivity.this, DisabilitySelectionActivity.class);
             startActivity(goToActivity);
@@ -55,4 +58,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToActivity);
         });
     }
+
+
 }

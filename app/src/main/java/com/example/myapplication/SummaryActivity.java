@@ -174,7 +174,7 @@ public class SummaryActivity extends AppCompatActivity {
         list = (ArrayList<SummaryObject>) getIntent().getSerializableExtra(MainActivity.LIST);
 
         //4) Processes list and chart if list is not null
-        if(list != null) {
+        if(list != null && list.size() > 0) {
             processList();
             makeBarChart();
             addRadioListeners(radioFilters);

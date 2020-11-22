@@ -158,7 +158,7 @@ public class QuestionActivity extends AppCompatActivity {
         TextView bar = findViewById(R.id.seekBarData);
         if(disabilityType != null && bar.getText() != null && entryDate != null) {
             int severity = Integer.parseInt(bar.getText().toString());
-            opener.insert(db, disabilityType, severity, entryDate);
+            opener.insert(db, disabilityType, severity, entryDate, HomeActivity.currentProfileId);
             startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
         } else {
             //Some sort of error checking for values

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +14,20 @@ import android.widget.Toast;
 
 public class ProfileCreateActivity extends AppCompatActivity {
 
-    EditText et_first, et_last;
-    Button bt_create2;
-    SharedPreferences prefs = null;
+    private EditText et_first, et_last;
+    private Button bt_create2;
+    private SharedPreferences prefs = null;
+
+    private PrototypeOneDBOpener opener;
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_create);
+
+        opener = new PrototypeOneDBOpener(this);
+        db = opener.getWritableDatabase();
 
         et_first = findViewById(R.id.create_editText_1);
         et_last = findViewById(R.id.create_editText_2);
@@ -42,21 +49,15 @@ public class ProfileCreateActivity extends AppCompatActivity {
             } else if (lastName.trim().isEmpty()) {
                 Toast.makeText(this, "Last Name should be entered", Toast.LENGTH_LONG).show();
             } else {
-                Intent goToFavourite = new Intent(this, MainActivity.class);
-                startActivity(goToFavourite);
+
+                opener.insert(db, firstName, lastName);
+                startActivity(new Intent(ProfileCreateActivity.this, HomeActivity.class));
+                Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
             }
 
         });
     }
 
-    /**
-     *Need to be updated with database
-     */
-    protected void onPause(String first, String last) {
-        prefs.edit()
-                .putString("first", first)
-                .putString("last", last)
-                .apply();
-    }
+
 
 }
