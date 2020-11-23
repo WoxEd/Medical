@@ -19,6 +19,8 @@
             android:gravity="center_vertical"
             android:text="First Name" />
 
+
+
         <EditText
             android:id="@+id/editFirstName"
             android:layout_width="match_parent"
