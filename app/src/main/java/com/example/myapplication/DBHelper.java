@@ -63,7 +63,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String createQuestionTable = "create table " + QUESTIONS_TABLE_NAME + " ( "
             + QUESTION_ID + " integer primary key autoincrement, " +
             QUESTION_CONTENT + " TEXT not null, " +
-            QUESTION_CONTENT + " TEXT not null, " +
+            QUESTION_ANSWER + " TEXT , " +
             QUESTION_DATE + " text not null, " +
             DISABILITY_ID_FK + " integer not null );";
 
