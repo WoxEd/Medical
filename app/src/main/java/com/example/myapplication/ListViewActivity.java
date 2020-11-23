@@ -19,6 +19,10 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -111,6 +115,37 @@ public class ListViewActivity extends AppCompatActivity {
             goToSummary.putExtra(MainActivity.LIST, list);
             startActivity(goToSummary);
         });
+
+        savedList.setOnItemClickListener( (parent,view,pos,id) -> displayEntryAndQuestions(list.get(pos)));
+    }
+
+    private void displayEntryAndQuestions(SummaryObject summaryObject) {
+        Cursor questions = opener.selectAll(db, summaryObject.getId());
+
+        int questionIndex = questions.getColumnIndex(PrototypeOneDBOpener.COL_QUESTION);
+        int answerIndex= questions.getColumnIndex(PrototypeOneDBOpener.COL_ANSWER);
+
+        ArrayList<String> questionResults = new ArrayList<>();
+        while(questions.moveToNext()) {
+            String question = questions.getString(questionIndex);
+            String answer = questions.getString(answerIndex);
+            Log.d("Load Questions", question + " " +answer );
+            questionResults.add(question);
+            questionResults.add(answer);
+        }
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Questions");
+        String message = "";
+        for(int i =0; i< questionResults.size(); i+=2 ){
+            message += questionResults.get(i) + ": " + questionResults.get(i+1) + "\n";
+        }
+        TextView results = new TextView(this);
+        results.setText(message);
+        builder.setView(results);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**
@@ -374,7 +409,7 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void updateList(boolean all) {
         if(all)
-            results = opener.selectAll(db, HomeActivity.currentProfileId);
+            results = opener.selectAllEntry(db, HomeActivity.currentProfileId);
         else
             results =  opener.selectBetween(db, HomeActivity.currentProfileId, startDate, endDate);
         loadEntries();
@@ -398,7 +433,7 @@ public class ListViewActivity extends AppCompatActivity {
             int rating = results.getInt(ratingIndex);
             String date = results.getString(dateIndex);
             Log.d("LOAD", "LOADED " + disability + " " + rating + " " + date);
-            list.add(new SummaryObject(disability, rating, date));
+            list.add(new SummaryObject(id, disability, rating, date));
         }
     }
 

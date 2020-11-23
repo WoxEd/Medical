@@ -88,7 +88,7 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     private static final String SELECT_ALL_PROFILES = "SELECT * FROM " + PROFILE_TABLE_NAME;
     private static final String DROP_PROFILE_TABLE = "DROP TABLE IF EXISTS " + PROFILE_TABLE_NAME;
 
-    private static final String INSERT_QUESTION = "INSERT INTO " + QUESTION_TABLE_NAME + " (" + COL_QUESTION + "," + COL_ANSWER + "," + COL_FK_ENTRY + ")" + " VALUES ('%s', '%s, '%d')";
+    private static final String INSERT_QUESTION = "INSERT INTO " + QUESTION_TABLE_NAME + " (" + COL_QUESTION + "," + COL_ANSWER + "," + COL_FK_ENTRY + ")" + " VALUES ('%s', '%s', '%d')";
     private static final String DROP_QUESTIONS = "DROP TABLE IF EXISTS " + QUESTION_TABLE_NAME;
     private static final String SELECT_ALL_QUESTIONS = "SELECT * FROM " + QUESTION_TABLE_NAME + " WHERE " + COL_FK_ENTRY + " = '%d'";
     /**
@@ -167,8 +167,8 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
      * @param profileId Id of profile being searched for
      * @return Cursor object which can be used to increment over the selected elements
      */
-    public Cursor selectAll(SQLiteDatabase sqLiteDatabase, Long profileId) {
-        String query = SELECT_ALL_DISABILITIES;
+    public Cursor selectAllEntry(SQLiteDatabase sqLiteDatabase, long profileId) {
+        String query = String.format(Locale.CANADA, SELECT_ALL_DISABILITIES, profileId);
         return sqLiteDatabase.rawQuery(query,null);
     }
 

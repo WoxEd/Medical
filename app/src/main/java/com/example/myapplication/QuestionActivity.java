@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.questionmanager.QuestionForm;
 
 import java.util.Calendar;
 
@@ -63,6 +67,11 @@ public class QuestionActivity extends AppCompatActivity {
     private SQLiteDatabase db;
 
     /**
+     * Question form
+     */
+    private QuestionForm questionForm;
+
+    /**
      * onCreate does
      * 1) Initializes values
      * 2) Declares a SeekBar and set the value to 0.  This will  be contained in every question regardless of selection
@@ -88,7 +97,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         //3) Adds an OnClickListener to the submit button
         Button submit = findViewById(R.id.submit_button);
-        submit.setOnClickListener(e -> submitPrototype());
+        submit.setOnClickListener(e -> submit());
 
         //4) Loads intent
         fromSelection = getIntent();
@@ -110,61 +119,68 @@ public class QuestionActivity extends AppCompatActivity {
         Log.d("loadIntent date",entryDate );
         Log.d("loadIntent disability", disabilityType);
 
-        //initialize default layout file to be vision
-        int defaultQuestion = R.layout.questions_vision;
 
         //Loads icon and question layout based on disability type
         switch (disabilityType) {
             case MainActivity.SPEAKING:
+                questionForm = new QuestionForm(this, MainActivity.SPEAKING);
                 displayIcon.setImageResource(R.drawable.speaking);
-                defaultQuestion = R.layout.questions_speaking;
                 break;
             case MainActivity.HEARING:
+                questionForm = new QuestionForm(this, MainActivity.HEARING);
                 displayIcon.setImageResource(R.drawable.hearing);
-                defaultQuestion = R.layout.questions_hearing;
                 break;
             case MainActivity.WALKING:
+                questionForm = new QuestionForm(this, MainActivity.WALKING);
                 displayIcon.setImageResource(R.drawable.walking);
-                defaultQuestion = R.layout.questions_walking;
                 break;
             case MainActivity.ELIMINATING:
+                questionForm = new QuestionForm(this, MainActivity.ELIMINATING);
                 displayIcon.setImageResource(R.drawable.eliminating);
-                defaultQuestion = R.layout.questions_eliminating;
                 break;
             case MainActivity.FEEDING:
+                questionForm = new QuestionForm(this, MainActivity.FEEDING);
                 displayIcon.setImageResource(R.drawable.feeding);
-                defaultQuestion = R.layout.questions_feeding;
                 break;
             case MainActivity.DRESSING:
+                questionForm = new QuestionForm(this, MainActivity.DRESSING);
                 displayIcon.setImageResource(R.drawable.dressing);
-                defaultQuestion = R.layout.questions_dressing;
                 break;
             case MainActivity.MENTAL:
+                questionForm = new QuestionForm(this, MainActivity.MENTAL);
                 displayIcon.setImageResource(R.drawable.mental);
-                defaultQuestion = R.layout.questions_mental;
                 break;
             default: //default case will act like Vision
+                questionForm = new QuestionForm(this, MainActivity.VISION);
                 displayIcon.setImageResource(R.drawable.vision);
                 break;
         }
-        //Adds the question layout to questions
-        questions.addView(getLayoutInflater().inflate(defaultQuestion, null));
+        questions.addView(questionForm.getView());
     }
 
     /**
      * Saves the disabilityType, severity, and date
      */
-    private void submitPrototype() {
-        TextView bar = findViewById(R.id.seekBarData);
-        if(disabilityType != null && bar.getText() != null && entryDate != null) {
-            int severity = Integer.parseInt(bar.getText().toString());
-            opener.insert(db, disabilityType, severity, entryDate, HomeActivity.currentProfileId);
-            startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
-        } else {
-            //Some sort of error checking for values
-            Log.d("Questions", "Error Checking");
-        }
+    private void submit() {
+        if(questionForm.isValid()) {
+            TextView bar = findViewById(R.id.seekBarData);
+            if (disabilityType != null && bar.getText() != null && entryDate != null) {
+                int severity = Integer.parseInt(bar.getText().toString());
+                ContentValues entryRows = new ContentValues();
+                entryRows.put(PrototypeOneDBOpener.COL_DISABILITY, disabilityType);
+                entryRows.put(PrototypeOneDBOpener.COL_RATING, severity);
+                entryRows.put(PrototypeOneDBOpener.COL_DATE, entryDate);
+                entryRows.put(PrototypeOneDBOpener.COL_FK_PROFILE, HomeActivity.currentProfileId);
 
+                long entryId = db.insert(PrototypeOneDBOpener.DISABILITY_TABLE_NAME, null, entryRows);
+                questionForm.submitQuestions(opener, db, entryId);
+                startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
+            } else {
+                Log.d("Questions", "Error Checking");
+            }
+        } else {
+            Toast.makeText(this, "Make sure all questions are answered", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

@@ -14,20 +14,6 @@ import java.util.Calendar;
 public class DisabilitySelectionActivity extends AppCompatActivity {
 
     /**
-     * public Strings to make it easier to fetch intents from Questions page
-     */
-    public static final String DISABILITY_TYPE = "disabilityType";
-    public static final String VISION = "vision";
-    public static final String SPEAKING = "speaking";
-    public static final String HEARING = "hearing";
-    public static final String WALKING  = "walking";
-    public static final String ELIMINATING = "eliminating";
-    public static final String FEEDING = "feeding";
-    public static final String DRESSING = "dressing";
-    public static final String MENTAL = "mental";
-    public static final String DATE = "date";
-
-    /**
      * The TextView that holds the selected date of entry
      */
     private TextView dateText;
@@ -77,14 +63,14 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         ImageButton mental = findViewById(R.id.imagemental);
 
         //5 Add click listeners to each disability icon
-        vision.setOnClickListener(e -> goToQuestions(VISION));
-        speaking.setOnClickListener(e -> goToQuestions(SPEAKING));
-        hearing.setOnClickListener(e -> goToQuestions(HEARING));
-        walking.setOnClickListener(e -> goToQuestions(WALKING));
-        eliminating.setOnClickListener(e -> goToQuestions(ELIMINATING));
-        feeding.setOnClickListener(e -> goToQuestions(FEEDING));
-        dressing.setOnClickListener(e -> goToQuestions(DRESSING));
-        mental.setOnClickListener(e -> goToQuestions(MENTAL));
+        vision.setOnClickListener(e -> goToQuestions(MainActivity.VISION));
+        speaking.setOnClickListener(e -> goToQuestions(MainActivity.SPEAKING));
+        hearing.setOnClickListener(e -> goToQuestions(MainActivity.HEARING));
+        walking.setOnClickListener(e -> goToQuestions(MainActivity.WALKING));
+        eliminating.setOnClickListener(e -> goToQuestions(MainActivity.ELIMINATING));
+        feeding.setOnClickListener(e -> goToQuestions(MainActivity.FEEDING));
+        dressing.setOnClickListener(e -> goToQuestions(MainActivity.DRESSING));
+        mental.setOnClickListener(e -> goToQuestions(MainActivity.MENTAL));
 
         //6 Initialize Intent
         goToQuestions = new Intent(DisabilitySelectionActivity.this, QuestionActivity.class);
@@ -97,9 +83,10 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
      * @param type represents disability type
      */
     public void goToQuestions(String type){
-        goToQuestions.putExtra(DISABILITY_TYPE,type);
-        goToQuestions.putExtra(DATE, selectedDate);
+        goToQuestions.putExtra(MainActivity.DISABILITY_TYPE,type);
+        goToQuestions.putExtra(MainActivity.DATE, selectedDate);
         Log.d("Selection: date:", selectedDate);
+        Log.d("Disability Type Select:", type);
         startActivity(goToQuestions);
     }
 
@@ -115,7 +102,7 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
-        selectedDate = ListViewActivity.createDateString(year,month,day);
+        selectedDate = ListViewActivity.createDateString(year,month+1,day);
         dateText.setText(selectedDate);
     }
 
@@ -134,7 +121,7 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         // Create a calendar dialog for user to select the date, today's date is the default
         picker = new DatePickerDialog(DisabilitySelectionActivity.this, (datePicker, calYear, calMonth, calDate) -> {
             // Set the date to the user's selection
-            selectedDate = calDate + "/" + (calMonth + 1) + "/" + calYear;
+            selectedDate = ListViewActivity.createDateString(year,month+1,day);
             dateText.setText(selectedDate);
         }, year, month, day);
         picker.show();

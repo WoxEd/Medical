@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
         opener = new PrototypeOneDBOpener(this);
         db = opener.getWritableDatabase();
-        //opener.reset(db);
+
 
         select_bt.setOnClickListener(v -> {
             generateListOfProfilesDialog();

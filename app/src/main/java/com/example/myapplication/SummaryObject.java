@@ -9,10 +9,11 @@ public class SummaryObject implements Serializable {
     private int rating;
     private String date;
 
-    public SummaryObject(String disabilityType, int rating, String date) {
-        this.disabilityType = disabilityType;
-        this.rating = rating;
-        this.date = date;
+    public SummaryObject(long id, String disabilityType, int rating, String date) {
+        setId(id);
+        setDisabilityType(disabilityType);
+        setRating(rating);
+        setDate(date);
     }
 
     public void setId(long id) { this.id = id; }
