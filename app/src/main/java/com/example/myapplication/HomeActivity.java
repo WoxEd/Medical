@@ -127,6 +127,12 @@ public class HomeActivity extends AppCompatActivity {
         Toast.makeText(this, "Logged in as " + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT);
     }
 
+    @Override
+    protected void onPause() {
+        finish();
+        super.onPause();
+    }
+
 
     /**
      * MyListAdapter is an inner class created to help display ListView
