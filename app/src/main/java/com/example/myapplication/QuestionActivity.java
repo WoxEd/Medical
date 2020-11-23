@@ -183,6 +183,13 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        finish();
+        super.onPause();
+
+    }
+
     /**
      * Implements OnSeekBarChangedListener methods to track SeekBar data
      */

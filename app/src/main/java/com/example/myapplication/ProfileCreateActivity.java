@@ -58,6 +58,11 @@ public class ProfileCreateActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
 
 }
