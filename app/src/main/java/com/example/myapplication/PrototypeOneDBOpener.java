@@ -24,9 +24,9 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "disability.db";
 
     /**
-     * Database version number
+     * Database version number.
      */
-    private static final int VERSION_NUMBER = 1;
+    private static final int VERSION_NUMBER = 2;
 
     /**
      * Name of table
@@ -96,6 +96,7 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
      */
     public PrototypeOneDBOpener(Context context) {
         super(context,DATABASE_NAME,null,VERSION_NUMBER);
+
     }
 
     @Override
