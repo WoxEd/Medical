@@ -38,7 +38,7 @@
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="SELECT A USER"
+        android:text="SELECT A PROFILE"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#F6EFEF"
         android:textStyle="bold" />
@@ -56,7 +56,7 @@
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="CREATE A NEW USER"
+        android:text="CREATE A NEW PROFILE"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#F6EFEF"
         android:textStyle="bold" />
