@@ -15,7 +15,7 @@ public class HearingQuestions extends SuperQuestions{
     private static final String QUESTION_ONE = "Which ear do you experience symptoms in?";
     private static  final ArrayList<String> QUESTION_ONE_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("R", "L", "Both"));
 
-    private static final String QUESTION_TWO = "Are you completely deaf?";
+    private static final String QUESTION_TWO = "Are you deaf in that ear?";
     private static  final ArrayList<String> QUESTION_TWO_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
 
     public HearingQuestions(Context context) {

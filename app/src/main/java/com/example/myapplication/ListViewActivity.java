@@ -23,6 +23,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -451,7 +452,8 @@ public class ListViewActivity extends AppCompatActivity {
             updateList(false);
         } else if(month) {
             int[] dates = getDates(startDate);
-            title.setText("Month  " + dates[1] + " of year " + dates[0]);
+            //title.setText("Month " + dates[1] + " of year " + dates[0]);
+            title.setText(new DateFormatSymbols().getMonths()[dates[1]-1] + " " + dates[0]);
             updateList(false);
         } else if(year) {
             title.setText("Year of " + getDates(startDate)[0]);

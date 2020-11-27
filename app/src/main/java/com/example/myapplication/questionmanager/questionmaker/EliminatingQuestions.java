@@ -15,7 +15,7 @@ public class EliminatingQuestions extends SuperQuestions{
     private static final String QUESTION_ONE = "Do you experience constipation?";
     private static  final ArrayList<String> QUESTION_ONE_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
 
-    private static final String QUESTION_TWO = "Do you have diarrhea?";
+    private static final String QUESTION_TWO = "Do you experience diarrhea?";
     private static  final ArrayList<String> QUESTION_TWO_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
 
     public EliminatingQuestions(Context context) {

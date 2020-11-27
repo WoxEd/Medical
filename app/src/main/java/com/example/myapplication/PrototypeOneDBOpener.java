@@ -91,6 +91,13 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     private static final String INSERT_QUESTION = "INSERT INTO " + QUESTION_TABLE_NAME + " (" + COL_QUESTION + "," + COL_ANSWER + "," + COL_FK_ENTRY + ")" + " VALUES ('%s', '%s', '%d')";
     private static final String DROP_QUESTIONS = "DROP TABLE IF EXISTS " + QUESTION_TABLE_NAME;
     private static final String SELECT_ALL_QUESTIONS = "SELECT * FROM " + QUESTION_TABLE_NAME + " WHERE " + COL_FK_ENTRY + " = '%d'";
+
+
+    private static final String DELETE_QUESTIONS_FOR_ENTRY_ID = "DELETE FROM " + QUESTION_TABLE_NAME + " WHERE " + COL_FK_ENTRY + " = '%d'";
+    private static final String DELETE_ENTRY_GIVEN_ENTRY_ID = "DELETE FROM " + DISABILITY_TABLE_NAME + " WHERE " + COL_ID + "= '%d'";
+    private static final String DELETE_ENTRY_GIVEN_FOREIGN_KEY = "DELETE FROM " + DISABILITY_TABLE_NAME + " WHERE " + COL_FK_PROFILE + "= '%d'";
+    private static final String DELETE_PROFILE_GIVEN_ID = "DELETE FROM " + PROFILE_TABLE_NAME + "WHERE " + COL_ID + " = '%d";
+
     /**
      * Constructor required to create database
      */
@@ -211,35 +218,57 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
      */
     public void testAdd(SQLiteDatabase sqLiteDatabase) {
         Log.d("DB Helper", "Adding predefined entries");
-        insert(sqLiteDatabase, MainActivity.VISION,10, "2020-11-11",1);
-        insert(sqLiteDatabase, MainActivity.HEARING,9, "2020-11-10",1);
-        insert(sqLiteDatabase, MainActivity.ELIMINATING,8, "2020-11-10",2);
-        insert(sqLiteDatabase, MainActivity.MENTAL,7, "2020-11-10",1);
-        insert(sqLiteDatabase, MainActivity.WALKING,6, "2020-11-09",1);
-        insert(sqLiteDatabase, MainActivity.FEEDING,5, "2020-11-09",1);
-        insert(sqLiteDatabase, MainActivity.DRESSING,4, "2020-11-09",1);
-        insert(sqLiteDatabase, MainActivity.WALKING,3, "2020-11-08",1);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,2, "2020-11-08",1);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,1, "2020-11-06",1);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,2, "2020-11-05",1);
-        insert(sqLiteDatabase, MainActivity.HEARING,3, "2020-11-05",1);
-        insert(sqLiteDatabase, MainActivity.VISION,4, "2020-11-05",1);
-        insert(sqLiteDatabase, MainActivity.MENTAL,5, "2020-11-05",1);
-        insert(sqLiteDatabase, MainActivity.ELIMINATING,6, "2020-11-05",1);
-        insert(sqLiteDatabase, MainActivity.WALKING,7, "2020-11-05",2);
-        insert(sqLiteDatabase, MainActivity.VISION,8, "2020-11-05",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-11-04",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,10, "2020-11-03",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-11-02",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-10-26",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-10-27",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-10-28",2);
-        insert(sqLiteDatabase, MainActivity.SPEAKING,9, "2020-10-29",2);
+        reset(sqLiteDatabase);
+        // Insert Test profile, id 1
+        insert(sqLiteDatabase, "Leanne", "Carpenter");
+
+        // Insert Test Entries
+        insert(sqLiteDatabase, MainActivity.DRESSING,10,"2020-11-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,1,"2020-11-26",1);
+        insert(sqLiteDatabase, MainActivity.WALKING,2,"2020-11-26",1);
+        insert(sqLiteDatabase, MainActivity.DRESSING,4,"2020-11-26",1);
+        insert(sqLiteDatabase, MainActivity.HEARING,9,"2020-11-26",1);
+        insert(sqLiteDatabase, MainActivity.HEARING,7,"2020-11-25",1);
+        insert(sqLiteDatabase, MainActivity.SPEAKING,6,"2020-11-24",1);
+        insert(sqLiteDatabase, MainActivity.MENTAL,10,"2020-11-23",1);
+        insert(sqLiteDatabase, MainActivity.HEARING,4,"2020-11-22",1);
+        insert(sqLiteDatabase, MainActivity.VISION,1,"2020-11-21",1);
+        insert(sqLiteDatabase, MainActivity.VISION,2,"2020-11-20",1);
+        insert(sqLiteDatabase, MainActivity.VISION,3,"2020-11-19",1);
+        insert(sqLiteDatabase, MainActivity.HEARING,9,"2020-11-18",1);
+        insert(sqLiteDatabase, MainActivity.WALKING,8,"2020-11-17",1);
+        insert(sqLiteDatabase, MainActivity.SPEAKING,9,"2020-10-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,8,"2020-09-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,4,"2020-08-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,1,"2020-04-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,4,"2019-11-26",1);
+        insert(sqLiteDatabase, MainActivity.VISION,4,"2018-12-10",1);
+        insert(sqLiteDatabase, MainActivity.SPEAKING,6,"2020-09-26",1);
+        insert(sqLiteDatabase, MainActivity.ELIMINATING,8,"2020-08-26",1);
+        insert(sqLiteDatabase, MainActivity.WALKING,2,"2020-04-26",1);
+        insert(sqLiteDatabase, MainActivity.MENTAL,1,"2019-11-26",1);
+        insert(sqLiteDatabase, MainActivity.FEEDING,5,"2018-12-10",1);
+
+        // insert questions hard to manually
+
+    }
+
+
+    public void deleteEntry(SQLiteDatabase sqLiteDatabase, long entryId) {
+        String deleteQuestions = String.format(Locale.CANADA, DELETE_QUESTIONS_FOR_ENTRY_ID, entryId);
+        Log.d("Delete", deleteQuestions);
+        sqLiteDatabase.rawQuery(deleteQuestions,null);
+    }
+
+    public void deleteProfile(SQLiteDatabase sqLiteDatabase, long profileId) {
+        //TODO loop through entries for the profile id to delete questions, then delete entry, then finally delete profile
+        //Get all entries first to delete questions and Entries
+        Cursor allEntries = selectAllEntry(sqLiteDatabase, profileId);
+
     }
 
     public void dropAdd(SQLiteDatabase sqLiteDatabase) {
         reset(sqLiteDatabase);
-        testAdd(sqLiteDatabase);
     }
 
 }

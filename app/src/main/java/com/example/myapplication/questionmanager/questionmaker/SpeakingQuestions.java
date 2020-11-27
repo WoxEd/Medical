@@ -16,6 +16,8 @@ public class SpeakingQuestions extends SuperQuestions{
     private static  final ArrayList<String> QUESTION_ONE_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
     private static final String QUESTION_TWO = "Are you able to form sentences?";
     private static  final ArrayList<String> QUESTION_TWO_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
+    private static final String QUESTION_THREE = "Are you able to speak?";
+    private static  final ArrayList<String> QUESTION_THREE_ANSWER_SELECTIONS = new ArrayList<>(Arrays.asList("Yes", "No"));
 
     public SpeakingQuestions(Context context) {
         super(context);
@@ -28,6 +30,8 @@ public class SpeakingQuestions extends SuperQuestions{
         getQuestionList().add(question1);
         Question question2 = new Question(context, QUESTION_TWO, QUESTION_TWO_ANSWER_SELECTIONS);
         getQuestionList().add(question2);
+        Question question3 = new Question(context, QUESTION_TWO, QUESTION_TWO_ANSWER_SELECTIONS);
+        getQuestionList().add(question3);
     }
 
 }

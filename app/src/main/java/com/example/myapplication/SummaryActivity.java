@@ -258,7 +258,11 @@ public class SummaryActivity extends AppCompatActivity {
         BarData data = new BarData(DISABILITY_LIST, getData());
         chart.animateXY(X_ANIMATE_TIME,Y_ANIMATE_TIME);
         chart.getXAxis().setLabelRotationAngle(X_AXIS_ANGLE);
+        chart.getXAxis().setTextSize(12f);
+        chart.getLegend().setTextSize(20f);
         chart.setData(data);
+        chart.getData().setValueTextSize(10f);
+
     }
 
     /**
@@ -287,6 +291,7 @@ public class SummaryActivity extends AppCompatActivity {
                 barDataSets.add(severityDataSet);
                 chart.setDescription(getString(R.string.chart_description_both));
         }
+        chart.setDescriptionTextSize(15f);
         return barDataSets;
     }
 

@@ -84,7 +84,7 @@ public class HomeActivity extends AppCompatActivity {
             ListView profileList = profileListView.findViewById(R.id.profileList);
             MyListAdapter adapter = new MyListAdapter(this, list);
             profileList.setAdapter(adapter);
-            profileList.setOnItemClickListener( (parent,view,pos,id) -> generateProfileAlert(list.get(pos)));
+            profileList.setOnItemClickListener( (parent,view,pos,id) -> login(list.get(pos)));//generateProfileAlert(list.get(pos)));
 
         } else {
             TextView noProfile = new TextView(this);
@@ -129,7 +129,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        finish();
         super.onPause();
     }
 
@@ -193,12 +192,8 @@ public class HomeActivity extends AppCompatActivity {
             convertView = inflater.inflate(R.layout.profile_list_design,parent,false);
 
             TextView profileId= convertView.findViewById(R.id.profileId);
-            TextView profileFirstName = convertView.findViewById(R.id.profileFirstName);
-            TextView profileLastName= convertView.findViewById(R.id.profileLastName);
 
-            profileId.setText(""+getList().get(position).getId());
-            profileFirstName.setText(getList().get(position).getFirstName());
-            profileLastName.setText(getList().get(position).getLastName());
+            profileId.setText((position+1)+")\t" +getList().get(position).getFirstName() + " " + getList().get(position).getLastName());
 
             return convertView;
         }
