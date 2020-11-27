@@ -23,8 +23,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20dp"
-        android:textColor="@color/colorAccent"
-        android:text=" for T2201 Disability Tax Credit Form "/>
+        android:textColor="#FFFF33"
+        android:text=" For T2201 Disability Tax Credit Form "/>
 
     <Button
         android:id="@+id/select_btn"
