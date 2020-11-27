@@ -8,28 +8,32 @@
         android:id="@+id/weekSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#CCCCFF"
+        android:textColor="#330066"
         android:text="Filter by selected dates" />
 
     <Button
         android:id="@+id/monthSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#CCCCFF"
+        android:textColor="#330066"
         android:text="Filter by selected month" />
 
     <Button
         android:id="@+id/yearSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#CCCCFF"
+        android:textColor="#330066"
         android:text="Filter by selected year" />
 
     <Button
         android:id="@+id/allSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="#CCCCFF"
+        android:textColor="#330066"
         android:text="Show all Entries" />
 
     <Button
