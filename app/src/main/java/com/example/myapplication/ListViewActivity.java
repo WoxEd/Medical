@@ -19,15 +19,12 @@ import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 
 public class ListViewActivity extends AppCompatActivity {
 
@@ -106,20 +103,26 @@ public class ListViewActivity extends AppCompatActivity {
 
         filter = findViewById(R.id.listFilterButton);
         showSummary = findViewById(R.id.viewSummaryButton);
-
         addSortOnClickListeners();
-
         createFilterMenu();
 
-        showSummary.setOnClickListener(e -> {
-            Intent goToSummary = new Intent(ListViewActivity.this, SummaryActivity.class);
-            goToSummary.putExtra(MainActivity.LIST, list);
-            startActivity(goToSummary);
-        });
+        showSummary.setOnClickListener(e -> goToSummary());
 
         savedList.setOnItemClickListener( (parent,view,pos,id) -> displayEntryAndQuestions(list.get(pos)));
     }
 
+    /**
+     * Goes to summary activity passing in the current ListView
+     */
+    private void goToSummary() {
+        Intent goToSummary = new Intent(ListViewActivity.this, SummaryActivity.class);
+        goToSummary.putExtra(MainActivity.LIST, list);
+        startActivity(goToSummary);
+    }
+
+    /**
+     * In the ListView of entries, when one of them are pressed it will display all questions and notes
+     */
     private void displayEntryAndQuestions(SummaryObject summaryObject) {
         Cursor questions = opener.selectAll(db, summaryObject.getId());
 
@@ -137,13 +140,14 @@ public class ListViewActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Questions");
+        builder.setTitle("Information");
         String message = "";
         for(int i =0; i< questionResults.size(); i+=2 ){
             message += questionResults.get(i) + ": " + questionResults.get(i+1) + "\n";
         }
         TextView results = new TextView(this);
         results.setText(message);
+        results.setTextSize(20f);
         builder.setView(results);
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -157,7 +161,7 @@ public class ListViewActivity extends AppCompatActivity {
         endDate = createDateString(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DAY_OF_MONTH));
         cal.add(Calendar.DAY_OF_YEAR, -6);
         startDate = createDateString(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH)+1, cal.get(Calendar.DAY_OF_MONTH));
-        updateTitle(true, false, false, false, false);
+        updateTitleForTwoDates();
         updateList(false);
     }
 
@@ -174,6 +178,7 @@ public class ListViewActivity extends AppCompatActivity {
         filter.setOnClickListener( e-> dialog.show());
 
         /*DEBUG BUTTONS*/
+        //TODO Delete debug buttons
         Button clear = filterButtons.findViewById(R.id.emptyDatabase);
         Button add = filterButtons.findViewById(R.id.addDatabase);
         Button reset = filterButtons.findViewById(R.id.resetDatabase);
@@ -205,7 +210,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         selectAll.setOnClickListener(e -> {
             updateList(true);
-            updateTitle(false,false,false,true, false);
+            updateTitleForAll();
         });
     }
 
@@ -223,9 +228,9 @@ public class ListViewActivity extends AppCompatActivity {
             } else if(startDate.compareTo(endDate) > 0) {
                 Toast.makeText(this, "Start date must be before end date", Toast.LENGTH_SHORT).show();
             } else if(startDate.equals(endDate)) {
-                updateTitle(false, false, false, false, true);
+                updateTitleForSameDay();
             } else {
-                updateTitle(true, false, false, false, false);
+                updateTitleForTwoDates();
             }
         });
 
@@ -291,12 +296,10 @@ public class ListViewActivity extends AppCompatActivity {
         if(!selectMonth)
             monthPicker.setEnabled(false);
 
-
         NumberPicker yearPicker = numberPicker.findViewById(R.id.yearPicker);
         yearPicker.setMinValue(2019);
         yearPicker.setMaxValue(2099);
         yearPicker.setValue(year);
-
 
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         monthPicker.setDisplayedValues(months);
@@ -312,14 +315,13 @@ public class ListViewActivity extends AppCompatActivity {
                 cal.set(Calendar.YEAR, selectedYear);
                 startDate = createDateString(selectedYear, selectedMonth, 1);
                 endDate = createDateString(selectedYear, selectedMonth, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-                updateTitle(false, true, false, false, false);
-                updateList(false);
+                updateTitleForMonth();
             } else {
                 startDate = createDateString(selectedYear, 1, 1);
                 endDate = createDateString(selectedYear, 12, 31);
-                updateTitle(false,false,true,false,false);
-                updateList(false);
+                updateTitleForYear();
             }
+            updateList(false);
 
         });
         builder.setNegativeButton(R.string.cancel_option, (dialog,id)->{});
@@ -337,10 +339,8 @@ public class ListViewActivity extends AppCompatActivity {
      */
     public static int[] getDates(String date) {
         int[] dates = new int[3];
-
         //2020-10-10 - format
         //0123456789 - index
-
         //year
         dates[0] = Integer.parseInt(date.substring(0,4));
         //month
@@ -359,45 +359,34 @@ public class ListViewActivity extends AppCompatActivity {
      * @return String format of the integer values (ie: 2002-01-31)
      */
     public static String createDateString(int year, int month, int day) {
-        String date = "";
-
-        date += year;
-        date += "-";
-
-        if(month < 10)
-            date += "0";
-        date += (month);
-        date += "-";
-
-        if(day < 10)
-            date += "0";
-        date += day;
-
+        String format = "%s-%s-%s";
+        String yearText = Integer.toString(year);
+        String monthText = (month < 10) ? "0" + month : Integer.toString(month);
+        String dateText = (day < 10) ? "0" + day : Integer.toString(day);
+        String date = String.format(Locale.CANADA, format, yearText, monthText, dateText);
         return date;
     }
 
 
     /**
      * Click listeners for the columns of the list. These allow the list to be sorted on click
+     * TODO Change columns to have arrows so user knows about sorting
      */
     private void addSortOnClickListeners() {
         date = findViewById(R.id.entryDate);
         date.setOnClickListener(e -> {
-            Toast.makeText(this, "Sort by date", Toast.LENGTH_SHORT).show();
             sortDate(reverseDate);
             reverseDate = !reverseDate;
         });
 
         disability = findViewById(R.id.entryType);
         disability.setOnClickListener(e -> {
-            Toast.makeText(this, "Sort by disability", Toast.LENGTH_SHORT).show();
             sortDisability(reverseDisability);
             reverseDisability = !reverseDisability;
         });
 
         severity = findViewById(R.id.entryRating);
         severity.setOnClickListener(e -> {
-            Toast.makeText(this, "Sort by severity", Toast.LENGTH_SHORT).show();
             reverseSeverity = !reverseSeverity;
             sortSeverity(reverseSeverity);
         });
@@ -419,7 +408,7 @@ public class ListViewActivity extends AppCompatActivity {
 
 
     /**
-     * Loads entries from DB into ArrayList
+     * Loads entries from DB into ArrayList list
      */
     private void loadEntries() {
         list = new ArrayList<>();
@@ -439,32 +428,54 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     /**
-     * Updates the title of the ListView to show the current date
-     * @param date true if list is between two dates
-     * @param month true if list is showing a selected month
-     * @param year true if list is showing a selected year
-     * @param all true if showing all
-     * @param sameDay true if showing entries from the same day
+     * Updates the list to display current filters and sorts
      */
-    private void updateTitle(boolean date, boolean month, boolean year, boolean all, boolean sameDay){
-        if(date) {
-            title.setText(startDate + " to " + endDate);
-            updateList(false);
-        } else if(month) {
-            int[] dates = getDates(startDate);
-            //title.setText("Month " + dates[1] + " of year " + dates[0]);
-            title.setText(new DateFormatSymbols().getMonths()[dates[1]-1] + " " + dates[0]);
-            updateList(false);
-        } else if(year) {
-            title.setText("Year of " + getDates(startDate)[0]);
-            updateList(false);
-        } else if(all) {
-            title.setText("Showing all entries");
-            updateList(true);
-        } else if(sameDay) {
-            title.setText(startDate);
-            updateList(false);
-        }
+    private void inflateList() {
+        savedList = findViewById(R.id.savedList);
+        MyListAdapter adapter = new MyListAdapter(this, list);
+        savedList.setAdapter(adapter);
+    }
+
+
+    /**
+     * Sets the title to be between two selected dates
+     */
+    private void updateTitleForTwoDates() {
+        title.setText(startDate + " to " + endDate);
+        updateList(false);
+    }
+
+    /**
+     * Sets the title to on the selected Month and Year
+     */
+    private void updateTitleForMonth() {
+        int[] dates = getDates(startDate);
+        title.setText(new DateFormatSymbols().getMonths()[dates[1]-1] + " " + dates[0]);
+        updateList(false);
+    }
+
+    /**
+     * Sets the title to the selected year
+     */
+    private void updateTitleForYear() {
+        title.setText("Year of " + getDates(startDate)[0]);
+        updateList(false);
+    }
+
+    /**
+     * Sets the title to show that all entries are displayed
+     */
+    private void updateTitleForAll(){
+        title.setText("Showing all entries");
+        updateList(true);
+    }
+
+    /**
+     * Sets the title to show only one day is being shown
+     */
+    private void updateTitleForSameDay(){
+        title.setText(startDate);
+        updateList(false);
     }
 
 
@@ -498,14 +509,6 @@ public class ListViewActivity extends AppCompatActivity {
         inflateList();
     }
 
-    /**
-     * Updates the list to display current filters and sorts
-     */
-    private void inflateList() {
-        savedList = findViewById(R.id.savedList);
-        MyListAdapter adapter = new MyListAdapter(this, list);
-        savedList.setAdapter(adapter);
-    }
 
     /**
      * MyListAdapter is an inner class created to help display ListView

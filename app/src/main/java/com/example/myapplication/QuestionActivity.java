@@ -174,7 +174,15 @@ public class QuestionActivity extends AppCompatActivity {
 
                 long entryId = db.insert(PrototypeOneDBOpener.DISABILITY_TABLE_NAME, null, entryRows);
                 questionForm.submitQuestions(opener, db, entryId);
+                //SQLiteDatabase sqLiteDatabase, String question, String answer, long entryId
+
+                TextView notes = findViewById(R.id.noteBox);
+                String noteString = notes.getText().toString();
+                if( noteString != null) {
+                    opener.insert(db, "Note",noteString, entryId);
+                }
                 startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
+
             } else {
                 Log.d("Questions", "Error Checking");
             }

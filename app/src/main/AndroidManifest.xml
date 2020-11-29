@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileCreateActivity"></activity>
+        <activity android:name=".TempQuestionManager">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".DisabilitySelectionActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,11 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".TestActivity">-->
-<!--            <intent-filter>-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity android:name=".ListViewActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
