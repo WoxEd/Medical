@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Button backHome = findViewById(R.id.logout);
 
 
+
         createEntry.setOnClickListener(e -> {
             goToActivity = new Intent(MainActivity.this, DisabilitySelectionActivity.class);
             startActivity(goToActivity);

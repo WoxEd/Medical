@@ -102,6 +102,7 @@ public class QuestionActivity extends AppCompatActivity {
         //4) Loads intent
         fromSelection = getIntent();
         loadIntent();
+
     }
 
     /**

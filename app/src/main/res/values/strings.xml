@@ -29,6 +29,7 @@
     <string name="chart_label_average_severity">Average Severity</string>
     <string name="button_create">Create an Entry</string>
     <string name="button_display">Display Entries</string>
+    <string name="Medical_Tracker"> Medical Tracker</string>
     <string name="button_back_to_home">Back to Home Page</string>
     <string name="question_severity">How severe are the symptoms on a scale of 1 to 10?</string>
     <string name="button_submit">Submit Answers</string>
