@@ -15,12 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -29,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button create_bt;
     private SharedPreferences prefs;
     private ArrayList<Profile> list;
-    private PrototypeOneDBOpener opener;
+    private DatabaseOpener opener;
     private SQLiteDatabase db;
     private View profileListView;
     public static long currentProfileId;
@@ -42,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         select_bt = findViewById(R.id.select_btn);
         create_bt = findViewById(R.id.create_btn);
 
-        opener = new PrototypeOneDBOpener(this);
+        opener = new DatabaseOpener(this);
         db = opener.getWritableDatabase();
 
 
@@ -60,9 +57,9 @@ public class HomeActivity extends AppCompatActivity {
     private void loadProfiles() {
         list = new ArrayList<>();
         Cursor results = opener.selectAll(db);
-        int idIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_ID);
-        int firstNameIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_FIRST_NAME);
-        int lastNameIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_LAST_NAME);
+        int idIndex = results.getColumnIndex(DatabaseOpener.COL_ID);
+        int firstNameIndex = results.getColumnIndex(DatabaseOpener.COL_FIRST_NAME);
+        int lastNameIndex = results.getColumnIndex(DatabaseOpener.COL_LAST_NAME);
 
         while (results.moveToNext()) {
             long id = results.getLong(idIndex);

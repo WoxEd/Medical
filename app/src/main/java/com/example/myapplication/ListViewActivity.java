@@ -31,7 +31,7 @@ public class ListViewActivity extends AppCompatActivity {
     /**
      * Database opener created for the purposes of prototype 1.
      */
-    private PrototypeOneDBOpener opener;
+    private DatabaseOpener opener;
 
     /**
      * DB which holds our entries
@@ -94,7 +94,7 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entries_list_view);
 
-        opener = new PrototypeOneDBOpener(this);
+        opener = new DatabaseOpener(this);
         db = opener.getWritableDatabase();
 
         title = findViewById(R.id.listTitle);
@@ -126,8 +126,8 @@ public class ListViewActivity extends AppCompatActivity {
     private void displayEntryAndQuestions(SummaryObject summaryObject) {
         Cursor questions = opener.selectAll(db, summaryObject.getId());
 
-        int questionIndex = questions.getColumnIndex(PrototypeOneDBOpener.COL_QUESTION);
-        int answerIndex= questions.getColumnIndex(PrototypeOneDBOpener.COL_ANSWER);
+        int questionIndex = questions.getColumnIndex(DatabaseOpener.COL_QUESTION);
+        int answerIndex= questions.getColumnIndex(DatabaseOpener.COL_ANSWER);
 
         ArrayList<String> questionResults = new ArrayList<>();
         while(questions.moveToNext()) {
@@ -412,10 +412,10 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void loadEntries() {
         list = new ArrayList<>();
-        int idIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_ID);
-        int disabilityIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DISABILITY);
-        int ratingIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_RATING);
-        int dateIndex = results.getColumnIndex(PrototypeOneDBOpener.COL_DATE);
+        int idIndex = results.getColumnIndex(DatabaseOpener.COL_ID);
+        int disabilityIndex = results.getColumnIndex(DatabaseOpener.COL_DISABILITY);
+        int ratingIndex = results.getColumnIndex(DatabaseOpener.COL_RATING);
+        int dateIndex = results.getColumnIndex(DatabaseOpener.COL_DATE);
 
         while (results.moveToNext()) {
             long id = results.getLong(idIndex);

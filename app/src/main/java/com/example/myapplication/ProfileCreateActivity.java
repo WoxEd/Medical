@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ public class ProfileCreateActivity extends AppCompatActivity {
     private Button bt_create2;
     private SharedPreferences prefs = null;
 
-    private PrototypeOneDBOpener opener;
+    private DatabaseOpener opener;
     private SQLiteDatabase db;
 
     @Override
@@ -26,7 +25,7 @@ public class ProfileCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_create);
 
-        opener = new PrototypeOneDBOpener(this);
+        opener = new DatabaseOpener(this);
         db = opener.getWritableDatabase();
 
         et_first = findViewById(R.id.create_editText_1);

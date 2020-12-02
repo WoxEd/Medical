@@ -16,7 +16,7 @@ import java.util.Locale;
  * Rating (Severity) : A number between 1-10
  * Date: Time of the entry
  */
-public class PrototypeOneDBOpener extends SQLiteOpenHelper {
+public class DatabaseOpener extends SQLiteOpenHelper {
 
     /**
      * Name of database
@@ -101,7 +101,7 @@ public class PrototypeOneDBOpener extends SQLiteOpenHelper {
     /**
      * Constructor required to create database
      */
-    public PrototypeOneDBOpener(Context context) {
+    public DatabaseOpener(Context context) {
         super(context,DATABASE_NAME,null,VERSION_NUMBER);
 
     }
