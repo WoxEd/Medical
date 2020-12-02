@@ -23,13 +23,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:text="@string/filter_both" />
+            android:text="@string/filter_both"
+            android:textSize="15dp"/>
 
         <RadioButton
             android:id="@+id/filter_frequency"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="15dp"
             android:text="@string/filter_frequency" />
 
         <RadioButton
@@ -37,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="15dp"
             android:text="@string/filter_severity" />
 
 

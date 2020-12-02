@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text=" Symptoms Tracker "
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="#FCF3CF"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20dp"
-        android:textColor="#FFFF33"
+        android:textColor="#F9E79F"
         android:text=" For T2201 Disability Tax Credit Form "/>
 
     <Button

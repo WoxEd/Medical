@@ -16,6 +16,7 @@
             android:id="@+id/hearingQ1"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Right Ear ache" />
 
@@ -30,12 +31,14 @@
                 android:id="@+id/hbutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
     </LinearLayout>
@@ -50,6 +53,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:text="Left Ear ache " />
 
         <RadioGroup
@@ -63,12 +67,14 @@
                 android:id="@+id/hbutton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -83,6 +89,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:text="Right Pus" />
 
         <RadioGroup
@@ -96,12 +103,14 @@
                 android:id="@+id/hbutton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -115,6 +124,7 @@
             android:id="@+id/hearingQ4"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Left Pus" />
 
@@ -129,12 +139,14 @@
                 android:id="@+id/hbutton7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -148,6 +160,7 @@
             android:id="@+id/hearingQ5"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Right Muffled feeling" />
 
@@ -162,12 +175,14 @@
                 android:id="@+id/hbutton9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -181,6 +196,7 @@
             android:id="@+id/hearingQ6"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Left Muffled Feeling" />
 
@@ -195,12 +211,14 @@
                 android:id="@+id/hbutton11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -214,6 +232,7 @@
             android:id="@+id/hearingQ7"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Right Hearing roaring or hissing" />
 
@@ -228,12 +247,14 @@
                 android:id="@+id/hbutton13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -247,6 +268,7 @@
             android:id="@+id/hearingQ8"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Left Hearing roaring or hissing" />
 
@@ -261,12 +283,14 @@
                 android:id="@+id/hbutton15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/hbutton16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 

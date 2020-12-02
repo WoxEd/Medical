@@ -16,8 +16,9 @@
             android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#EAFAF1"
             android:text="Start Date"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:background="@drawable/button_shape"/>
 
         <TextView
             android:id="@+id/textStartDate"
@@ -39,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="End Date"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:background="@drawable/button_shape"/>
 
         <TextView
             android:id="@+id/textEndDate"

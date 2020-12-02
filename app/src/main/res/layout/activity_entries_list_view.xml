@@ -16,14 +16,18 @@
             android:id="@+id/listFilterButton"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/button_shape"
+            android:textColor="#F2D7D5"
+            android:textStyle="bold"
             android:text="Filter Dates" />
 
         <Button
             android:id="@+id/viewSummaryButton"
             android:layout_width="205dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#F2D7D5"
+            android:textStyle="bold"
+            android:background="@drawable/button_shape"
             android:layout_weight="1"
             android:text="View Summary" />
     </LinearLayout>
@@ -34,7 +38,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Range of Entries"
-        android:textColor="#FFFFFF"
+        android:textColor="#F2D7D5"
         android:textSize="22sp"
         android:textStyle="bold" />
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@android:color/holo_blue_light"
+    android:background="@drawable/activity_main_backgroud"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,6 +27,7 @@
             android:layout_height="40dp"
             android:layout_toEndOf="@id/textViewFirstName"
             android:textSize="18dp"
+            android:textColor = "#FEF9E7"
             android:gravity="center"
             android:focusable="true"
             android:hint="First Name"

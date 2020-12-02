@@ -8,32 +8,40 @@
         android:id="@+id/weekSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#CCCCFF"
-        android:textColor="#330066"
+        android:textColor="#EAFAF1"
+        android:background="@drawable/button_shape"
+        android:textStyle="bold"
+        android:textSize="20dp"
         android:text="Filter by selected dates" />
 
     <Button
         android:id="@+id/monthSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#CCCCFF"
-        android:textColor="#330066"
+        android:textStyle="bold"
+        android:textColor="#D4E6F1"
+        android:textSize="20dp"
+        android:background="@drawable/button_shape"
         android:text="Filter by selected month" />
 
     <Button
         android:id="@+id/yearSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#CCCCFF"
-        android:textColor="#330066"
-        android:text="Filter by selected year" />
+        android:background="@drawable/button_shape"
+        android:text="Filter by selected year"
+        android:textColor="#9B59B6"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/allSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#CCCCFF"
-        android:textColor="#330066"
+        android:textStyle="bold"
+        android:textColor="#76448A"
+        android:textSize="20dp"
+        android:background="@drawable/button_shape"
         android:text="Show all Entries" />
 
     <Button

@@ -16,6 +16,7 @@
             android:id="@+id/mentalQ1"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Forgets name of close family, friends, and address" />
 
@@ -30,12 +31,14 @@
                 android:id="@+id/mbutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
     </LinearLayout>
@@ -49,6 +52,7 @@
             android:id="@+id/mentalQ2"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Forgets date/time of year/time of day" />
 
@@ -63,12 +67,14 @@
                 android:id="@+id/mbutton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -82,6 +88,7 @@
             android:id="@+id/mentalQ3"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Has trouble using words to express needs" />
 
@@ -96,12 +103,14 @@
                 android:id="@+id/mbutton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -115,6 +124,7 @@
             android:id="@+id/mentalQ4"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Becomes frustrated when speaking " />
 
@@ -129,12 +139,14 @@
                 android:id="@+id/mbutton7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -149,6 +161,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:text="Repeats key words/phrases/gestures" />
 
         <RadioGroup
@@ -162,12 +175,14 @@
                 android:id="@+id/mbutton9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -181,6 +196,7 @@
             android:id="@+id/mentalQ6"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Has difficulty with written or verbal comprehension " />
 
@@ -195,12 +211,14 @@
                 android:id="@+id/mbutton11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -214,6 +232,7 @@
             android:id="@+id/mentalQ7"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Refuses or resists medications " />
 
@@ -228,12 +247,14 @@
                 android:id="@+id/mbutton13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -247,6 +268,7 @@
             android:id="@+id/mentalQ8"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Mismanages money or bills " />
 
@@ -261,12 +283,14 @@
                 android:id="@+id/mbutton15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -280,6 +304,7 @@
             android:id="@+id/mentalQ9"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Unable to recognize potential danger " />
 
@@ -294,12 +319,14 @@
                 android:id="@+id/mbutton17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -313,6 +340,7 @@
             android:id="@+id/mentalQ10"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Appears anxious or fearful" />
 
@@ -327,12 +355,14 @@
                 android:id="@+id/mbutton19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -346,6 +376,7 @@
             android:id="@+id/mentalQ11"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Appears sad or withdrawn" />
 
@@ -360,12 +391,14 @@
                 android:id="@+id/mbutton21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -379,6 +412,7 @@
             android:id="@+id/mentalQ12"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Has difficulty making eye contact or conversation" />
 
@@ -393,12 +427,14 @@
                 android:id="@+id/mbutton23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -412,6 +448,7 @@
             android:id="@+id/mentalQ13"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Demonstrates an overall lack of interest in daily life and activities" />
 
@@ -426,12 +463,14 @@
                 android:id="@+id/mbutton25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/mbutton26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 

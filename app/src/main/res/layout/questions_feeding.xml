@@ -16,6 +16,7 @@
             android:id="@+id/feedingQ1"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Nausea" />
 
@@ -30,12 +31,14 @@
                 android:id="@+id/fbutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/fbutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
     </LinearLayout>
@@ -49,6 +52,7 @@
             android:id="@+id/feedingQ2"
             android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
             android:layout_weight="1"
             android:text="Vomiting " />
 
@@ -63,12 +67,14 @@
                 android:id="@+id/fbutton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/fbutton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -83,6 +89,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:text="Hand tremor" />
 
         <RadioGroup
@@ -96,12 +103,14 @@
                 android:id="@+id/fbutton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/fbutton6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
@@ -116,6 +125,7 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="20dp"
             android:text="Painful swallowing" />
 
         <RadioGroup
@@ -129,12 +139,14 @@
                 android:id="@+id/fbutton7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/fbutton8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="20dp"
                 android:text="No" />
         </RadioGroup>
 
