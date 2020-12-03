@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=" Symptoms Tracker "
+        android:text="@string/symptom_tracker"
         android:textColor="#FCF3CF"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:textSize="20dp"
         android:textColor="#F9E79F"
-        android:text=" For T2201 Disability Tax Credit Form "/>
+        android:text="@string/Disability_form"/>
 
     <Button
         android:id="@+id/select_btn"
@@ -38,7 +38,7 @@
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="SELECT A PROFILE"
+        android:text="@string/profile_selector"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#F6EFEF"
         android:textStyle="bold" />
@@ -56,7 +56,7 @@
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="CREATE A NEW PROFILE"
+        android:text="@string/create_profile"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#F6EFEF"
         android:textStyle="bold" />

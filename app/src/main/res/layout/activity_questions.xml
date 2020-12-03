@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
-            android:text="Add Note"
+            android:text="@string/add_note"
             android:textColor="#4B558E"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -70,7 +70,7 @@
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:background="@drawable/edittext_boarder"
-            android:hint="Type your note"
+            android:hint="@string/type_note"
             android:inputType="textMultiLine"
             android:lines="5"
             android:textColor="#0B0000" />

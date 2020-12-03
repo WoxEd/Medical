@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:fontFamily="sans-serif-black"
         android:foregroundTint="#673AB7"
-        android:text="NEW USER CREATION"
+        android:text="@string/new_user"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
 
@@ -21,7 +21,7 @@
         android:id="@+id/create_textView_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="First Name: "
+        android:text="@string/fn"
         android:textColor="#3F51B5"
         android:textSize="18sp" />
 
@@ -29,13 +29,13 @@
         android:id="@+id/create_editText_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="type here " />
+        android:hint="@string/type_here" />
 
     <TextView
         android:id="@+id/create_textView_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Last Name: "
+        android:text="@string/ln"
         android:textColor="#3F51B5"
         android:textSize="18sp" />
 
@@ -43,13 +43,13 @@
         android:id="@+id/create_editText_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="type here"/>
+        android:hint="@string/type_here1"/>
 
     <Button
         android:id="@+id/create2_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CREATE" />
+        android:text="@string/create" />
 
 
 </LinearLayout>

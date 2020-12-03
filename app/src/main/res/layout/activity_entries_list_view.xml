@@ -19,7 +19,7 @@
             android:background="@drawable/button_shape"
             android:textColor="#F2D7D5"
             android:textStyle="bold"
-            android:text="Filter Dates" />
+            android:text="@string/filter_dates" />
 
         <Button
             android:id="@+id/viewSummaryButton"
@@ -29,7 +29,7 @@
             android:textStyle="bold"
             android:background="@drawable/button_shape"
             android:layout_weight="1"
-            android:text="View Summary" />
+            android:text="@string/view_summary" />
     </LinearLayout>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Range of Entries"
+        android:text="@string/range_of_enteries"
         android:textColor="#F2D7D5"
         android:textSize="22sp"
         android:textStyle="bold" />
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Date"
+            android:text="@string/date"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Disability"
+            android:text="@string/disability"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Severity"
+            android:text="@string/Severity"
             android:textSize="20sp"
             android:textStyle="bold" />
 

@@ -12,7 +12,7 @@
         android:background="@drawable/button_shape"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:text="Filter by selected dates" />
+        android:text="@string/filter_by_date" />
 
     <Button
         android:id="@+id/monthSummary"
@@ -22,14 +22,14 @@
         android:textColor="#D4E6F1"
         android:textSize="20dp"
         android:background="@drawable/button_shape"
-        android:text="Filter by selected month" />
+        android:text="@string/filter_by_month" />
 
     <Button
         android:id="@+id/yearSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"
-        android:text="Filter by selected year"
+        android:text="@string/filter_by_year"
         android:textColor="#9B59B6"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -42,27 +42,27 @@
         android:textColor="#76448A"
         android:textSize="20dp"
         android:background="@drawable/button_shape"
-        android:text="Show all Entries" />
+        android:text="@string/show_all_enteries" />
 
     <Button
         android:id="@+id/emptyDatabase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="false"
-        android:text="Debug: Clear Database"
+        android:text="@string/clear_database"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/addDatabase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Debug: Add Custom Entries"
+        android:text="@string/custom_entry"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/resetDatabase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Debug: Reset (Clear and add)"
+        android:text="@string/reset"
         android:visibility="gone" />
 </LinearLayout>

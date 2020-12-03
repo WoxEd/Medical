@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Date"
+        android:text="@string/date"
         android:textColor = "#D5F5E3"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Disability"
+        android:text="@string/disability"
         android:textColor = "#F9E79F"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Severity"
+        android:text="@string/Severity"
         android:textSize="20sp"
         android:textColor = "#E59866"
         android:textStyle="bold" />
