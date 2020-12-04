@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -162,7 +161,7 @@ public class QuestionActivity extends AppCompatActivity {
                 TextView notes = findViewById(R.id.noteBox);
                 String noteString = notes.getText().toString();
                 if( noteString != null) {
-                    opener.insert(db, "Note",noteString, entryId);
+                    opener.insertQuestion(db, "Note",noteString, entryId);
                 }
                 startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
 

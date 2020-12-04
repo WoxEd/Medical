@@ -49,7 +49,7 @@ public class ProfileCreateActivity extends AppCompatActivity {
                 Toast.makeText(this, "Last Name should be entered", Toast.LENGTH_LONG).show();
             } else {
 
-                opener.insert(db, firstName, lastName);
+                opener.insertProfile(db, firstName, lastName);
                 startActivity(new Intent(ProfileCreateActivity.this, HomeActivity.class));
                 Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
             }

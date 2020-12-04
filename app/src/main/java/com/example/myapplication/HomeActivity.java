@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,12 +23,12 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
     private Button select_bt;
     private Button create_bt;
-    private SharedPreferences prefs;
     private ArrayList<Profile> list;
     private DatabaseOpener opener;
     private SQLiteDatabase db;
     private View profileListView;
     public static long currentProfileId;
+    private MyListAdapter adapter;
 
 
     @Override
@@ -54,9 +53,12 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Using a cursor it will load all profiles from the database into an ArrayList
+     */
     private void loadProfiles() {
         list = new ArrayList<>();
-        Cursor results = opener.selectAll(db);
+        Cursor results = opener.selectAllProfile(db);
         int idIndex = results.getColumnIndex(DatabaseOpener.COL_ID);
         int firstNameIndex = results.getColumnIndex(DatabaseOpener.COL_FIRST_NAME);
         int lastNameIndex = results.getColumnIndex(DatabaseOpener.COL_LAST_NAME);
@@ -70,19 +72,20 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Generates an Alert Dialog which will display a list of profiles stored in the database
+     */
     private void generateListOfProfilesDialog() {
         profileListView = getLayoutInflater().inflate(R.layout.activity_profiles_list_view,null);
-
         loadProfiles();
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         if(list.size() > 0) {
             builder.setView(profileListView);
             ListView profileList = profileListView.findViewById(R.id.profileList);
-            MyListAdapter adapter = new MyListAdapter(this, list);
+            adapter = new MyListAdapter(this, list);
             profileList.setAdapter(adapter);
-            profileList.setOnItemClickListener( (parent,view,pos,id) -> login(list.get(pos)));//generateProfileAlert(list.get(pos)));
-
+            profileList.setOnItemClickListener( (parent,view,pos,id) -> login(list.get(pos)));
+            profileList.setOnItemLongClickListener((parent,view,pos,id) -> deleteProfile(list.get(pos)));
         } else {
             TextView noProfile = new TextView(this);
             noProfile.setText("No profiles created");
@@ -93,29 +96,32 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private void generateProfileAlert(Profile profile) {
+    /**
+     * Creates an alert allowing the user to delete a profile.
+     * If the user selects positive button the database will delete the profile, it will be removed from the arraylist, and the adapter will update
+     * @param profile
+     * @return
+     */
+    public boolean deleteProfile(Profile profile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        AlertDialog dialog;
-        builder.setTitle("What would you like to do?");
-        builder.setNegativeButton("DELETE", (click,arg) ->  generateDeleteAlert(profile));
-        builder.setPositiveButton("LOGIN", (click,arg) ->  {login(profile);});
-        dialog = builder.create();
-        dialog.show();
-    }
-
-    public void generateDeleteAlert(Profile profile) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirm").setMessage("Are you sure you wish to delete the profile " + profile.getFirstName() + " " + profile.getLastName() + "?");
-        builder.setPositiveButton("Yes", (e,i) -> {});
-        builder.setNegativeButton("No",(e,i)->{});
+        builder.setTitle("Delete this profile?");
+        builder.setPositiveButton("DELETE", (e,i) -> {
+            opener.deleteProfile(db,profile.getId());
+            list.remove(profile);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(this,"Profile Deleted", Toast.LENGTH_SHORT);
+        });
+        builder.setNegativeButton("CANCEL",(e,i)->{
+            Toast.makeText(this,"Delete cancelled", Toast.LENGTH_SHORT);});
         AlertDialog dialog = builder.create();
         dialog.show();
+        return true;
     }
 
-    public void deleteProfile(Profile profile) {
-        //TODO: Implement delete
-    }
-
+    /**
+     * Logs into the selected profile by passing the profile id to the MainActivity
+     * @param profile
+     */
     private void login(Profile profile) {
         Intent goToMain = new Intent(HomeActivity.this, MainActivity.class);
         currentProfileId = profile.getId();

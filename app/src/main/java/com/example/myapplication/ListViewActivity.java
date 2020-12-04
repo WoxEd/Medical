@@ -89,6 +89,8 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private String endDate;
 
+    private MyListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +111,29 @@ public class ListViewActivity extends AppCompatActivity {
         showSummary.setOnClickListener(e -> goToSummary());
 
         savedList.setOnItemClickListener( (parent,view,pos,id) -> displayEntryAndQuestions(list.get(pos)));
+        savedList.setOnItemLongClickListener((parent,view,pos,id) -> deleteEntry(list.get(pos)));
+    }
+
+    /**
+     * Generates an alert dialog to delete list
+     * If the positive button is pressed the entry will be delete from database, arraylist, and update adapter
+     * @param summaryObject
+     * @return
+     */
+    private boolean deleteEntry(SummaryObject summaryObject){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete this entry?");
+        builder.setPositiveButton("DELETE", (e,i) -> {
+            opener.deleteEntry(db, summaryObject.getId());
+            list.remove(summaryObject);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(this,"Profile Deleted", Toast.LENGTH_SHORT);
+        });
+        builder.setNegativeButton("CANCEL",(e,i)->{
+            Toast.makeText(this,"Delete cancelled", Toast.LENGTH_SHORT);});
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        return true;
     }
 
     /**
@@ -124,7 +149,7 @@ public class ListViewActivity extends AppCompatActivity {
      * In the ListView of entries, when one of them are pressed it will display all questions and notes
      */
     private void displayEntryAndQuestions(SummaryObject summaryObject) {
-        Cursor questions = opener.selectAll(db, summaryObject.getId());
+        Cursor questions = opener.selectAllQuestions(db, summaryObject.getId());
 
         int questionIndex = questions.getColumnIndex(DatabaseOpener.COL_QUESTION);
         int answerIndex= questions.getColumnIndex(DatabaseOpener.COL_ANSWER);
@@ -432,7 +457,7 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private void inflateList() {
         savedList = findViewById(R.id.savedList);
-        MyListAdapter adapter = new MyListAdapter(this, list);
+        adapter = new MyListAdapter(this, list);
         savedList.setAdapter(adapter);
     }
 
