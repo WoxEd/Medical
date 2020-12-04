@@ -48,9 +48,9 @@
     <string name="disability">Disability</string>
     <string name="Severity">Severity</string>
     <string name="new_user">NEW USER CREATION</string>
-    <string name="fn">First Name: </string>
+    <string name="fn">First Name </string>
     <string name="type_here">type here </string>
-    <string name="ln">Last Name: </string>
+    <string name="ln">Last Name </string>
     <string name="type_here1">type here</string>
     <string name="create">CREATE</string>
     <string name="select_profile">Select a Profile</string>
@@ -64,7 +64,27 @@
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
     <string name="add_note">Add Note</string>
-    <string name="type_note">Tyoe Note</string>
+    <string name="type_note">Type Note</string>
+    <string name="DTP">Delete this profile?</string>
+    <string name="Delete">Delete</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Deleted">Profile Deleted</string>
+    <string name="Canceled">Delete Canceled</string>
+    <string name="LoggedInAs">Logged in as</string>
+    <string name="DTE">Delete this entry?</string>
+    <string name="infrmation">Information</string>
+    <string name="StartDate">Both start and end dates must be selected</string>
+    <string name="EndDate">Start date must be before end date</string>
+    <string name="EndDay">Select the ending day of week</string>
+    <string name="Year">Year of</string>
+    <string name="allEnteries">Show all Enteries</string>
+    <string name="AddUser">ADD USER </string>
+    <string name="FNameNotNull">First Name should be entered</string>
+    <string name="LastNameNotNull">"Last Name should be entered" </string>
+    <string name="ProfileCreated">Profile Created </string>
+    <string name="NoProfileCreated">No Profiles Created </string>
+
+
 
 
 

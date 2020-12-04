@@ -44,14 +44,14 @@ public class ProfileCreateActivity extends AppCompatActivity {
             String lastName = et_last.getText().toString();
 
             if (firstName.trim().isEmpty()) {
-                Toast.makeText(this, "First Name should be entered", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.FNameNotNull), Toast.LENGTH_LONG).show();
             } else if (lastName.trim().isEmpty()) {
-                Toast.makeText(this, "Last Name should be entered", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.LastNameNotNull), Toast.LENGTH_LONG).show();
             } else {
 
                 opener.insertProfile(db, firstName, lastName);
                 startActivity(new Intent(ProfileCreateActivity.this, HomeActivity.class));
-                Toast.makeText(this, "Profile Created", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.ProfileCreated), Toast.LENGTH_SHORT).show();
             }
 
         });

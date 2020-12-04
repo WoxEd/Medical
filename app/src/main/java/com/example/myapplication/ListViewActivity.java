@@ -122,15 +122,15 @@ public class ListViewActivity extends AppCompatActivity {
      */
     private boolean deleteEntry(SummaryObject summaryObject){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete this entry?");
-        builder.setPositiveButton("DELETE", (e,i) -> {
+        builder.setTitle(getString(R.string.DTE));
+        builder.setPositiveButton(getString(R.string.Delete), (e,i) -> {
             opener.deleteEntry(db, summaryObject.getId());
             list.remove(summaryObject);
             adapter.notifyDataSetChanged();
-            Toast.makeText(this,"Profile Deleted", Toast.LENGTH_SHORT);
+            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT);
         });
-        builder.setNegativeButton("CANCEL",(e,i)->{
-            Toast.makeText(this,"Delete cancelled", Toast.LENGTH_SHORT);});
+        builder.setNegativeButton(getString(R.string.Cancel),(e,i)->{
+            Toast.makeText(this,getString(R.string.Canceled), Toast.LENGTH_SHORT);});
         AlertDialog dialog = builder.create();
         dialog.show();
         return true;
@@ -165,7 +165,7 @@ public class ListViewActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Information");
+        builder.setTitle(getString(R.string.infrmation));
         String message = "";
         for(int i =0; i< questionResults.size(); i+=2 ){
             message += questionResults.get(i) + ": " + questionResults.get(i+1) + "\n";
@@ -249,9 +249,9 @@ public class ListViewActivity extends AppCompatActivity {
         builder.setView(selectDates);
         builder.setPositiveButton(R.string.submit_option, (d,id)->{
             if(startDate == null || endDate == null) {
-                Toast.makeText(this, "Both start and end dates must be selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.StartDate), Toast.LENGTH_SHORT).show();
             } else if(startDate.compareTo(endDate) > 0) {
-                Toast.makeText(this, "Start date must be before end date", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.EndDate), Toast.LENGTH_SHORT).show();
             } else if(startDate.equals(endDate)) {
                 updateTitleForSameDay();
             } else {
@@ -298,7 +298,7 @@ public class ListViewActivity extends AppCompatActivity {
 
 
         }, year, month, day);
-        picker.setMessage("Select the ending day of week");
+        picker.setMessage(getString(R.string.EndDay));
         picker.show();
     }
 
@@ -483,7 +483,7 @@ public class ListViewActivity extends AppCompatActivity {
      * Sets the title to the selected year
      */
     private void updateTitleForYear() {
-        title.setText("Year of " + getDates(startDate)[0]);
+        title.setText(getString(R.string.Year) +" "+ getDates(startDate)[0]);
         updateList(false);
     }
 
@@ -491,7 +491,7 @@ public class ListViewActivity extends AppCompatActivity {
      * Sets the title to show that all entries are displayed
      */
     private void updateTitleForAll(){
-        title.setText("Showing all entries");
+        title.setText(getString(R.string.allEnteries));
         updateList(true);
     }
 

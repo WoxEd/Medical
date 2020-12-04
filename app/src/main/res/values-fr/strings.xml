@@ -65,4 +65,22 @@
     <string name="end_date">Date de fin</string>
     <string name="add_note">Ajouter une note</string>
     <string name="type_note">Note de type</string>
+    <string name="DTP">Supprimer ce profil?</string>
+    <string name="Delete">Supprimer</string>
+    <string name="Cancel">Annuler</string>
+    <string name="Deleted">Profil supprimé</string>
+    <string name="Canceled">Supprimer annulé</string>
+    <string name="LoggedInAs">connecté en tant que</string>
+    <string name="DTE">Supprimer cette entrée?</string>
+    <string name="infrmation">Information</string>
+    <string name="StartDate">Les dates de début et de fin doivent être sélectionnées</string>
+    <string name="EndDate">La date de début doit être antérieure à la date de fin</string>
+    <string name="EndDay">Sélectionnez le jour de fin de la semaine</string>
+    <string name="Year">L année de </string>
+    <string name="allEnteries">Afficher toutes les entrées</string>
+    <string name="AddUser">AJOUTER UN UTILISATEUR </string>
+    <string name="FNameNotNull">Le prénom doit être entré</string>
+    <string name="LastNameNotNull">Le nom doit être entré </string>
+    <string name="ProfileCreated">Profil créé </string>
+    <string name="NoProfileCreated">Aucun profil créé </string>
 </resources>

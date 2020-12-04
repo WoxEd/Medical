@@ -17,7 +17,7 @@
             android:layout_alignParentTop="true"
             android:textSize="18dp"
             android:gravity="center_vertical"
-            android:text="First Name" />
+            android:text="@string/fn" />
 
 
 
@@ -30,7 +30,7 @@
             android:textColor = "#FEF9E7"
             android:gravity="center"
             android:focusable="true"
-            android:hint="First Name"
+            android:hint="@string/fn"
             android:inputType="textPersonName"
             android:padding="10dp" />
 
@@ -41,7 +41,7 @@
             android:textSize="18dp"
             android:gravity="center_vertical"
             android:layout_below="@+id/textViewFirstName"
-            android:text="Last Name" />
+            android:text="@string/ln" />
 
         <EditText
             android:id="@+id/editLastName"
@@ -51,7 +51,7 @@
             android:layout_toEndOf="@id/textViewLastName"
             android:textSize="18dp"
             android:gravity="center"
-            android:hint="Last Name"
+            android:hint="@string/ln"
             android:inputType="textPersonName" />
 
     </RelativeLayout>
@@ -61,6 +61,6 @@
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="Add User" />
+        android:text="@string/AddUser" />
 
 </LinearLayout>

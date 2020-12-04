@@ -88,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
             profileList.setOnItemLongClickListener((parent,view,pos,id) -> deleteProfile(list.get(pos)));
         } else {
             TextView noProfile = new TextView(this);
-            noProfile.setText("No profiles created");
+            noProfile.setText(getString(R.string.NoProfileCreated));
             builder.setView(noProfile);
         }
         AlertDialog dialog = builder.create();
@@ -104,15 +104,15 @@ public class HomeActivity extends AppCompatActivity {
      */
     public boolean deleteProfile(Profile profile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete this profile?");
-        builder.setPositiveButton("DELETE", (e,i) -> {
+        builder.setTitle(getString(R.string.DTP));
+        builder.setPositiveButton(getString(R.string.Delete), (e,i) -> {
             opener.deleteProfile(db,profile.getId());
             list.remove(profile);
             adapter.notifyDataSetChanged();
-            Toast.makeText(this,"Profile Deleted", Toast.LENGTH_SHORT);
+            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT);
         });
-        builder.setNegativeButton("CANCEL",(e,i)->{
-            Toast.makeText(this,"Delete cancelled", Toast.LENGTH_SHORT);});
+        builder.setNegativeButton(getString(R.string.Cancel),(e,i)->{
+            Toast.makeText(this,getString(R.string.Canceled), Toast.LENGTH_SHORT);});
         AlertDialog dialog = builder.create();
         dialog.show();
         return true;
@@ -127,7 +127,7 @@ public class HomeActivity extends AppCompatActivity {
         currentProfileId = profile.getId();
         goToMain.putExtra(MainActivity.PROFILE, currentProfileId);
         startActivity(goToMain);
-        Toast.makeText(this, "Logged in as " + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT);
+        Toast.makeText(this, getString(R.string.LoggedInAs) + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT);
     }
 
     @Override
