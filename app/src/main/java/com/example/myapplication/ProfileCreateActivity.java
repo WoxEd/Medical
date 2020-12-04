@@ -23,13 +23,13 @@ public class ProfileCreateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_create);
+        setContentView(R.layout.activity_add_patient);
 
         opener = new DatabaseOpener(this);
         db = opener.getWritableDatabase();
 
-        et_first = findViewById(R.id.create_editText_1);
-        et_last = findViewById(R.id.create_editText_2);
+        et_first = findViewById(R.id.editFirstName);
+        et_last = findViewById(R.id.editLastName);
 
         prefs = getSharedPreferences("profileData", Context.MODE_PRIVATE);
 
@@ -38,7 +38,7 @@ public class ProfileCreateActivity extends AppCompatActivity {
         et_first.setText(first);
         et_last.setText(last);
 
-        bt_create2 = findViewById(R.id.create2_btn);
+        bt_create2 = findViewById(R.id.button2);
         bt_create2.setOnClickListener(v -> {
             String firstName = et_first.getText().toString();
             String lastName = et_last.getText().toString();
