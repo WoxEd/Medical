@@ -31,21 +31,21 @@
 
             <ImageButton
                 android:id="@+id/imagecalendar"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/calendar55"/>
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/calendar55" />
 
             <TextView
                 android:id="@+id/dateText"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:textColor = "#000000"
-                android:hint="Pick a date to enter data" />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:hint="Pick a date to enter data"
+                android:textColor="#000000"
+                android:textSize="22dp" />
         </RelativeLayout>>
 
         <LinearLayout
@@ -54,23 +54,25 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B2EBF2"
                 android:gravity="center"
+                android:text="@string/Vision"
                 android:textColor="#303F9F"
                 android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Vision"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
+                android:layout_weight="1"
                 android:background="#B2EBF2"
-                android:text = "@string/Speaking"/>
+                android:gravity="center"
+                android:text="@string/Speaking"
+                android:textColor="#303F9F"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -103,23 +105,25 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B2EBF2"
                 android:gravity="center"
+                android:text="@string/Hearing"
                 android:textColor="#303F9F"
                 android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Hearing"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B2EBF2"
                 android:gravity="center"
+                android:text="@string/Walking"
                 android:textColor="#303F9F"
                 android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text = "@string/Walking"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -129,8 +133,8 @@
 
             <ImageButton
                 android:id="@+id/imagehearing"
-                android:layout_height="150dp"
                 android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 android:background="#B2EBF2"
                 android:src="@drawable/hearing" />
@@ -150,23 +154,25 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B2EBF2"
                 android:gravity="center"
+                android:text="@string/Eliminating"
                 android:textColor="#303F9F"
                 android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Eliminating"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
+                android:layout_weight="1"
                 android:background="#B2EBF2"
-                android:text = "@string/Feeding"/>
+                android:gravity="center"
+                android:text="@string/Feeding"
+                android:textColor="#303F9F"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -177,7 +183,7 @@
             <ImageButton
                 android:id="@+id/imageeliminating"
                 android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#B2EBF2"
                 android:src="@drawable/eliminating" />
@@ -197,23 +203,25 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#B2EBF2"
                 android:gravity="center"
+                android:text="@string/Dressing"
                 android:textColor="#303F9F"
                 android:textSize="20dp"
-                android:background="#B2EBF2"
-                android:text="@string/Dressing"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textColor="#303F9F"
-                android:gravity="center"
-                android:textSize="20dp"
+                android:layout_weight="1"
                 android:background="#B2EBF2"
-                android:text = "@string/Mental"/>
+                android:gravity="center"
+                android:text="@string/Mental"
+                android:textColor="#303F9F"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
