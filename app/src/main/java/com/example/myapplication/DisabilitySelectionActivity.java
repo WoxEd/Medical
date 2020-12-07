@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -121,8 +122,9 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
         // Create a calendar dialog for user to select the date, today's date is the default
         picker = new DatePickerDialog(DisabilitySelectionActivity.this, (datePicker, calYear, calMonth, calDate) -> {
             // Set the date to the user's selection
-            selectedDate = ListViewActivity.createDateString(year,month+1,day);
+            selectedDate = ListViewActivity.createDateString(calYear,calMonth+1,calDate);
             dateText.setText(selectedDate);
+            Toast.makeText(this, selectedDate, Toast.LENGTH_SHORT).show();
         }, year, month, day);
         picker.show();
     }
