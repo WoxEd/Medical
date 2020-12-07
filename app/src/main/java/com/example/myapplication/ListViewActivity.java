@@ -437,7 +437,7 @@ public class ListViewActivity extends AppCompatActivity {
      * Sets the title to be between two selected dates
      */
     private void updateTitleForTwoDates() {
-        title.setText(startDate + " <--> " + endDate);
+        title.setText(startDate + "  -  " + endDate);
         updateList(false);
     }
 
