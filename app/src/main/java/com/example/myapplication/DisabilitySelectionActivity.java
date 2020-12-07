@@ -85,8 +85,6 @@ public class DisabilitySelectionActivity extends AppCompatActivity {
     public void goToQuestions(String type){
         goToQuestions.putExtra(MainActivity.DISABILITY_TYPE,type);
         goToQuestions.putExtra(MainActivity.DATE, selectedDate);
-        Log.d("Selection: date:", selectedDate);
-        Log.d("Disability Type Select:", type);
         startActivity(goToQuestions);
     }
 

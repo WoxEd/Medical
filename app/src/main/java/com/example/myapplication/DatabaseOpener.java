@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import java.util.Locale;
 
 /**
@@ -186,9 +185,6 @@ public class DatabaseOpener extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(CREATE_PROFILE_TABLE);
         sqLiteDatabase.execSQL(CREATE_DISABILITY_TABLE);
         sqLiteDatabase.execSQL(CREATE_QUESTION_TABLE);
-        Log.d("DB Helper", CREATE_DISABILITY_TABLE);
-        Log.d("DB Helper", CREATE_PROFILE_TABLE);
-        Log.d("DB Helper", CREATE_QUESTION_TABLE);
     }
 
     @Override
@@ -198,49 +194,32 @@ public class DatabaseOpener extends SQLiteOpenHelper {
 
     /**
      * Insert a disability entry
-     * @param sqLiteDatabase
-     * @param disabilityType
-     * @param severity
-     * @param date
-     * @param profileId
      */
     public void insertEntry(SQLiteDatabase sqLiteDatabase, String disabilityType, int severity, String date, long profileId) {
         String insert = String.format(Locale.CANADA, INSERT_DISABILITY,disabilityType,severity,date, profileId);
-        Log.d("DB Helper",insert);
         sqLiteDatabase.execSQL(insert);
     }
 
     /**
      * Insert a profile
-     * @param sqLiteDatabase
-     * @param firstName
-     * @param lastName
      */
     public void insertProfile(SQLiteDatabase sqLiteDatabase, String firstName, String lastName) {
         String insert = String.format(Locale.CANADA, INSERT_PROFILE, firstName ,lastName);
-        Log.d("DB Helper",insert);
         sqLiteDatabase.execSQL(insert);
     }
 
     /**
      * Insert a question for an entry
-     * @param sqLiteDatabase
-     * @param question
-     * @param answer
-     * @param entryId
      */
     public void insertQuestion(SQLiteDatabase sqLiteDatabase, String question, String answer, long entryId) {
         String insert = String.format(Locale.CANADA, INSERT_QUESTION, question, answer, entryId);
-        Log.d("DB Helper", insert);
         sqLiteDatabase.execSQL(insert);
     }
 
     /**
      * Drops and recreates all tables
-     * @param sqLiteDatabase
      */
     public void reset(SQLiteDatabase sqLiteDatabase) {
-        Log.d("DB Helper", "Dropping and recreating tables");
         sqLiteDatabase.execSQL(DROP_DISABILITIES);
         sqLiteDatabase.execSQL(DROP_PROFILE_TABLE);
         sqLiteDatabase.execSQL(CREATE_DISABILITY_TABLE);
@@ -270,13 +249,9 @@ public class DatabaseOpener extends SQLiteOpenHelper {
 
     /**
      * Selects all questions from an entry
-     * @param sqLiteDatabase
-     * @param entryId
-     * @return
      */
     public Cursor selectAllQuestions(SQLiteDatabase sqLiteDatabase, long entryId) {
         String query = String.format(Locale.CANADA, SELECT_ALL_QUESTIONS, entryId);
-        Log.d("QUESTION: ", query);
         return sqLiteDatabase.rawQuery(query,null);
     }
 
@@ -288,49 +263,8 @@ public class DatabaseOpener extends SQLiteOpenHelper {
      * @return Cursor object which can be used to increment over selected elements
      */
     public Cursor selectBetween(SQLiteDatabase sqLiteDatabase, long profileId, String startDate, String endDate) {
-        String query = String.format(SELECT_BETWEEN_DATES_STATEMENT, startDate, endDate, profileId);
-        Log.d("DB Helper", query);
+        String query = String.format(Locale.CANADA,SELECT_BETWEEN_DATES_STATEMENT, startDate, endDate, profileId);
         return sqLiteDatabase.rawQuery(query,null);
-    }
-
-    /**
-     * Adds test values
-     */
-    public void testAdd(SQLiteDatabase sqLiteDatabase) {
-        Log.d("DB Helper", "Adding predefined entries");
-        reset(sqLiteDatabase);
-        // Insert Test profile, id 1
-        insertProfile(sqLiteDatabase, "Leanne", "Carpenter");
-
-        // Insert Test Entries
-        insertEntry(sqLiteDatabase, MainActivity.DRESSING,10,"2020-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,1,"2020-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.WALKING,2,"2020-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.DRESSING,4,"2020-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.HEARING,9,"2020-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.HEARING,7,"2020-11-25",1);
-        insertEntry(sqLiteDatabase, MainActivity.SPEAKING,6,"2020-11-24",1);
-        insertEntry(sqLiteDatabase, MainActivity.MENTAL,10,"2020-11-23",1);
-        insertEntry(sqLiteDatabase, MainActivity.HEARING,4,"2020-11-22",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,1,"2020-11-21",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,2,"2020-11-20",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,3,"2020-11-19",1);
-        insertEntry(sqLiteDatabase, MainActivity.HEARING,9,"2020-11-18",1);
-        insertEntry(sqLiteDatabase, MainActivity.WALKING,8,"2020-11-17",1);
-        insertEntry(sqLiteDatabase, MainActivity.SPEAKING,9,"2020-10-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,8,"2020-09-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,4,"2020-08-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,1,"2020-04-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,4,"2019-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.VISION,4,"2018-12-10",1);
-        insertEntry(sqLiteDatabase, MainActivity.SPEAKING,6,"2020-09-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.ELIMINATING,8,"2020-08-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.WALKING,2,"2020-04-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.MENTAL,1,"2019-11-26",1);
-        insertEntry(sqLiteDatabase, MainActivity.FEEDING,5,"2018-12-10",1);
-
-        // insert questions hard to manually
-
     }
 
     /**
@@ -338,7 +272,6 @@ public class DatabaseOpener extends SQLiteOpenHelper {
      */
     public void deleteQuestion(SQLiteDatabase sqLiteDatabase, long entryId) {
         String deleteQuestion = String.format(Locale.CANADA,DELETE_QUESTIONS_FOR_ENTRY_ID, entryId);
-        Log.d("Delete Question", deleteQuestion);
         sqLiteDatabase.execSQL(deleteQuestion);
     }
 
@@ -348,7 +281,6 @@ public class DatabaseOpener extends SQLiteOpenHelper {
     public void deleteEntry(SQLiteDatabase sqLiteDatabase, long entryId) {
         deleteQuestion(sqLiteDatabase, entryId);
         String deleteEntries = String.format(Locale.CANADA, DELETE_ENTRY_GIVEN_ENTRY_ID, entryId);
-        Log.d("DeleteEntry", deleteEntries);
         sqLiteDatabase.execSQL(deleteEntries);
     }
 
@@ -370,11 +302,6 @@ public class DatabaseOpener extends SQLiteOpenHelper {
 
         //Finally delete profile
         String deleteProfile = String.format(Locale.CANADA, DELETE_PROFILE_GIVEN_ID, profileId);
-        Log.d("Delete profile", deleteProfile);
         sqLiteDatabase.execSQL(deleteProfile);
-    }
-
-    public void dropAdd(SQLiteDatabase sqLiteDatabase) {
-        reset(sqLiteDatabase);
     }
 }

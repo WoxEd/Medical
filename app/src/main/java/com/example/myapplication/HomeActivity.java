@@ -42,9 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         db = opener.getWritableDatabase();
 
 
-        select_bt.setOnClickListener(v -> {
-            generateListOfProfilesDialog();
-        });
+        select_bt.setOnClickListener(v -> generateListOfProfilesDialog());
 
         create_bt.setOnClickListener(v -> {
             Intent goToProfile = new Intent(HomeActivity.this, ProfileCreateActivity.class);
@@ -67,7 +65,6 @@ public class HomeActivity extends AppCompatActivity {
             long id = results.getLong(idIndex);
             String firstName = results.getString(firstNameIndex);
             String lastName = results.getString(lastNameIndex);
-            Log.d("HomePage", "Loaded profile" + firstName + " " + lastName );
             list.add(new Profile(id, firstName, lastName));
         }
     }
@@ -99,8 +96,6 @@ public class HomeActivity extends AppCompatActivity {
     /**
      * Creates an alert allowing the user to delete a profile.
      * If the user selects positive button the database will delete the profile, it will be removed from the arraylist, and the adapter will update
-     * @param profile
-     * @return
      */
     public boolean deleteProfile(Profile profile) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -109,10 +104,8 @@ public class HomeActivity extends AppCompatActivity {
             opener.deleteProfile(db,profile.getId());
             list.remove(profile);
             adapter.notifyDataSetChanged();
-            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT);
+            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT).show();
         });
-        builder.setNegativeButton(getString(R.string.Cancel),(e,i)->{
-            Toast.makeText(this,getString(R.string.Canceled), Toast.LENGTH_SHORT);});
         AlertDialog dialog = builder.create();
         dialog.show();
         return true;
@@ -120,14 +113,13 @@ public class HomeActivity extends AppCompatActivity {
 
     /**
      * Logs into the selected profile by passing the profile id to the MainActivity
-     * @param profile
      */
     private void login(Profile profile) {
         Intent goToMain = new Intent(HomeActivity.this, MainActivity.class);
         currentProfileId = profile.getId();
         goToMain.putExtra(MainActivity.PROFILE, currentProfileId);
         startActivity(goToMain);
-        Toast.makeText(this, getString(R.string.LoggedInAs) + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT);
+        Toast.makeText(this, getString(R.string.LoggedInAs) + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

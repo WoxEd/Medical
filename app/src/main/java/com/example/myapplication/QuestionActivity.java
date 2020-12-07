@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -111,10 +110,6 @@ public class QuestionActivity extends AppCompatActivity {
         if(disabilityType == null) disabilityType = MainActivity.VISION;
         if(entryDate == null) entryDate = ListViewActivity.createDateString(Calendar.getInstance().get(Calendar.YEAR), (Calendar.getInstance().get(Calendar.MONTH)+1), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
-        Log.d("loadIntent date",entryDate );
-        Log.d("loadIntent disability", disabilityType);
-
-
         //Loads icon and question layout based on disability type
         switch (disabilityType) {
             case MainActivity.SPEAKING:
@@ -160,13 +155,9 @@ public class QuestionActivity extends AppCompatActivity {
                 long entryId = db.insert(DatabaseOpener.DISABILITY_TABLE_NAME, null, entryRows);
                 TextView notes = findViewById(R.id.noteBox);
                 String noteString = notes.getText().toString();
-                if( noteString != null) {
-                    opener.insertQuestion(db, "Note",noteString, entryId);
-                }
+                opener.insertQuestion(db, "Note",noteString, entryId);
                 startActivity(new Intent(QuestionActivity.this, ListViewActivity.class));
 
-            } else {
-                Log.d("Questions", "Error Checking");
             }
     }
 

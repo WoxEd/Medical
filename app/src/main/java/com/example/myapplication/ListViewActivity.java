@@ -117,8 +117,6 @@ public class ListViewActivity extends AppCompatActivity {
     /**
      * Generates an alert dialog to delete list
      * If the positive button is pressed the entry will be delete from database, arraylist, and update adapter
-     * @param summaryObject
-     * @return
      */
     private boolean deleteEntry(SummaryObject summaryObject){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -127,10 +125,8 @@ public class ListViewActivity extends AppCompatActivity {
             opener.deleteEntry(db, summaryObject.getId());
             list.remove(summaryObject);
             adapter.notifyDataSetChanged();
-            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT);
+            Toast.makeText(this,getString(R.string.Deleted), Toast.LENGTH_SHORT).show();
         });
-        builder.setNegativeButton(getString(R.string.Cancel),(e,i)->{
-            Toast.makeText(this,getString(R.string.Canceled), Toast.LENGTH_SHORT);});
         AlertDialog dialog = builder.create();
         dialog.show();
         return true;
@@ -158,20 +154,19 @@ public class ListViewActivity extends AppCompatActivity {
         while(questions.moveToNext()) {
             String question = questions.getString(questionIndex);
             String answer = questions.getString(answerIndex);
-            Log.d("Load Questions", question + " " +answer );
             questionResults.add(question);
             questionResults.add(answer);
         }
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.infrmation));
-        String message = "";
+        builder.setTitle(getString(R.string.information));
+        StringBuilder message = new StringBuilder();
         for(int i =0; i< questionResults.size(); i+=2 ){
-            message += questionResults.get(i) + ": " + questionResults.get(i+1) + "\n";
+            message.append(questionResults.get(i)).append(": ").append(questionResults.get(i + 1)).append("\n");
         }
         TextView results = new TextView(this);
-        results.setText(message);
+        results.setText(message.toString());
         results.setTextSize(20f);
         builder.setView(results);
         AlertDialog dialog = builder.create();
@@ -201,27 +196,6 @@ public class ListViewActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         filter.setOnClickListener( e-> dialog.show());
-
-        /*DEBUG BUTTONS*/
-        //TODO Delete debug buttons
-        Button clear = filterButtons.findViewById(R.id.emptyDatabase);
-        Button add = filterButtons.findViewById(R.id.addDatabase);
-        Button reset = filterButtons.findViewById(R.id.resetDatabase);
-        clear.setOnClickListener( e -> {
-            opener.reset(db);
-            loadEntries();
-            inflateList();
-        });
-        add.setOnClickListener( e -> {
-            opener.testAdd(db);
-            loadEntries();
-            inflateList();});
-        reset.setOnClickListener( e -> {
-            opener.dropAdd(db);
-            loadEntries();
-            inflateList();
-            inflateList();});
-        /*DEBUG BUTTONS*/
 
         Button selectDates = filterButtons.findViewById(R.id.weekSummary);
         Button selectMonth = filterButtons.findViewById(R.id.monthSummary);
@@ -333,7 +307,6 @@ public class ListViewActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.submit_option, (dialog,id)->{
             int selectedMonth = monthPicker.getValue();
             int selectedYear = yearPicker.getValue();
-            Log.d("Number Picker Value: ", selectedMonth+ " " + selectedYear);
             if(selectMonth) {
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.MONTH, selectedMonth-1);
@@ -388,8 +361,7 @@ public class ListViewActivity extends AppCompatActivity {
         String yearText = Integer.toString(year);
         String monthText = (month < 10) ? "0" + month : Integer.toString(month);
         String dateText = (day < 10) ? "0" + day : Integer.toString(day);
-        String date = String.format(Locale.CANADA, format, yearText, monthText, dateText);
-        return date;
+        return String.format(Locale.CANADA, format, yearText, monthText, dateText);
     }
 
 
@@ -447,7 +419,6 @@ public class ListViewActivity extends AppCompatActivity {
             String disability = results.getString(disabilityIndex);
             int rating = results.getInt(ratingIndex);
             String date = results.getString(dateIndex);
-            Log.d("LOAD", "LOADED " + disability + " " + rating + " " + date);
             list.add(new SummaryObject(id, disability, rating, date));
         }
     }
@@ -466,7 +437,7 @@ public class ListViewActivity extends AppCompatActivity {
      * Sets the title to be between two selected dates
      */
     private void updateTitleForTwoDates() {
-        title.setText(startDate + " to " + endDate);
+        title.setText(startDate + " <--> " + endDate);
         updateList(false);
     }
 
@@ -491,7 +462,7 @@ public class ListViewActivity extends AppCompatActivity {
      * Sets the title to show that all entries are displayed
      */
     private void updateTitleForAll(){
-        title.setText(getString(R.string.allEnteries));
+        title.setText(getString(R.string.all_entries));
         updateList(true);
     }
 
