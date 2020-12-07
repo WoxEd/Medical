@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
 
         <ImageView
             android:id="@+id/selectedIcon"
@@ -44,11 +45,6 @@
             android:layout_height="wrap_content" />
 
 
-        <ListView
-            android:id="@+id/questionList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
         <LinearLayout
             android:id="@+id/questions"
             android:layout_width="match_parent"
@@ -69,11 +65,13 @@
             android:id="@+id/noteBox"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
-            android:background="@drawable/edittext_boarder"
+            android:background="@drawable/edit_text_border"
+            android:maxLength="100"
             android:hint="@string/type_note"
             android:inputType="textMultiLine"
             android:lines="5"
-            android:textColor="#0B0000" />
+            android:textColor="#0B0000"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/submit_button"

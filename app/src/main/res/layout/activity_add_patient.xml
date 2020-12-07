@@ -32,6 +32,8 @@
             android:focusable="true"
             android:hint="@string/fn"
             android:inputType="textPersonName"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:maxLength="15"
             android:padding="10dp" />
 
         <TextView
@@ -41,6 +43,7 @@
             android:textSize="18dp"
             android:gravity="center_vertical"
             android:layout_below="@+id/textViewFirstName"
+            android:maxLength="15"
             android:text="@string/ln" />
 
         <EditText
@@ -49,6 +52,7 @@
             android:layout_height="40dp"
             android:layout_below="@id/editFirstName"
             android:layout_toEndOf="@id/textViewLastName"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:textSize="18dp"
             android:gravity="center"
             android:hint="@string/ln"

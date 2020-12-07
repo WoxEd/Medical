@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
         currentProfileId = profile.getId();
         goToMain.putExtra(MainActivity.PROFILE, currentProfileId);
         startActivity(goToMain);
-        Toast.makeText(this, getString(R.string.LoggedInAs) + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.LoggedInAs) + " " + profile.getFirstName() + " " + profile.getLastName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

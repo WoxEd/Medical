@@ -32,7 +32,7 @@
     <string name="Medical_Tracker"> Medical Tracker</string>
     <string name="button_back_to_home">Back to Home Page</string>
     <string name="question_severity">How severe are the symptoms on a scale of 1 to 10?</string>
-    <string name="button_submit">Submit Answers</string>
+    <string name="button_submit">Save Entry</string>
     <string name="question_icon_description">Icon representing disability</string>
     <string name="team_name">Wild 4 - CST8334</string>
     <string name="college_date_title">Algonquin College 2020</string>
@@ -52,7 +52,7 @@
     <string name="ln">Last Name </string>
     <string name="type_here1">type here</string>
     <string name="create">CREATE</string>
-    <string name="select_profile">SELECT A PROFILE</string>
+    <string name="select_profile">PROFILES</string>
     <string name="filter_by_date">Filter by selected dates</string>
     <string name="filter_by_month">Filter by selected month</string>
     <string name="filter_by_year">Filter by selected year</string>
@@ -76,7 +76,7 @@
     <string name="EndDate">Start date must be before end date</string>
     <string name="EndDay">Select the ending day of week</string>
     <string name="Year">Year of</string>
-    <string name="all_entries">Show all Enteries</string>
+    <string name="all_entries">Display all</string>
     <string name="AddUser">ADD USER </string>
     <string name="FNameNotNull">First Name should be entered</string>
     <string name="LastNameNotNull">"Last Name should be entered" </string>

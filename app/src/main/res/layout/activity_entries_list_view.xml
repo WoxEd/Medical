@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/range_of_enteries"
+        android:text="@string/range_of_entries"
         android:textColor="#F2D7D5"
         android:textSize="22sp"
         android:textStyle="bold" />
