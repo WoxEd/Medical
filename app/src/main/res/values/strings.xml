@@ -39,11 +39,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="symptom_tracker">Symptoms Tracker</string>
     <string name="Disability_form">For T2201 Disability Tax Credit Form</string>
-    <string name="profile_selector">Select a Profile </string>
     <string name="create_profile">CREATE A NEW PROFILE</string>
     <string name="filter_dates">Filter Dates</string>
     <string name="view_summary">View Summary</string>
-    <string name="range_of_enteries">Range of Entries</string>
+    <string name="range_of_entries">Range of Entries</string>
     <string name="date">Date</string>
     <string name="disability">Disability</string>
     <string name="Severity">Severity</string>
@@ -57,7 +56,7 @@
     <string name="filter_by_date">Filter by selected dates</string>
     <string name="filter_by_month">Filter by selected month</string>
     <string name="filter_by_year">Filter by selected year</string>
-    <string name="show_all_enteries">Displaying all Entries</string>
+    <string name="show_all_entries">Displaying all Entries</string>
     <string name="clear_database">Debug: Clear Database</string>
     <string name="custom_entry">Debug: Add Custom Entries</string>
     <string name="reset">Debug: Reset (Clear and add)</string>
@@ -72,12 +71,12 @@
     <string name="Canceled">Delete Canceled</string>
     <string name="LoggedInAs">Logged in as</string>
     <string name="DTE">Delete this entry?</string>
-    <string name="infrmation">Information</string>
+    <string name="information">Information</string>
     <string name="StartDate">Both start and end dates must be selected</string>
     <string name="EndDate">Start date must be before end date</string>
     <string name="EndDay">Select the ending day of week</string>
     <string name="Year">Year of</string>
-    <string name="allEnteries">Show all Enteries</string>
+    <string name="all_entries">Show all Enteries</string>
     <string name="AddUser">ADD USER </string>
     <string name="FNameNotNull">First Name should be entered</string>
     <string name="LastNameNotNull">"Last Name should be entered" </string>

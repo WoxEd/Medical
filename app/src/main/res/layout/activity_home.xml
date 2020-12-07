@@ -38,7 +38,7 @@
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/profile_selector"
+        android:text="@string/select_profile"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#F6EFEF"
         android:textStyle="bold" />

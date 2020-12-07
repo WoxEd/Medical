@@ -43,7 +43,7 @@
     <string name="create_profile">CRÉER UN NOUVEAU PROFIL</string>
     <string name="filter_dates">Filtrer les dates</string>
     <string name="view_summary">Voir le résumé</string>
-    <string name="range_of_enteries">Gamme d entrées</string>
+    <string name="range_of_entries">Gamme d entrées</string>
     <string name="date">Date</string>
     <string name="disability">invalidité</string>
     <string name="Severity">Gravité</string>
@@ -57,7 +57,7 @@
     <string name="filter_by_date">Filtrer par dates sélectionnées</string>
     <string name="filter_by_month">Filtrer par mois sélectionné</string>
     <string name="filter_by_year">Filtrer par année sélectionnée</string>
-    <string name="show_all_enteries">Afficher toutes les entrées</string>
+    <string name="show_all_entries">Afficher toutes les entrées</string>
     <string name="clear_database">Débogage: effacer la base de données</string>
     <string name="custom_entry">Débogage: ajouter des entrées personnalisées</string>
     <string name="reset">Déboguer: réinitialiser (effacer et ajouter)</string>
@@ -72,12 +72,12 @@
     <string name="Canceled">Supprimer annulé</string>
     <string name="LoggedInAs">connecté en tant que</string>
     <string name="DTE">Supprimer cette entrée?</string>
-    <string name="infrmation">Information</string>
+    <string name="information">Information</string>
     <string name="StartDate">Les dates de début et de fin doivent être sélectionnées</string>
     <string name="EndDate">La date de début doit être antérieure à la date de fin</string>
     <string name="EndDay">Sélectionnez le jour de fin de la semaine</string>
     <string name="Year">L année de </string>
-    <string name="allEnteries">Afficher toutes les entrées</string>
+    <string name="all_entries">Afficher toutes les entrées</string>
     <string name="AddUser">AJOUTER UN UTILISATEUR </string>
     <string name="FNameNotNull">Le prénom doit être entré</string>
     <string name="LastNameNotNull">Le nom doit être entré </string>

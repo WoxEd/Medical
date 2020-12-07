@@ -42,7 +42,7 @@
         android:textColor="#76448A"
         android:textSize="20dp"
         android:background="@drawable/button_shape"
-        android:text="@string/show_all_enteries" />
+        android:text="@string/show_all_entries" />
 
     <Button
         android:id="@+id/emptyDatabase"
