@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/date"
-        android:textColor = "#D5F5E3"
+        android:textColor = "#732FCC"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/disability"
-        android:textColor = "#F9E79F"
+        android:textColor = "#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -34,7 +34,7 @@
         android:gravity="center"
         android:text="@string/Severity"
         android:textSize="20sp"
-        android:textColor = "#E59866"
+        android:textColor = "#2535CC"
         android:textStyle="bold" />
 
 
