@@ -53,10 +53,11 @@
             android:layout_below="@id/editFirstName"
             android:layout_toEndOf="@id/textViewLastName"
             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:textSize="18dp"
             android:gravity="center"
             android:hint="@string/ln"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor = "#FEF9E7"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
