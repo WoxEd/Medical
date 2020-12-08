@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@drawable/activity_main_backgroud"
+    android:background="@drawable/activity_main_background"
     >
     <RelativeLayout
         android:layout_width="match_parent"

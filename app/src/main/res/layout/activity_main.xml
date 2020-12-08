@@ -11,7 +11,7 @@
         tools:context=".MainActivity"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/activity_main_backgroud">
+        android:background="@drawable/activity_main_background">
 
         <TextView
             android:layout_width="wrap_content"

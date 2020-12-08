@@ -39,7 +39,6 @@
     <string name="hello_blank_fragment">Bonjour fragment vierge</string>
     <string name="symptom_tracker">Suivi des symptômes</string>
     <string name="Disability_form">Pour le formulaire de crédit d impôt pour personnes handicapées T2201</string>
-    <string name="profile_selector">Sélectionnez un profil </string>
     <string name="create_profile">CRÉER UN NOUVEAU PROFIL</string>
     <string name="filter_dates">Filtrer les dates</string>
     <string name="view_summary">Voir le résumé</string>
